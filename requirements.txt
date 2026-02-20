@@ -1,0 +1,12 @@
+python-dotenv>=1.0
+bcrypt>=4.1
+Werkzeug>=3.0
+Flask>=3.0
+Flask-Login>=0.6
+Flask_SQLAlchemy>=3.1
+SQLAlchemy>=2.0
+Flask-Migrate>=4.0
+flask_bcrypt==1.0.1
+flask-admin
+email_validator
+humanize
