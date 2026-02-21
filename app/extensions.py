@@ -10,6 +10,3 @@ migrate = Migrate()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
 console = Console()
-
-login_manager.login_view = "auth.login"
-login_manager.login_message_category = "info"
