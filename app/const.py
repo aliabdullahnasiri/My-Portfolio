@@ -1,0 +1,7 @@
+from app.config import Config
+
+PROJECT_TITLE: str = Config.PROJECT_TITLE
+DEFAULT_AVATAR: str = Config.DEFAULT_AVATAR
+APP_DIR: str = Config.APP_DIR
+ADMINISTRATOR = Config.ADMINISTRATOR
+ADMINISTER = Config.ADMINISTER
