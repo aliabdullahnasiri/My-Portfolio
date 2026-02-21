@@ -15,6 +15,7 @@ class FileForEnum(str, Enum):
     PROJECT_IMAGE = "project_image"
     CERTIFICATE = "certificate"
     BLOG_COVER = "blog_cover"
+    REGULAR = "regular"
 
 
 class File(db.Model):
@@ -29,7 +30,9 @@ class File(db.Model):
         default=lambda: datetime.now(timezone.utc).date(),
     )
     file_description = db.Column(db.String(255))
-    file_for = db.Enum(FileForEnum, name="file_for_enum")
+    file_for = db.Column(
+        db.Enum(FileForEnum), nullable=False, default=FileForEnum.REGULAR
+    )
     file_url = db.Column(db.String(255), nullable=False)
 
     user = db.relationship("User", back_populates="files")
