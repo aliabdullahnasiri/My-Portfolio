@@ -49,3 +49,6 @@ Thumbs.db
 # Security / Secrets
 secrets.json
 config.local.py
+
+
+migrations/
