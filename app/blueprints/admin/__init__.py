@@ -1,17 +1,14 @@
-from flask import Blueprint, abort
-from flask_login import current_user, login_required
+from flask import Blueprint
 
 from app.func import __import_all__
-from app.models.permission import Permission
+from app.models.user import admin_required
 
 bp = Blueprint("admin", __name__)
 
 
 @bp.before_request
-@login_required
-def _():
-    if not current_user.can(Permission.administer()):
-        abort(403)
+@admin_required
+def _(): ...
 
 
 __import_all__("app/blueprints/admin/routes")
