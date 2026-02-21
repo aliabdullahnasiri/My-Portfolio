@@ -18,4 +18,14 @@ class Config:
 
     SQLALCHEMY_ECHO = os.getenv("SQLALCHEMY_ECHO", "false").lower() == "true"
 
+    APP_DIR = "app"
+
+    DEFAULT_AVATAR = "assets/img/default-avatar.png"
+
     UPLOAD_FOLDER = os.path.join("app", "static", "uploads")
+
+    FLASKY_ADMIN: str = "nasiri.aliabdullah@gmail.com"
+
+    ADMINISTRATOR: str = "ADMINISTRATOR"
+
+    ADMINISTER: str = "ADMINISTER"
