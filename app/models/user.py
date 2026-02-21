@@ -4,19 +4,11 @@ from operator import call
 from typing import Dict, List, Union
 
 from flask import abort, current_app
-from flask_login import AnonymousUserMixin, UserMixin, current_user
+from flask_login import AnonymousUserMixin, UserMixin, current_user, login_required
 
 from app.extensions import bcrypt, db, login_manager
 from app.models.permission import Permission
 from app.models.role import Role
-
-
-class AnonymousUser(AnonymousUserMixin):
-    def can(self, _):
-        return False
-
-    def is_administrator(self):
-        return False
 
 
 class User(UserMixin, db.Model):
@@ -149,6 +141,14 @@ class User(UserMixin, db.Model):
                     self.roles.append(role_obj)
 
 
+class AnonymousUser(AnonymousUserMixin):
+    def can(self, _):
+        return False
+
+    def is_administrator(self):
+        return False
+
+
 @login_manager.user_loader
 def load_user(id: str):
     return User.query.filter_by(id=id).first()
@@ -166,3 +166,15 @@ def permission_required(permission):
         return decorated_function
 
     return decorator
+
+
+def admin_required(f):
+    @wraps(f)
+    @login_required
+    def decorated_function(*args, **kwargs):
+        if not current_user.can(Permission.administer()):
+            abort(403)
+
+        return f(*args, **kwargs)
+
+    return decorated_function
