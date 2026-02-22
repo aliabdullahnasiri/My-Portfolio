@@ -3,13 +3,13 @@ from sqlalchemy.exc import IntegrityError
 
 from app.blueprints.auth import bp
 from app.extensions import db
-from app.forms.signup import SignupForm
+from app.forms.signup import SignUpForm
 from app.models.user import User
 
 
-@bp.post("/signup")
-def signup():
-    form = SignupForm()
+@bp.post("/sign-up")
+def sign_up():
+    form = SignUpForm()
 
     if not form.validate_on_submit():
         return (

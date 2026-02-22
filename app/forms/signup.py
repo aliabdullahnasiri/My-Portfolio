@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationE
 from app.models.user import User
 
 
-class SignupForm(FlaskForm):
+class SignUpForm(FlaskForm):
     user_name = StringField("Username", validators=[DataRequired(), Length(max=50)])
     email = EmailField("Email", validators=[DataRequired(), Email()])
     password = PasswordField("Password", validators=[DataRequired(), Length(min=6)])

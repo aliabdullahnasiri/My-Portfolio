@@ -1,0 +1,32 @@
+{% extends "admin/pages/sign-in.html" %} {% block form %} {% with f = form %}
+<form method="POST">
+  {{ f.hidden_tag() }}
+  <div class="input-group input-group-outline my-3">
+    {{ f.email.label(class="form-label") }} {{ f.email(class="form-control") }}
+  </div>
+  <div class="input-group input-group-outline mb-3">
+    {{ f.password.label(class="form-label") }} {{
+    f.password(class="form-control") }}
+  </div>
+  <div class="input-group input-group-outline mb-3">
+    {{ f.confirm_password.label(class="form-label") }} {{
+    f.confirm_password(class="form-control") }}
+  </div>
+
+  <div class="row my-3">
+    <div class="col-md-12">
+      <div class="text-center">
+        {{ f.submit(class="btn bg-gradient-dark w-100 my-4 mb-2") }}
+      </div>
+    </div>
+  </div>
+  <p class="mt-4 text-sm text-center">
+    Don't have an account?
+    <a
+      href="{{ url_for('admin.sign_in') }}"
+      class="text-primary text-gradient font-weight-bold"
+      >Sign In</a
+    >
+  </p>
+</form>
+{% endwith %}{% endblock %}

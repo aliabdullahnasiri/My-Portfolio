@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <title>{{ title or 'App' }} · {{ PROJECT_TITLE }}</title>
+
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="{{ url_for('static', filename='admin/assets/img/apple-icon.png') }}"
+    />
+
+    {% block style %}
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='admin/css/style.css') }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='admin/assets/img/favicon.png') }}"
+    />
+
+    <!-- CSS Files -->
+    <link
+      id="pagestyle"
+      href="{{ url_for('static', filename='admin/assets/css/material-dashboard.css') }}"
+      rel="stylesheet"
+    />
+
+    <link
+      href="{{ url_for('static', filename='admin/assets/css/material-icons.css') }}"
+      rel="stylesheet"
+    />
+
+    {% endblock %}
+  </head>
+  <body class="g-sidenav-show bg-gray-100">
+    <main class="main-content mt-0">
+      <div
+        class="page-header align-items-start min-vh-100"
+        style="
+          background-image: url(&quot;https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80&quot;);
+        "
+      >
+        <span class="mask bg-gradient-dark opacity-6"></span>
+        <div class="container my-auto">
+          <div class="row">
+            <div class="col-lg-4 col-md-8 col-12 mx-auto">
+              <div class="card z-index-0 fadeIn3 fadeInBottom">
+                <div
+                  class="card-header p-0 position-relative mt-n4 mx-3 z-index-2"
+                >
+                  <div
+                    class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1"
+                  >
+                    <h4
+                      class="text-white font-weight-bolder text-center mt-0 mb-0"
+                    >
+                      {{ title }}
+                    </h4>
+                  </div>
+                </div>
+                <div class="card-body">
+                  {% block form %} {% with f = form %}
+                  <form method="POST">
+                    {{ f.hidden_tag() }}
+                    <div class="input-group input-group-outline my-3">
+                      {{ f.email.label(class="form-label") }} {{
+                      f.email(class="form-control") }}
+                    </div>
+                    <div class="input-group input-group-outline mb-3">
+                      {{ f.password.label(class="form-label") }} {{
+                      f.password(class="form-control") }}
+                    </div>
+                    <div
+                      class="form-check form-switch d-flex align-items-center mb-3 is-filled"
+                    >
+                      {{ f.remember_me(class="form-check-input") }} {{
+                      f.remember_me.label(class="form-check-label mb-0 ms-3") }}
+                    </div>
+
+                    <div class="row my-3">
+                      <div class="col-md-12">
+                        <div class="text-center">
+                          {{ f.submit(class="btn bg-gradient-dark w-100 my-4
+                          mb-2") }}
+                        </div>
+                      </div>
+                    </div>
+                    <p class="mt-4 text-sm text-center">
+                      Don't have an account?
+                      <a
+                        href="{{ url_for('admin.sign_up') }}"
+                        class="text-primary text-gradient font-weight-bold"
+                        >Sign Up</a
+                      >
+                    </p>
+                  </form>
+                  {% endwith %} {% endblock %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!--   Core JS Files   -->
+    <script src="{{ url_for('static', filename='admin/assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/assets/js/core/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/assets/js/plugins/chartjs.min.js') }}"></script>
+
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="{{ url_for('static', filename='admin/assets/js/material-dashboard.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/js/sweetalert.js') }}"></script>
+  </body>
+</html>
