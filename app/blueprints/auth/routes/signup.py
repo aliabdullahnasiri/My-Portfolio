@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, url_for
 from sqlalchemy.exc import IntegrityError
 
 from app.blueprints.auth import bp
@@ -18,6 +18,7 @@ def sign_up():
                     "success": False,
                     "message": "Invalid form data",
                     "errors": form.errors,
+                    "category": "error",
                 }
             ),
             400,
@@ -32,6 +33,7 @@ def sign_up():
                     "success": False,
                     "message": "Username or email already exists",
                     "error_code": "USER_ALREADY_EXISTS",
+                    "category": "error",
                 }
             ),
             409,
@@ -54,6 +56,7 @@ def sign_up():
                     "success": False,
                     "message": "Database integrity error",
                     "error_code": "DATABASE_ERROR",
+                    "category": "error",
                 }
             ),
             500,
@@ -69,6 +72,7 @@ def sign_up():
                     "username": user.user_name,
                     "email": user.email,
                 },
+                "category": "success",
             }
         ),
         201,
