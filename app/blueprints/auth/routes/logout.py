@@ -7,13 +7,14 @@ from app.blueprints.auth import bp
 @bp.get("/logout")
 @login_required
 def logout():
+    username = current_user.user_name
     logout_user()
 
     return (
         jsonify(
             {
                 "success": True,
-                "message": f"User {current_user.user_name!r} has been logged out.",
+                "message": f"User {username!r} has been logged out.",
             }
         ),
         200,
