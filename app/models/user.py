@@ -3,7 +3,7 @@ from functools import wraps
 from operator import call
 from typing import Dict, List, Union
 
-from flask import abort, current_app
+from flask import abort, current_app, request
 from flask_login import AnonymousUserMixin, UserMixin, current_user, login_required
 
 from app.extensions import bcrypt, db, login_manager
