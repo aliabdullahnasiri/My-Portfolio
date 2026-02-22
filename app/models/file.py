@@ -21,6 +21,7 @@ class FileForEnum(str, Enum):
 class File(db.Model):
     __tablename__ = "files"
 
+    uid = None
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     # File Info
