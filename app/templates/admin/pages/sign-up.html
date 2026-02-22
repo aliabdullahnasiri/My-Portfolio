@@ -1,16 +1,25 @@
-{% extends "admin/pages/sign-in.html" %} {% block form %} {% with f = form %}
-<form method="POST">
+{% extends "admin/pages/sign-in.html" %} {% block form %}
+{% with f = form %}
+<form method="POST" action="{{ url_for('auth.sign_up') }}">
   {{ f.hidden_tag() }}
-  <div class="input-group input-group-outline my-3">
-    {{ f.email.label(class="form-label") }} {{ f.email(class="form-control") }}
+  <div class="my-3">
+    <div class="input-group input-group-outline">
+      {{ f.email.label(class="form-label") }} {{ f.email(class="form-control") }}
+    </div>
   </div>
-  <div class="input-group input-group-outline mb-3">
-    {{ f.password.label(class="form-label") }} {{
-    f.password(class="form-control") }}
+
+  <div class="my-3">
+    <div class="input-group input-group-outline">
+      {{ f.password.label(class="form-label") }} {{
+      f.password(class="form-control") }}
+    </div>
   </div>
-  <div class="input-group input-group-outline mb-3">
-    {{ f.confirm_password.label(class="form-label") }} {{
-    f.confirm_password(class="form-control") }}
+
+  <div class="my-3">
+    <div class="input-group input-group-outline">
+      {{ f.confirm_password.label(class="form-label") }} {{
+      f.confirm_password(class="form-control") }}
+    </div>
   </div>
 
   <div class="row my-3">
@@ -20,6 +29,7 @@
       </div>
     </div>
   </div>
+
   <p class="mt-4 text-sm text-center">
     Don't have an account?
     <a
@@ -29,4 +39,5 @@
     >
   </p>
 </form>
-{% endwith %}{% endblock %}
+{% endwith %}
+{% endblock %}
