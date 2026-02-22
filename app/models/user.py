@@ -45,7 +45,7 @@ class User(UserMixin, db.Model):
 
     @property
     def permissions(self):
-        permissions = 0x0001
+        permissions = 0x0001 if self.roles.count() > 0 else 0x0000
 
         for role in self.roles.all():
             permissions |= role.hex_permissions
