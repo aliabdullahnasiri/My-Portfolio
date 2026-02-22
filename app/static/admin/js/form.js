@@ -153,6 +153,10 @@ async function submitForm(formElement) {
         title: data.title,
         text: data.message,
         icon: data.category,
+      }).then(() => {
+        if (data?.redirect) {
+          window.location.replace(data.redirect);
+        }
       });
     }
   } catch (err) {
