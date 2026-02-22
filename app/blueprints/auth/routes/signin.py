@@ -52,9 +52,9 @@ def sign_in():
                     "username": user.user_name,
                     "email": user.email,
                     "is_admin": (is_admin := user.is_administrator()),
-                    "category": "success",
-                    "redirect": url_for("admin.dashboard" if is_admin else "main.home"),
                 },
+                "category": "success",
+                "redirect": url_for("admin.dashboard" if is_admin else "main.home"),
             }
         ),
         200,
