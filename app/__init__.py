@@ -1,7 +1,9 @@
 import os
+import sys
 from typing import Dict
 
 from flask import Flask, current_app, url_for
+from sqlalchemy import inspect
 
 import app.models as _
 from app.blueprints.admin import bp as admin_bp
@@ -10,7 +12,6 @@ from app.blueprints.auth import bp as auth_bp
 from app.blueprints.main import bp as main_bp
 from app.config import Config
 from app.extensions import bcrypt, db, login_manager, migrate
-from app.models.permission import Permission
 
 
 def ctx() -> Dict:
@@ -49,7 +50,14 @@ def create_app(config_class: type[Config] | None = None) -> Flask:
     app.register_blueprint(main_bp)
 
     with app.app_context():
-        if Permission.administer():
-            Permission.refresh()
+        inspector = inspect(db.engine)
+
+        if inspector.has_table("permissions"):
+            from app.models.permission import Permission
+
+            if Permission.administer():
+                Permission.refresh()
+        else:
+            sys.exit(1)
 
     return app
