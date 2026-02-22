@@ -57,7 +57,5 @@ def create_app(config_class: type[Config] | None = None) -> Flask:
 
             if Permission.administer():
                 Permission.refresh()
-        else:
-            sys.exit(1)
 
     return app
