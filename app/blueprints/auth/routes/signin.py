@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, url_for
 from flask_bcrypt import check_password_hash
 from flask_login import login_user
 from werkzeug.security import check_password_hash
@@ -51,8 +51,9 @@ def sign_in():
                     "id": user.id,
                     "username": user.user_name,
                     "email": user.email,
-                    "is_admin": user.is_administrator(),
+                    "is_admin": (is_admin := user.is_administrator()),
                     "category": "success",
+                    "redirect": url_for("admin.dashboard" if is_admin else "main.home"),
                 },
             }
         ),
