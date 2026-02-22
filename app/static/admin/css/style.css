@@ -265,3 +265,7 @@ div[data-bs-role="loader"]::after {
 .multi-value-input.readonly span[data-role="value"] {
   cursor: not-allowed;
 }
+
+input:-webkit-autofill {
+  transition: background-color 5000s ease-in-out 0s;
+}
