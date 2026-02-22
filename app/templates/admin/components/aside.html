@@ -34,6 +34,38 @@
           <span class="nav-link-text ms-1">Dashboard</span>
         </a>
       </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link text-dark opacity-8"
+          href="{{ url_for('admin.users') }}"
+        >
+          <i class="material-symbols-rounded opacity-5">groups</i>
+          <span class="nav-link-text ms-1">Users</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link text-dark opacity-8"
+          href="{{ url_for('admin.permissions') }}"
+        >
+          <i class="material-symbols-rounded opacity-5">lock_open_circle</i>
+          <span class="nav-link-text ms-1">Permissions</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link text-dark opacity-8"
+          href="{{ url_for('admin.roles') }}"
+        >
+          <i class="material-symbols-rounded opacity-5"
+            >supervised_user_circle</i
+          >
+          <span class="nav-link-text ms-1">Roles</span>
+        </a>
+      </li>
     </ul>
   </div>
 </aside>
