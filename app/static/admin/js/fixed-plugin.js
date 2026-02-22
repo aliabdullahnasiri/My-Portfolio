@@ -1,87 +1,67 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const aside = document.querySelector("aside");
-  const fixedPlugin = document.querySelector(".fixed-plugin");
+(function () {
+  const asideElement = document.querySelector("aside");
+  const fixedPluginElement = document.querySelector(".fixed-plugin");
+  const badgeColorsElement = fixedPluginElement.querySelector(".badge-colors");
+  const sideNavTypeElement = fixedPluginElement.querySelector(".sidenav-type");
+  const darkVersionElement = fixedPluginElement.querySelector("#dark-version");
 
-  if (!fixedPlugin || !aside) return;
+  const badgeColor = localStorage.getItem("side-bar-color");
+  const sideNavType = localStorage.getItem("side-nav-type");
+  const darkVersion = localStorage.getItem("dark-version");
 
-  const badgeColors = fixedPlugin.querySelector(".badge-colors");
-  const sideNavType = fixedPlugin.querySelector(".sidenav-type");
-  const darkVersionToggle = fixedPlugin.querySelector("#dark-version");
+  let spanElement = badgeColorsElement.querySelector(
+    "span[data-color='{}']".replace("{}", badgeColor ? badgeColor : "dark"),
+  );
+  let sidebarTypeElement = sideNavType
+    ? fixedPluginElement.querySelector(
+        "button[data-class='{}']".replace("{}", sideNavType),
+      )
+    : "bg-gradient-dark";
 
-  const storedColor = localStorage.getItem("side-bar-color") || "dark";
-  const storedType = localStorage.getItem("side-nav-type");
-  const storedDarkMode = localStorage.getItem("dark-version") === "true";
-
-  // ========================
-  // Highlight Active Sidebar Link
-  // ========================
-  aside.querySelectorAll("a").forEach((link) => {
-    const url = new URL(link.href);
-    link.classList.toggle("active", url.pathname === location.pathname);
-    link.classList.toggle("text-dark", url.pathname !== location.pathname);
+  badgeColorsElement.addEventListener("click", function (event) {
+    if (event.target.tagName == "SPAN")
+      localStorage.setItem("side-bar-color", event.target.dataset.color);
   });
 
-  // ========================
-  // Apply Stored Sidebar Color
-  // ========================
-  if (badgeColors) {
-    const colorSpan = badgeColors.querySelector(
-      `span[data-color="${storedColor}"]`,
-    );
-    if (colorSpan && typeof sidebarColor === "function") {
-      sidebarColor(colorSpan);
+  sideNavTypeElement.addEventListener("click", function (event) {
+    if (event.target.tagName == "BUTTON") {
+      localStorage.setItem("side-nav-type", event.target.dataset.class);
+    }
+  });
+
+  darkVersionElement.addEventListener("change", function (event) {
+    localStorage.setItem("dark-version", event.target.checked);
+    if (sidebarTypeElement) sidebarType(sidebarTypeElement);
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    Array.from(asideElement.querySelectorAll("a")).forEach((aElement) => {
+      const url = new URL(aElement.href);
+      if (url.pathname == location.pathname) {
+        aElement.classList.remove("text-dark");
+        aElement.classList.add("active");
+      } else aElement.classList.remove("active");
+    });
+
+    try {
+      if (spanElement) sidebarColor(spanElement);
+    } catch (error) {
+      console.error(error);
     }
 
-    badgeColors.addEventListener("click", (e) => {
-      const span = e.target.closest("span[data-color]");
-      if (!span) return;
+    try {
+      if (sidebarTypeElement) sidebarType(sidebarTypeElement);
+    } catch (error) {}
 
-      localStorage.setItem("side-bar-color", span.dataset.color);
-      if (typeof sidebarColor === "function") {
-        sidebarColor(span);
+    try {
+      if (darkVersion == "true") {
+        darkVersionElement.checked = darkVersion;
+
+        if (darkVersionElement) darkMode(darkVersionElement);
+        if (sidebarTypeElement) sidebarType(sidebarTypeElement);
       }
-    });
-  }
-
-  // ========================
-  // Apply Stored Sidebar Type
-  // ========================
-  if (sideNavType && storedType) {
-    const typeButton = sideNavType.querySelector(
-      `button[data-class="${storedType}"]`,
-    );
-
-    if (typeButton && typeof sidebarType === "function") {
-      sidebarType(typeButton);
+    } catch (error) {
+      console.error(error);
     }
-
-    sideNavType.addEventListener("click", (e) => {
-      const button = e.target.closest("button[data-class]");
-      if (!button) return;
-
-      localStorage.setItem("side-nav-type", button.dataset.class);
-      if (typeof sidebarType === "function") {
-        sidebarType(button);
-      }
-    });
-  }
-
-  // ========================
-  // Dark Mode
-  // ========================
-  if (darkVersionToggle) {
-    darkVersionToggle.checked = storedDarkMode;
-
-    if (storedDarkMode && typeof darkMode === "function") {
-      darkMode(darkVersionToggle);
-    }
-
-    darkVersionToggle.addEventListener("change", (e) => {
-      localStorage.setItem("dark-version", e.target.checked);
-
-      if (typeof darkMode === "function") {
-        darkMode(e.target);
-      }
-    });
-  }
-});
+  });
+}).call();
