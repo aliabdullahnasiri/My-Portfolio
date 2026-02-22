@@ -1,16 +1,11 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify
 from flask_bcrypt import check_password_hash
 from flask_login import login_user
+from werkzeug.security import check_password_hash
 
+from app.blueprints.auth import bp
 from app.forms.signin import SignInForm
 from app.models.user import User
-
-bp = Blueprint("auth", __name__)
-
-
-from flask import jsonify
-from flask_login import login_user
-from werkzeug.security import check_password_hash
 
 
 @bp.post("/sign-in")
@@ -24,6 +19,7 @@ def sign_in():
                     "success": False,
                     "message": "Invalid form data",
                     "errors": form.errors,
+                    "category": "error",
                 }
             ),
             400,
@@ -31,13 +27,14 @@ def sign_in():
 
     user = User.query.filter_by(email=form.email.data).first()
 
-    if not user or not check_password_hash(user.password_hash, form.password.data):
+    if not user or not user.check_password(form.password.data):
         return (
             jsonify(
                 {
                     "success": False,
                     "message": "Email or password is incorrect",
                     "error_code": "INVALID_CREDENTIALS",
+                    "category": "error",
                 }
             ),
             401,
@@ -55,6 +52,7 @@ def sign_in():
                     "username": user.user_name,
                     "email": user.email,
                     "is_admin": user.is_administrator(),
+                    "category": "success",
                 },
             }
         ),
