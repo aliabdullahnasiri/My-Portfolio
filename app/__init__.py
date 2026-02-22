@@ -1,5 +1,4 @@
 import os
-import sys
 from typing import Dict
 
 from flask import Flask, current_app, url_for
