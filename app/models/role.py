@@ -24,12 +24,8 @@ class Role(db.Model):
     def hex_permissions(self) -> int:
         permissions = 0x0000
 
-        for permission in (
-            Permission.permissions.values()
-            if self.name == ADMINISTRATOR
-            else [p.hex_permission for p in self.permissions.all()]
-        ):
-            permissions |= permission
+        for p in self.permissions.all():
+            permissions |= p.hex_permission
 
         return permissions
 
