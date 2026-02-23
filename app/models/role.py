@@ -22,7 +22,7 @@ class Role(db.Model):
 
     @property
     def hex_permissions(self) -> int:
-        permissions = 0x0001
+        permissions = 0x0000
 
         for permission in (
             Permission.permissions.values()
