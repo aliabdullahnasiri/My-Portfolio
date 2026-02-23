@@ -3,11 +3,17 @@ from functools import wraps
 from operator import call
 from typing import Dict, List, Union
 
-from flask import abort, current_app, request
+import humanize
+from flask import abort, current_app, url_for
 from flask_login import AnonymousUserMixin, UserMixin, current_user, login_required
+from numerize import numerize
 
+from app.const import DEFAULT_AVATAR
 from app.extensions import bcrypt, db, login_manager
+from app.func import get_file_url
+from app.models.file import File, FileForEnum
 from app.models.permission import Permission
+from app.models.phone import Phone
 from app.models.role import Role
 
 
@@ -68,7 +74,9 @@ class User(UserMixin, db.Model):
             "email": self.email,
             "birthday": self.display_birthday,
             "age": self.age,
-            "roles": [r.id for r in self.roles.all()],
+            "avatar": self.avatar_src,
+            "phones": [p.number for p in self.phones.all()],
+            "roles": [r.uid for r in self.roles.all()],
             **call(getattr(super(), "to_dict")),
         }
 
@@ -111,34 +119,83 @@ class User(UserMixin, db.Model):
 
         return "N/A"
 
+    @property
+    def display_number_of_phone_nums(self):
+        return numerize.numerize(self.phones.count())
+
+    @property
+    def display_number_of_files(self):
+        return numerize.numerize(self.files.count())
+
+    @property
+    def total_file_size(self) -> str:
+        return humanize.naturalsize(sum(f.size for f in self.files.all()))
+
+    @property
+    def avatar_src(self) -> str:
+        u = url_for("static", filename=DEFAULT_AVATAR)
+
+        if (
+            f := self.files.filter_by(file_for=FileForEnum.AVATAR)
+            .order_by(getattr(File, "created_at").desc())
+            .first()
+        ):
+            u = f.file_url
+
+        return u
+
+    def update_phones(self, phones: List[str]):
+        for phone in self.phones.all():
+            if phone.number not in phones:
+                db.session.delete(phone)
+
+        for p in phones:
+            if self.phones.filter_by(number=p).scalar():
+                continue
+
+            phone = Phone()
+            phone.number = p
+
+            self.phones.append(phone)
+
+    def update_files(self, files: Dict[str, Union[int, List[int]]]) -> None:
+        for key, value in files.items():
+            match key:
+                case "avatar" if type(value) == int:
+                    self.avatar_path = (
+                        src
+                        if (src := get_file_url(value)) is not None
+                        else url_for("static", filename=DEFAULT_AVATAR)
+                    )
+
+                case "files" if type(value) == list:
+                    for file in self.files.filter_by(
+                        file_for=getattr(self, "uid")
+                    ).all():
+                        if file.id not in value:
+                            db.session.delete(file)
+
+                    for val in value:
+                        if file := File.query.filter_by(id=int(val)).scalar():
+                            file.user = self
+
     def update_roles(self, roles: Union[List[int], None] = None):
-        current_roles = {role.id: role for role in self.roles.all()}
+        role = (
+            Role.administrator()
+            if self.email == current_app.config["FLASKY_ADMIN"]
+            else Role.query.filter_by(default=True).first()
+        )
 
-        if self.email == current_app.config["FLASKY_ADMIN"]:
-            admin_role = Role.administrator()
-            if admin_role and admin_role.id not in current_roles:
-                self.roles.append(admin_role)
+        if role and not self.roles.filter_by(id=role.id).count():
+            self.roles.append(role)
+        elif type(roles) is list:
+            for r in self.roles.all():
+                if r.uid not in roles:
+                    self.roles.remove(r)
 
-            return
-
-        if roles is None:
-            default_role = Role.query.filter_by(default=True).first()
-            if default_role and default_role.id not in current_roles:
-                self.roles.append(default_role)
-
-            return
-
-        roles_set = set(roles)
-
-        for role_id, role in current_roles.items():
-            if role_id not in roles_set:
-                self.roles.remove(role)
-
-        existing_ids = set(current_roles.keys())
-        for role_id in roles_set:
-            if role_id not in existing_ids:
-                if role_obj := Role.query.get(role_id):
-                    self.roles.append(role_obj)
+            for role in roles:
+                if role not in self.roles.all():
+                    self.roles.append(role)
 
 
 class AnonymousUser(AnonymousUserMixin):
