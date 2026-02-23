@@ -1,5 +1,5 @@
 from operator import call
-from typing import Any, Dict
+from typing import Any, Dict, List, Self
 
 from app.const import ADMINISTER
 from app.extensions import db
@@ -13,6 +13,19 @@ class Permission(db.Model):
     permission = db.Column(db.String(32), unique=False)
 
     permissions: Dict[str, int] = {}
+
+    @property
+    def users(self: Self) -> List:
+        return [user for role in getattr(self, "roles").all() for user in role.users]
+
+    @property
+    def number_of_users(self: Self) -> int:
+        num: int = 0
+
+        for role in getattr(self, "roles").all():
+            num += role.users.count()
+
+        return num
 
     @property
     def hex_permission(self):
