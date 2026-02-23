@@ -52,3 +52,4 @@ config.local.py
 
 
 migrations/
+app/static/uploads/
