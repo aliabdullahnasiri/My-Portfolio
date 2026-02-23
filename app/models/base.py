@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Any
 
 import humanize
 from flask import request
@@ -64,6 +65,12 @@ class Base(db.Model):
             "created_at": self.display_created_at,
             "updated_at": self.display_updated_at,
         }
+
+    def __setattr__(self, name: str, value: Any, /) -> None:
+        if type(value) is str and not value:
+            value = None
+
+        return super().__setattr__(name, value)
 
 
 @event.listens_for(Base, "before_insert", propagate=True)
