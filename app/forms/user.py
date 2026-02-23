@@ -76,7 +76,6 @@ class AddUserForm(FlaskForm):
 
 class UpdateUserForm(AddUserForm):
     uid = HiddenField("UID", validators=[DataRequired()])
-    user_uid = HiddenField("User UID", validators=[DataRequired()])
 
     password = PasswordField("Password")
 
@@ -87,7 +86,7 @@ class UpdateUserForm(AddUserForm):
             db.session.query(User)
             .filter(
                 and_(
-                    getattr(User, "uid") != self.user_uid.data,
+                    getattr(User, "uid") != self.uid.data,
                     User.user_name == user_name.data,
                 )
             )
@@ -97,7 +96,7 @@ class UpdateUserForm(AddUserForm):
 
     def validate_email(self, email):
         if User.query.filter(
-            and_(getattr(User, "uid") != self.user_uid.data, User.email == email.data)
+            and_(getattr(User, "uid") != self.uid.data, User.email == email.data)
         ).first():
             raise ValidationError("Email already registered!")
 
@@ -105,7 +104,7 @@ class UpdateUserForm(AddUserForm):
         nums = json.loads(phones.data)
 
         if hasattr(self, "user_uid"):
-            uid = self.user_uid.data
+            uid = self.uid.data
 
             for num in nums:
                 if (
