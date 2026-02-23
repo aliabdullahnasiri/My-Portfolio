@@ -9,7 +9,6 @@ class Permission(db.Model):
     __tablename__ = "permissions"
 
     name = db.Column(db.String(64), unique=True)
-    description = db.Column(db.String(2500), nullable=True)
     permission = db.Column(db.String(32), unique=False)
 
     permissions: Dict[str, int] = {}
@@ -98,7 +97,6 @@ class Permission(db.Model):
     def to_dict(self) -> dict:
         return {
             "name": self.name,
-            "description": self.description,
             "permission": self.permission,
             **call(getattr(super(), "to_dict")),
         }
