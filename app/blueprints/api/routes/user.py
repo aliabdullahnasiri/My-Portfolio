@@ -140,6 +140,9 @@ def update_user() -> Response:
             user.email = form.email.data
             user.birthday = form.birthday.data
 
+            if passwd := form.password.data:
+                user.set_password(passwd)
+
             if files := request.form.get("files"):
                 try:
                     user.update_files(json.loads(files))
