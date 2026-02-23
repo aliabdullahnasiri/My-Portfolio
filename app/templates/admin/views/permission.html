@@ -1,1 +1,66 @@
+<div class="card card-plain">
+  <div class="card-header mx-1">
+    <div class="row gx-4 mb-0">
+      <h4 class="mb-0">Permission</h4>
+      <p class="mb-0 mt-0 font-weight-normal text-sm">{{ permission.name }}</p>
+    </div>
+  </div>
+  <div class="card-body py-0">
+    <div class="row gx-3 my-1">
+      <div class="col-md-8">
+        <div class="row gx-0 mb-3">
+          <div class="card">
+            <div class="card-header pb-0">
+              <h5>Permission Information</h5>
+            </div>
+            <hr class="bg-dark horizontal my-0 opacity-10" />
+            <div class="card-body p0">
+              {% include "admin/views/information/permission.html" %}
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div class="col-md-4">
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header ps-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="text-sm mb-0 text-capitalize">Roles</p>
+                    <h4 class="mb-0">{{ permission.roles.count() }}</h4>
+                  </div>
+                  <div
+                    class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg"
+                  >
+                    <i class="material-symbols-rounded opacity-10">info</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row gx-3 mt-4">
+      <div class="col-md-12">
+        <div class="card">
+          <div
+            class="bg-gradient-dark card-header mt-n4 mx-3 position-relative z-index-2 shadow-sm rounded-3 py-4"
+          >
+            <h5 class="mb-0 mx-2 text-white">Roles</h5>
+          </div>
+
+          <div class="card-body pb-0">
+            <div class="table-responsive p-0">
+              {% include "admin/views/tables/roles.html" %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer"></div>
+  </div>
+</div>
