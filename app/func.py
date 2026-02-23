@@ -8,6 +8,10 @@ from app.config import Config
 from app.models.file import File
 
 
+def validate_uid(uid: str) -> bool:
+    return bool(re.match(Config.UID_PATTERN, uid))
+
+
 def get_file(id: int) -> Union[File, None]:
     return File.query.filter_by(id=id).first()
 
