@@ -1,8 +1,10 @@
 import { createListSectionItem, resetForm } from "./form.js";
-import { createLoader } from "./script.js";
+import { createLoader, transformAllMovingTab } from "./script.js";
 
 (function () {
   document.addEventListener("show.bs.modal", (event) => {
+    transformAllMovingTab();
+
     let label = event.target.getAttribute("aria-labelledby");
     if (!label?.search(/^Add/)) {
       Array.from(
