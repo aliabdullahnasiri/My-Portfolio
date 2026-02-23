@@ -10,7 +10,7 @@ from app.blueprints.api import bp as api_bp
 from app.blueprints.auth import bp as auth_bp
 from app.blueprints.main import bp as main_bp
 from app.config import Config
-from app.extensions import bcrypt, db, login_manager, migrate
+from app.extensions import bcrypt, console, db, login_manager, migrate
 
 
 def ctx() -> Dict:
@@ -48,13 +48,22 @@ def create_app(config_class: type[Config] | None = None) -> Flask:
     app.register_blueprint(admin_bp, url_prefix="/admin")
     app.register_blueprint(main_bp)
 
-    with app.app_context():
+    with app.app_context(), app.test_request_context():
         inspector = inspect(db.engine)
 
         if inspector.has_table("permissions"):
             from app.models.permission import Permission
+            from app.models.role import Role
 
             if Permission.administer():
                 Permission.refresh()
+
+            administrator = Role.administrator()
+
+            for p in Permission.query.all():
+                if p not in administrator.permissions:
+                    administrator.permissions.append(p)
+
+            db.session.commit()
 
     return app
