@@ -10,7 +10,7 @@ from wtforms import (
     TextAreaField,
     ValidationError,
 )
-from wtforms.validators import DataRequired, Length, Optional, ReadOnly
+from wtforms.validators import DataRequired, Length, Optional
 
 from app.models.permission import Permission
 from app.models.role import Role
@@ -51,5 +51,6 @@ class AddRoleForm(FlaskForm):
 
 class UpdateRoleForm(AddRoleForm):
     uid = HiddenField("Role UID", validators=[DataRequired()])
+    name = StringField("Name", validators=[Optional(), Length(max=255)])
 
     submit = SubmitField("Update Role")
