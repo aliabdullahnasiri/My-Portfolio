@@ -1,5 +1,5 @@
 from operator import call
-from typing import Any
+from typing import Any, List
 
 from app.const import ADMINISTRATOR
 from app.extensions import db
@@ -53,6 +53,11 @@ class Role(db.Model):
         return cls.get(name=ADMINISTRATOR, primary=True)
 
     def to_dict(self) -> dict:
+        readonly: List[str] = []
+
+        if self == self.administrator():
+            readonly.extend(["name", "permissions", "default"])
+
         return {
             "name": self.name,
             "description": self.description,
@@ -65,5 +70,6 @@ class Role(db.Model):
                     else self.permissions.all()
                 )
             ],
+            "readonly": readonly,
             **call(getattr(super(), "to_dict")),
         }
