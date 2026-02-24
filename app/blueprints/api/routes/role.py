@@ -134,6 +134,7 @@ def update_role() -> Response:
             role.description = form.description.data
 
             if role.name != ADMINISTRATOR:
+                role.name = form.name.data
                 role.default = form.default.data
 
                 if permissions := form.permissions.data:
