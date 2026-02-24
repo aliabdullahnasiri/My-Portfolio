@@ -23,7 +23,11 @@ class AddRoleForm(FlaskForm):
         "Description", validators=[Optional(), Length(max=2500)]
     )
 
-    default = BooleanField("Default", default=False, validators=[Optional()])
+    default = BooleanField(
+        "Default Role (assigned automatically to new users)",
+        default=False,
+        validators=[Optional()],
+    )
 
     permissions = StringField("Permissions", validators=[Optional()])
 
