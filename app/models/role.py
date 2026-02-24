@@ -12,6 +12,7 @@ class Role(db.Model):
     name = db.Column(db.String(64), unique=True)
     description = db.Column(db.String(2500), nullable=True)
     default = db.Column(db.Boolean, default=False, index=True)
+    primary = db.Column(db.Boolean, default=True)
 
     permissions = db.relationship(
         "Permission",
@@ -30,22 +31,26 @@ class Role(db.Model):
         return permissions
 
     @classmethod
-    def get(cls, name: str) -> Any:
+    def get(cls, name: str, primary: bool = False) -> Any:
         role = cls.query.filter_by(name=name).scalar()
 
         if not role:
             role = cls()
 
             role.name = name
+            role.primary = primary
 
             db.session.add(role)
-            db.session.commit()
+
+        role.primary = primary
+
+        db.session.commit()
 
         return role
 
     @classmethod
     def administrator(cls):
-        return cls.get(name=ADMINISTRATOR)
+        return cls.get(name=ADMINISTRATOR, primary=True)
 
     def to_dict(self) -> dict:
         return {
