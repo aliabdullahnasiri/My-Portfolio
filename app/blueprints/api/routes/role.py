@@ -207,7 +207,7 @@ def delete_role(uid: str):
     )
 
 
-@bp.get("/add/role")
+@bp.post("/add/role")
 @login_required
 @permission_required(Permission.get("CREATE_ROLE"))
 def add_role():
@@ -221,6 +221,7 @@ def add_role():
         role.name = form.name.data
         role.description = form.description.data
         role.default = form.default.data
+        role.primary = False
 
         db.session.add(role)
         db.session.commit()
