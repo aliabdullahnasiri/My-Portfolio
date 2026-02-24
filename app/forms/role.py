@@ -2,6 +2,7 @@ import json
 import re
 
 from flask_wtf import FlaskForm
+from sqlalchemy import and_
 from wtforms import (
     BooleanField,
     HiddenField,
@@ -54,3 +55,9 @@ class UpdateRoleForm(AddRoleForm):
     name = StringField("Name", validators=[Optional(), Length(max=255)])
 
     submit = SubmitField("Update Role")
+
+    def validate_name(self, name):
+        if Role.query.filter(
+            and_(getattr(Role, "uid") != self.uid.data, Role.name == name.data)
+        ).first():
+            raise ValidationError("A role with this name already exists.")
