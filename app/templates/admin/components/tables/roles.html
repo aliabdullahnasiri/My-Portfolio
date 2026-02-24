@@ -4,8 +4,11 @@
   data-get-rows="{{ url_for('api.fetch_roles_rows') }}"
   data-get-row="{{ url_for('api.fetch_role_row', uid='@')}}"
   data-update-row="{{ url_for('api.update_role')}}"
+  data-delete-row="{{ url_for('api.delete_role', uid='@')}}"
   data-view-row="{{ url_for('admin.view', entity='role', uid='@') }}"
+  data-add-row-modal-id="#AddRoleModal"
   data-edit-row-modal-id="#EditRoleModal"
+  data-view-row-modal-id="#ViewModal"
 >
   <thead></thead>
   <tbody></tbody>
