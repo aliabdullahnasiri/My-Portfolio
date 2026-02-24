@@ -1,4 +1,5 @@
 import os
+import sys
 from typing import Dict
 
 from flask import Flask, current_app, url_for
@@ -48,22 +49,23 @@ def create_app(config_class: type[Config] | None = None) -> Flask:
     app.register_blueprint(admin_bp, url_prefix="/admin")
     app.register_blueprint(main_bp)
 
-    with app.app_context(), app.test_request_context():
-        inspector = inspect(db.engine)
+    if "db" not in sys.argv:
+        with app.app_context(), app.test_request_context():
+            inspector = inspect(db.engine)
 
-        if inspector.has_table("permissions"):
-            from app.models.permission import Permission
-            from app.models.role import Role
+            if inspector.has_table("permissions"):
+                from app.models.permission import Permission
+                from app.models.role import Role
 
-            if Permission.administer():
-                Permission.refresh()
+                if Permission.administer():
+                    Permission.refresh()
 
-            administrator = Role.administrator()
+                administrator = Role.administrator()
 
-            for p in Permission.query.all():
-                if p not in administrator.permissions:
-                    administrator.permissions.append(p)
+                for p in Permission.query.all():
+                    if p not in administrator.permissions:
+                        administrator.permissions.append(p)
 
-            db.session.commit()
+                db.session.commit()
 
     return app
