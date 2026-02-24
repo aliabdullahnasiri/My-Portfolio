@@ -17,7 +17,7 @@ from app.models.role import Role
 
 
 class AddRoleForm(FlaskForm):
-    name = StringField("Name", validators=[ReadOnly(), Length(max=255)])
+    name = StringField("Name", validators=[DataRequired(), Length(max=255)])
 
     description = TextAreaField(
         "Description", validators=[Optional(), Length(max=2500)]
