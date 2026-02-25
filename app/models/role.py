@@ -71,5 +71,6 @@ class Role(db.Model):
                 )
             ],
             "readonly": readonly,
+            "is_deletable": self.name != ADMINISTRATOR,
             **call(getattr(super(), "to_dict")),
         }
