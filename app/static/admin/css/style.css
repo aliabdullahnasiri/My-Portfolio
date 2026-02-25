@@ -270,3 +270,11 @@ input:-webkit-autofill {
   -webkit-text-fill-color: #ffffff !important;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+a[aria-disabled="false"] {
+  pointer-events: none;
+  color: gray;
+  cursor: not-allowed;
+  text-decoration: none;
+  opacity: 0.6;
+}
