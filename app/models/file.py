@@ -15,6 +15,7 @@ class FileForEnum(str, Enum):
     PROJECT_IMAGE = "project_image"
     CERTIFICATE = "certificate"
     BLOG_COVER = "blog_cover"
+    RESUME = "RESUME"
     REGULAR = "regular"
 
 
