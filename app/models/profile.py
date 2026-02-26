@@ -62,7 +62,7 @@ class Profile(db.Model):
 
     user = db.relationship(
         "User",
-        back_populates="profile",
+        back_populates="profiles",
         lazy="joined",
     )
 
