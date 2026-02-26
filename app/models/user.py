@@ -48,6 +48,13 @@ class User(UserMixin, db.Model):
         backref=db.backref("users", lazy="dynamic"),
         lazy="dynamic",
     )
+    profiles = db.relationship(
+        "Profile",
+        back_populates="user",
+        cascade="all, delete-orphan",
+        lazy="select",
+        passive_deletes=True,
+    )
 
     @property
     def permissions(self):
