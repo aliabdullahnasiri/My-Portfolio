@@ -221,6 +221,10 @@ def add_user() -> Response:
         user.email = form.email.data
         user.birthday = form.birthday.data
 
+        user.set_password(form.password.data)
+
+        db.session.add(user)
+
         if form.phones.data:
             user.update_phones(json.loads(form.phones.data))
 
@@ -235,7 +239,6 @@ def add_user() -> Response:
 
         user.update_roles()
 
-        db.session.add(user)
         db.session.commit()
 
         response["message"] = "User added successfully"
