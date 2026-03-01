@@ -6,11 +6,13 @@ export function uploadFile(
   on_load,
   on_loadstart,
   on_loadend,
+  user_id,
 ) {
   let http = new XMLHttpRequest();
   let data = new FormData();
 
   data.append("file", file);
+  data.append("user_id", user_id);
 
   http.upload.addEventListener("progress", on_progress);
   http.upload.addEventListener("abort", on_abort);
@@ -263,6 +265,9 @@ function u(file, ulElement, formElement, submitElement) {
   let item = createListSectionItem(type, size);
   let progressBar = item.querySelector("div.progress-bar");
   let abortButton = item.querySelector("div.header button");
+  let uidInput = formElement.querySelector(
+    "input[type=hidden][name=uid], input[type=hidden][name=user_uid]",
+  );
 
   ulElement.append(item);
 
@@ -306,6 +311,7 @@ function u(file, ulElement, formElement, submitElement) {
         submitElement.disabled = false;
       }
     },
+    uidInput?.value,
   );
 
   abortButton.addEventListener("click", () => {
@@ -361,6 +367,11 @@ export function upload(files, dropZone) {
             u(file, ulElement, formElement, submitElement);
           } else if (file?.type.includes("image")) {
             let outputElement = dropZone.querySelector("img.output");
+            let uidInput = formElement.querySelector(
+              "input[type=hidden][name=uid], input[type=hidden][name=user_uid]",
+            );
+
+            console.log(uidInput);
 
             uploadFile(
               file,
@@ -386,6 +397,9 @@ export function upload(files, dropZone) {
                   console.log(err);
                 }
               }, // on load
+              undefined,
+              undefined,
+              uidInput?.value,
             );
           }
 
