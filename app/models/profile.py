@@ -32,6 +32,16 @@ class Profile(db.Model):
         db.String(300), nullable=True, doc="Short bio for cards and previews"
     )
 
+    avatar_url = db.Column(
+        db.String(500),
+        nullable=True,
+    )
+
+    resume_url = db.Column(
+        db.String(500),
+        nullable=True,
+    )
+
     public_email = db.Column(
         db.String(255),
         nullable=True,
