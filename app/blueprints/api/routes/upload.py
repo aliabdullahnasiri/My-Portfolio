@@ -13,7 +13,9 @@ from app.blueprints.api import bp
 from app.extensions import db
 from app.models.file import File, FileForEnum
 from app.models.permission import Permission
-from app.models.user import permission_required
+from app.models.user import User, permission_required
+
+Permission.get("CAN_UPLOAD_AS_OTHER_USER")
 
 
 @bp.post("/upload")
@@ -49,7 +51,16 @@ def upload() -> Response:
 
         f = File()
 
-        f.user_id = current_user.id
+        user: User = User.query.filter_by(
+            uid=(
+                user_id
+                if (user_id := request.form.get("user_id"))
+                and current_user.can(Permission.get("CAN_UPLOAD_AS_OTHER_USER"))
+                else current_user.id
+            )
+        ).scalar()
+
+        f.user_id = getattr(user, "id")
         f.file_name = request.form.get("filename", filename)
         f.file_description = request.form.get("file_description")
         f.file_for = request.form.get("file_for", FileForEnum.AVATAR.value)
