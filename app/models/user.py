@@ -85,7 +85,9 @@ class User(UserMixin, db.Model):
             "phones": [p.number for p in self.phones.all()],
             "roles": [r.uid for r in self.roles.all()],
             "is_deletable": not (
-                self.is_administrator() and Role.administrator().users.count() == 1
+                self.is_administrator()
+                and Role.administrator().users.count() == 1
+                and self.get_id() == current_user.get_id()
             ),
             **call(getattr(super(), "to_dict")),
         }
