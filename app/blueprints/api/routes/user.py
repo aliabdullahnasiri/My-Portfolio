@@ -14,6 +14,7 @@ from app.models.user import User, permission_required
 from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
+    (ColumnID("is_deletable"), ColumnName("IS_DELETABLE")),
     (ColumnID("uid"), ColumnName("UID")),
     (ColumnID("temp_user"), ColumnName("User")),
     (ColumnID("user_name"), ColumnName("User Name")),
