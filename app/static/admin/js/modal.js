@@ -80,6 +80,7 @@ import { createLoader, transformAllMovingTab } from "./script.js";
 
                     if (data[input.id])
                       for (const f of data[input.id]) {
+                        if (f == null) continue;
                         let selector = "li[data-uid='%s']";
                         if (
                           !ulElement.querySelector(
