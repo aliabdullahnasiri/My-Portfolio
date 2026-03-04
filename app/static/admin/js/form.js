@@ -7,12 +7,16 @@ export function uploadFile(
   on_loadstart,
   on_loadend,
   user_uid,
+  file_for,
 ) {
   let http = new XMLHttpRequest();
   let data = new FormData();
 
   data.append("file", file);
   if (user_uid != undefined) data.append("user_uid", user_uid);
+  if (file_for != undefined) {
+    data.append("file_for", file_for);
+  }
 
   http.upload.addEventListener("progress", on_progress);
   http.upload.addEventListener("abort", on_abort);
@@ -396,6 +400,7 @@ export function upload(files, dropZone) {
               undefined,
               undefined,
               uidInput?.value,
+              "AVATAR",
             );
           }
 
