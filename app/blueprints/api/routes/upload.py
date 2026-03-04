@@ -51,11 +51,14 @@ def upload() -> Response:
 
         f = File()
 
-        user = current_user
+        user = None
 
         if user_uid := request.form.get("user_uid"):
             if current_user.can(Permission.get("CAN_UPLOAD_AS_OTHER_USER")):
                 user = User.query.filter_by(uid=user_uid).scalar()
+
+        if user is None:
+            user = current_user
 
         f.user_uid = user.uid
         f.file_name = request.form.get("filename", filename)
