@@ -1,5 +1,5 @@
 from operator import call
-from typing import Dict
+from typing import Dict, Self
 
 from flask import url_for
 
@@ -72,6 +72,10 @@ class Profile(db.Model):
             "years_of_experience >= 0", name="check_years_of_experience_positive"
         ),
     )
+
+    @property
+    def display_years_of_experience(self: Self) -> str:
+        return f"+{self.years_of_experience:02} years"
 
     def to_dict(self) -> Dict:
         dct = {
