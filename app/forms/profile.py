@@ -5,7 +5,6 @@ from wtforms import (
     DecimalField,
     FileField,
     HiddenField,
-    MultipleFileField,
     StringField,
     SubmitField,
     TextAreaField,
@@ -14,7 +13,6 @@ from wtforms.validators import DataRequired, Email, Length, Optional
 
 
 class AddProfileForm(FlaskForm):
-    full_name = StringField("Full Name", validators=[DataRequired(), Length(max=120)])
 
     headline = StringField(
         "Headline",
