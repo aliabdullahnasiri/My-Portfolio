@@ -6,13 +6,13 @@ export function uploadFile(
   on_load,
   on_loadstart,
   on_loadend,
-  user_id,
+  user_uid,
 ) {
   let http = new XMLHttpRequest();
   let data = new FormData();
 
   data.append("file", file);
-  data.append("user_id", user_id);
+  if (user_uid != undefined) data.append("user_uid", user_uid);
 
   http.upload.addEventListener("progress", on_progress);
   http.upload.addEventListener("abort", on_abort);
