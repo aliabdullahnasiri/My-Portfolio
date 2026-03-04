@@ -4,8 +4,7 @@ from typing import Dict
 from flask import url_for
 
 from app.const import DEFAULT_AVATAR
-from app.extensions import console, db
-from app.models.file import File, FileForEnum
+from app.extensions import db
 
 
 class Profile(db.Model):
@@ -91,10 +90,10 @@ class Profile(db.Model):
             "avatar": self.avatar_url or url_for("static", filename=DEFAULT_AVATAR),
             "is_active": bool(self.is_active),
             "resume": [
-                self.user.files.filter_by(file_url=self.resume_url).scalar().to_dict()
+                (f := self.user.files.filter_by(file_url=self.resume_url).scalar())
+                and f.to_dict()
             ],
             **call(getattr(super(), "to_dict")),
         }
-        console.print(dct)
 
         return dct
