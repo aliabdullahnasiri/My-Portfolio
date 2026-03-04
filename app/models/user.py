@@ -154,8 +154,6 @@ class User(UserMixin, db.Model):
         ):
             u = f.file_url
 
-        print(u)
-
         return u
 
     def update_phones(self, phones: List[str]):
