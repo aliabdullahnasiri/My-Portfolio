@@ -63,7 +63,7 @@ def upload() -> Response:
         f.user_uid = user.uid
         f.file_name = request.form.get("filename", filename)
         f.file_description = request.form.get("file_description")
-        f.file_for = request.form.get("file_for", FileForEnum.AVATAR.value)
+        f.file_for = request.form.get("file_for", FileForEnum.REGULAR.value)
         f.file_url = url_for("static", filename=f"uploads/{today}/{filename}")
 
         db.session.add(f)
