@@ -1,6 +1,11 @@
-from sqlalchemy.ext.mutable import MutableDict
+from operator import call
+from typing import Dict
 
-from app.extensions import db
+from flask import url_for
+
+from app.const import DEFAULT_AVATAR
+from app.extensions import console, db
+from app.models.file import File, FileForEnum
 
 
 class Profile(db.Model):
@@ -53,8 +58,6 @@ class Profile(db.Model):
         nullable=True,
     )
 
-    social_links = db.Column(MutableDict.as_mutable(db.JSON), default=dict)
-
     years_of_experience = db.Column(
         db.Integer,
         nullable=True,
@@ -62,12 +65,6 @@ class Profile(db.Model):
 
     is_active = db.Column(
         db.Boolean,
-    )
-
-    is_primary = db.Column(
-        db.Boolean,
-        nullable=False,
-        default=False,
     )
 
     user = db.relationship(
@@ -81,3 +78,23 @@ class Profile(db.Model):
             "years_of_experience >= 0", name="check_years_of_experience_positive"
         ),
     )
+
+    def to_dict(self) -> Dict:
+        dct = {
+            "full_name": self.full_name,
+            "headline": self.headline,
+            "bio": self.bio,
+            "short_bio": self.short_bio,
+            "public_email": self.public_email,
+            "phone": self.phone,
+            "years_of_experience": self.years_of_experience,
+            "avatar": self.avatar_url or url_for("static", filename=DEFAULT_AVATAR),
+            "is_active": bool(self.is_active),
+            "resume": [
+                self.user.files.filter_by(file_url=self.resume_url).scalar().to_dict()
+            ],
+            **call(getattr(super(), "to_dict")),
+        }
+        console.print(dct)
+
+        return dct
