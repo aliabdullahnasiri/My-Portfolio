@@ -23,7 +23,9 @@ class File(db.Model):
     __tablename__ = "files"
 
     uid = None
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    user_uid = db.Column(
+        db.String(8), db.ForeignKey("users.uid"), nullable=False, index=True
+    )
 
     # File Info
     file_name = db.Column(
