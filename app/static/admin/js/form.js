@@ -265,9 +265,7 @@ function u(file, ulElement, formElement, submitElement) {
   let item = createListSectionItem(type, size);
   let progressBar = item.querySelector("div.progress-bar");
   let abortButton = item.querySelector("div.header button");
-  let uidInput = formElement.querySelector(
-    "input[type=hidden][name=uid], input[type=hidden][name=user_uid]",
-  );
+  let uidInput = formElement.querySelector("input[type=hidden][name=user_uid]");
 
   ulElement.append(item);
 

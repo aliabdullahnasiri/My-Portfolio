@@ -78,24 +78,22 @@ import { createLoader, transformAllMovingTab } from "./script.js";
                   if (ulElement) {
                     ulElement.innerHTML = "";
 
-                    if (data.files)
-                      for (const f of data.files) {
-                        if (f.file_for == input.id || input.id == "files") {
-                          let selector = "li[data-uid='%s']";
-                          if (
-                            !ulElement.querySelector(
-                              selector.replace("%s", f.link),
-                            )
-                          ) {
-                            let item = createListSectionItem(
-                              f.extension,
-                              f.human_size,
-                              true,
-                              f.file_url,
-                              f.id,
-                            );
-                            ulElement.append(item);
-                          }
+                    if (data[input.id])
+                      for (const f of data[input.id]) {
+                        let selector = "li[data-uid='%s']";
+                        if (
+                          !ulElement.querySelector(
+                            selector.replace("%s", f.link),
+                          )
+                        ) {
+                          let item = createListSectionItem(
+                            f.extension,
+                            f.human_size,
+                            true,
+                            f.file_url,
+                            f.id,
+                          );
+                          ulElement.append(item);
                         }
 
                         if (!input.multiple) break;
