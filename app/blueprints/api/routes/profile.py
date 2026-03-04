@@ -1,14 +1,13 @@
 import json
 from typing import Dict, List, Tuple, Union
 
-from flask import Response, request, url_for
+from flask import Response, request
 from flask_login import current_user, login_required
 
 from app.blueprints.api import bp
-from app.const import DEFAULT_AVATAR
 from app.extensions import db
 from app.forms.profile import AddProfileForm, UpdateProfileForm
-from app.func import get_file, get_file_url, render_td
+from app.func import get_file_url, render_td
 from app.models.permission import Permission
 from app.models.profile import Profile
 from app.models.user import permission_required
@@ -16,6 +15,7 @@ from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("uid"), ColumnName("UID")),
+    (ColumnID("temp_user"), ColumnName("User")),
 ]
 
 
@@ -130,7 +130,6 @@ def update_profile() -> Response:
         profile = Profile.query.filter_by(uid=form.uid.data).first()
 
         if profile:
-            profile.full_name = form.full_name.data
             profile.headline = form.headline.data
             profile.bio = form.bio.data
             profile.short_bio = form.short_bio.data
@@ -209,7 +208,6 @@ def add_profile() -> Response:
         profile = Profile()
 
         profile.user_id = current_user.id
-        profile.full_name = form.full_name.data
         profile.headline = form.headline.data
         profile.bio = form.bio.data
         profile.short_bio = form.short_bio.data
