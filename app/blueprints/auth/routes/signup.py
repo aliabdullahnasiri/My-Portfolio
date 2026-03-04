@@ -43,10 +43,11 @@ def sign_up():
     user.user_name = form.user_name.data
     user.email = form.email.data
     user.set_password(form.password.data)
+    db.session.add(user)
+
     user.update_roles()
 
     try:
-        db.session.add(user)
         db.session.commit()
     except IntegrityError:
         db.session.rollback()
@@ -73,6 +74,7 @@ def sign_up():
                     "email": user.email,
                 },
                 "category": "success",
+                "redirect": url_for("auth.signin"),
             }
         ),
         201,
