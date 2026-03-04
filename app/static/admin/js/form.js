@@ -369,8 +369,6 @@ export function upload(files, dropZone) {
               "input[type=hidden][name=uid], input[type=hidden][name=user_uid]",
             );
 
-            console.log(uidInput);
-
             uploadFile(
               file,
               () => {}, // on progress
