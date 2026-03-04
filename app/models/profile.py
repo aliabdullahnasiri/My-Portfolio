@@ -18,11 +18,6 @@ class Profile(db.Model):
         index=True,
     )
 
-    full_name = db.Column(
-        db.String(120),
-        nullable=False,
-    )
-
     headline = db.Column(
         db.String(255),
         nullable=True,
@@ -80,7 +75,6 @@ class Profile(db.Model):
 
     def to_dict(self) -> Dict:
         dct = {
-            "full_name": self.full_name,
             "headline": self.headline,
             "bio": self.bio,
             "short_bio": self.short_bio,
