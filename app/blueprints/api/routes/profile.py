@@ -128,7 +128,6 @@ def update_profile() -> Response:
 
     if form.validate_on_submit():
         profile = Profile.query.filter_by(uid=form.uid.data).first()
-        print(request.form)
 
         if profile:
             profile.full_name = form.full_name.data
@@ -147,8 +146,11 @@ def update_profile() -> Response:
                     if fid := files.get("avatar"):
                         profile.avatar_url = get_file_url(fid)
 
-                    if fid := files.get("resume", [None])[-1]:
-                        profile.resume_url = get_file_url(fid)
+                    profile.resume_url = (
+                        get_file_url(resume[0])
+                        if (resume := files.get("resume"))
+                        else None
+                    )
 
                 except json.JSONDecodeError as err:
                     print(err)
