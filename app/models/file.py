@@ -2,7 +2,7 @@ import pathlib
 from datetime import datetime, timezone
 from enum import Enum
 from operator import call
-from typing import Self
+from typing import Optional, Self
 
 import humanize
 
@@ -57,6 +57,10 @@ class File(db.Model):
     def human_size(self: Self) -> str:
         return humanize.naturalsize(self.size) if self.size else "0 B"
 
+    @property
+    def extension(self: Self) -> Optional[str]:
+        return self.path.suffix.lstrip(".").upper() if self.path.suffix else None
+
     def to_dict(self) -> dict:
         return {
             "file_name": self.file_name,
@@ -66,6 +70,7 @@ class File(db.Model):
             "size": self.size,
             "human_size": self.human_size,
             "exists": self.exists,
+            "extension": self.extension,
             **call(getattr(super(), "to_dict")),
         }
 
