@@ -177,13 +177,11 @@ $(document).ready(function () {
 });
 
 (function () {
-  let headerElement = document.querySelector("header");
   let sectionElement = document.querySelector("main section");
   let videoElement = sectionElement.querySelector("video");
 
   function resize() {
-    sectionElement.style.height =
-      window.innerHeight - headerElement.offsetHeight + "px";
+    sectionElement.style.height = window.innerHeight + "px";
   }
 
   document.addEventListener("DOMContentLoaded", resize);
@@ -191,5 +189,13 @@ $(document).ready(function () {
 
   document.addEventListener("click", () => {
     videoElement.play();
+  });
+}).call(this);
+
+(function () {
+  let headerElement = document.querySelector("header");
+  window.addEventListener("scroll", (event) => {
+    if (window.scrollY > 250) headerElement.classList.add("d3c_navbar");
+    else if (window.screenY < 250) headerElement.classList.remove("d3c_navbar");
   });
 }).call(this);
