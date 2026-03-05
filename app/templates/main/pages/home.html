@@ -2,35 +2,72 @@
 
 {% block content %}
   <!-- Hero Section Start -->
-  <section class="d2c_hero_wrapper" id="home">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-md col-lg-6 order-1 order-lg-0 wow fadeInLeft">
-          <h4 class="mb-2">Hello I'm</h4>
-          <h1 class="text-white mb-xl-3 mb-lg-2">
-            {{ profile.user.first_name }} {{ profile.user.middle_name }} <span class="d-block">{{ profile.user.last_name }}</span>
-          </h1>
-          <h5>{{ profile.headline }}</h5>
-          <p class="pe-5">
-            {{ profile.short_bio }}
-          </p>
-          <a href="#about" class="btn">Get started</a>
-          <a href="#services" class="btn d2c_secondary_btn ms-4">Learn more</a>
-        </div>
-        <div
-          class="col-md-md col-lg-6 d-flex justify-content-center justify-content-lg-end order-0 order-lg-1 mb-4 mb-md-5 mb-lg-0 wow fadeInRight"
-        >
-          <div class="d2c_img_wrapper position-relative">
-            <img
-                src="{{ profile.avatar_url }}"
-              class="w-100 h-100"
-              alt="Hero Image"
-            />
-            <div class="d2c_img_overlay"></div>
+  <section class="d2c_hero_wrapper p-0 d-flex align-items-center position-relative" id="home">
+    <div class="bg-video">
+      <video width="320" height="240" controls>
+        <source src="{{ url_for('static', filename='uploads/video.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="hero-content">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-md col-lg-6 order-1 order-lg-0 wow fadeInLeft px-4">
+            <h4 class="mb-2">Hello I'm</h4>
+            <h1 class="text-white mb-xl-3 mb-lg-2">
+              {{ profile.user.first_name }} {{ profile.user.middle_name }}
+              <span class="d-block">
+                <span class="last-name">{{ profile.user.last_name }}</span>
+              </span>
+            </h1>
+            <h5>{{ profile.headline }}</h5>
+            <p class="pe-5">
+              {{ profile.short_bio }}
+            </p>
+            <a href="#about" class="btn">Get started</a>
+            <a href="#services" class="btn d2c_secondary_btn ms-4">Learn more</a>
+          </div>
+          <div
+            class="col-md-md col-lg-6 d-flex justify-content-center justify-content-lg-end order-0 order-lg-1 mb-4 mb-md-5 mb-lg-0 wow fadeInRight"
+          >
+            <div class="d2c_img_wrapper position-relative">
+              <img
+                  src="{{ profile.avatar_url }}"
+                class="w-100 h-100"
+                alt="Hero Image"
+              />
+              <div class="d2c_img_overlay"></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
   <!-- Hero Section End -->
+
+  <!-- About Section Start -->
+  <section class="d2c_about_wrapper" id="about">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-12 col-lg-6 mb-4 mb-md-5 mb-lg-0 wow fadeInLeft">
+          <div class="d2c_img_wrapper position-relative">
+            <img
+              src="{{ profile.avatar_url }}"
+              class="w-100 h-100"
+              alt="About Image"
+            />
+            <div class="d2c_img_overlay"></div>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-6 wow fadeInRight px-4">
+          <h2>Quick know about myself</h2>
+          <p>
+          {{ profile.bio }}
+          </p>
+          <a href="#contact" class="btn">Contact me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- About Section End -->
 {% endblock %}
