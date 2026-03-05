@@ -968,3 +968,18 @@ section.d2c_hero_wrapper div.hero-content {
   );
   z-index: 1;
 }
+
+.red {
+  color: red;
+  text-shadow: 0px 0px 6px red;
+  animation: heart_animation 0.8s linear 0s infinite alternate;
+}
+
+@keyframes heart_animation {
+  from {
+    transform: scale(1.12);
+  }
+  to {
+    transform: scale(1);
+  }
+}
