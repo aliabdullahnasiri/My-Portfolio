@@ -956,10 +956,9 @@ section.d2c_hero_wrapper div.hero-content {
   align-items: center;
   background-image: linear-gradient(
     179deg,
-    #191c2dd0 0%,
+    #191c2dd0 5%,
     #0e111a 100%,
     #0d111a 100%
   );
   z-index: 1;
 }
-
