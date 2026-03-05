@@ -189,13 +189,19 @@ p {
 .navbar-brand {
   max-width: 106px;
 }
-.d2c_navbar {
-  padding: 0px 0px;
-  background-image: url(../images/navbar_bg.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  border-bottom: 1px solid var(--accent_color);
+.d2c_navbar:has(:not(.d3c_navbar)) {
+  padding: 20px 5px;
+  background-image: linear-gradient(180deg, #0d111a91, transparent);
+  transition: 0.32s;
+}
+.d3c_navbar {
+  background-image: url(../images/navbar_bg.png) !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center !important;
+  border-bottom: 1px solid var(--accent_color) !important;
+  padding: 2.5px 0px !important;
+  transition: 0.32s;
 }
 .d2c_navbar .navbar-nav .nav-item {
   margin: 0px 2px;
@@ -955,7 +961,7 @@ section.d2c_hero_wrapper div.hero-content {
   justify-content: space-around;
   align-items: center;
   background-image: linear-gradient(
-    179deg,
+    180deg,
     #191c2dd0 5%,
     #0e111a 100%,
     #0d111a 100%
