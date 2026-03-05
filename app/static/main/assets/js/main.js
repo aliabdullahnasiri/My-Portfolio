@@ -186,10 +186,6 @@ $(document).ready(function () {
 
   document.addEventListener("DOMContentLoaded", resize);
   window.addEventListener("resize", resize);
-
-  document.addEventListener("click", () => {
-    videoElement.play();
-  });
 }).call(this);
 
 (function () {
