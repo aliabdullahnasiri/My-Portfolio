@@ -202,6 +202,9 @@ $(document).ready(function () {
     writing_speed = 100,
     delay = 1000,
   ) {
+    element.style.display = "block";
+    element.style.height = element.offsetHeight + "px";
+
     const words = [element.textContent];
     let i = 0;
     let j = 0;
@@ -221,7 +224,7 @@ $(document).ready(function () {
         setTimeout(() => (isDeleting = true), delay);
       }
 
-      if (isDeleting && j === 1) {
+      if (isDeleting && j === 0) {
         isDeleting = false;
         i = (i + 1) % words.length;
       }

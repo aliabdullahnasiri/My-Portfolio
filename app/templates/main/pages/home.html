@@ -17,10 +17,10 @@
             <h1 class="text-white mb-xl-3 mb-lg-2">
               {{ profile.user.first_name }} {{ profile.user.middle_name }}
               <span class="d-block">
-                <span id="typewriter" data-deleting-speed="75" data-writing-speed="100" data-delay="1500">{{ profile.user.last_name }}</span>
+                <span>{{ profile.user.last_name }}</span>
               </span>
             </h1>
-            <h5 id="typewriter" data-deleting-speed="10" data-writing-speed="20" data-delay="10000">{{ profile.headline }}</h5>
+            <h5 id="typewriter" data-deleting-speed="25" data-writing-speed="50" data-delay="5000">{{ profile.headline }}</h5>
             <p class="pe-5">
               {{ profile.short_bio }}
             </p>
