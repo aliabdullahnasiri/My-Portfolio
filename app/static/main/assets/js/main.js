@@ -203,7 +203,7 @@ $(document).ready(function () {
     delay = 1000,
   ) {
     element.style.display = "block";
-    element.style.height = element.offsetHeight + "px";
+    element.style.minHeight = element.offsetHeight + "px";
 
     const words = [element.textContent];
     let i = 0;
