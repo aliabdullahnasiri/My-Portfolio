@@ -262,7 +262,6 @@ body .d2c_mobile_view {
   transition: 0.5s;
   padding: 20px 15px;
   background-color: #1b2130;
-  overflow: scroll;
   z-index: 9999;
   box-shadow: 0px 0px 10px rgb(0 0 0 / 15%);
 }
@@ -281,7 +280,6 @@ body .d2c_mobile_view {
   transition: 0.5s !important;
   padding: 20px 15px;
   background-color: #021616;
-  overflow: scroll;
   z-index: 9999;
 }
 .navbar-toggler:focus {
