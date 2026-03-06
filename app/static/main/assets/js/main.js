@@ -206,6 +206,7 @@ $(document).ready(function () {
     element.style.height = element.offsetHeight + "px";
 
     const words = [element.textContent];
+    console.log(words);
     let i = 0;
     let j = 0;
     let currentWord = "";
@@ -229,7 +230,15 @@ $(document).ready(function () {
         i = (i + 1) % words.length;
       }
 
-      setTimeout(type, isDeleting ? deleting_speed : writing_speed);
+      console.log(i);
+      setTimeout(
+        type,
+        !isDeleting && j - 1 === currentWord.length
+          ? delay
+          : isDeleting
+            ? deleting_speed
+            : writing_speed,
+      );
     }
 
     type();
