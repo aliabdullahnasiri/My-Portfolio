@@ -178,7 +178,6 @@ $(document).ready(function () {
 
 (function () {
   let sectionElement = document.querySelector("main section");
-  let videoElement = sectionElement.querySelector("video");
 
   function resize() {
     sectionElement.style.height = window.innerHeight + "px";
@@ -190,8 +189,53 @@ $(document).ready(function () {
 
 (function () {
   let headerElement = document.querySelector("header");
-  window.addEventListener("scroll", (event) => {
+  window.addEventListener("scroll", () => {
     if (window.scrollY > 250) headerElement.classList.add("d3c_navbar");
     else if (window.screenY < 250) headerElement.classList.remove("d3c_navbar");
+  });
+}).call(this);
+
+(function () {
+  function typewriter(
+    element,
+    deleting_speed = 50,
+    writing_speed = 100,
+    delay = 1000,
+  ) {
+    const words = [element.textContent];
+    let i = 0;
+    let j = 0;
+    let currentWord = "";
+    let isDeleting = false;
+
+    function type() {
+      currentWord = words[i];
+
+      if (isDeleting) {
+        element.textContent = currentWord.substring(0, j--);
+      } else {
+        element.textContent = currentWord.substring(0, j++);
+      }
+
+      if (!isDeleting && j === currentWord.length) {
+        setTimeout(() => (isDeleting = true), delay);
+      }
+
+      if (isDeleting && j === 1) {
+        isDeleting = false;
+        i = (i + 1) % words.length;
+      }
+
+      setTimeout(type, isDeleting ? deleting_speed : writing_speed);
+    }
+
+    type();
+  }
+
+  document.querySelectorAll("#typewriter").forEach((element) => {
+    deleting_speed = element.dataset.deletingSpeed;
+    writing_speed = element.dataset.writingSpeed;
+    delay = element.dataset.delay;
+    typewriter(element, deleting_speed, writing_speed, delay);
   });
 }).call(this);
