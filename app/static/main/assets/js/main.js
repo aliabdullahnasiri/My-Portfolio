@@ -33,9 +33,9 @@ $(".d2c_certificate_slider").slick({
   arrows: false,
   infinite: true,
   autoplay: true,
-  speed: 1500,
+  speed: 1200,
   slidesToShow: 3,
-  slidesToScroll: 4,
+  slidesToScroll: 1,
   responsive: [
     {
       breakpoint: 1400,

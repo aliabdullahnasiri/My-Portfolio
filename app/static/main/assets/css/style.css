@@ -85,6 +85,7 @@ p {
 }
 .d2c_img_wrapper img {
   border: 2px solid #2d374c;
+  border-radius: 10px;
 }
 .d2c_img_overlay {
   background:
@@ -428,6 +429,7 @@ h1 span {
       rgba(13, 17, 26, 0) 100%
     ),
     #131722;
+  border-radius: 10px;
 }
 .d2c_card_child_two {
   padding: 0px 1px 1px 1px;
@@ -439,6 +441,7 @@ h1 span {
     ),
     #131722;
   transition: 0.4s all;
+  border-radius: 10px;
 }
 .d2c_card_child_three {
   padding: 25px;
@@ -574,17 +577,19 @@ h1 span {
 }
 .d2c_project_wrapper .d2c_small_img {
   height: 338px;
+  border-radius: 10px !important;
 }
 .d2c_project_wrapper .d2c_overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     0deg,
-    rgba(13, 17, 26, 0.8) 0%,
-    rgba(13, 17, 26, 0.8) 100%
+    rgb(13 17 26 / 60%) 0%,
+    rgb(13 17 26 / 50%) 100%
   );
   opacity: 1;
   transition: 0.4s all;
+  border-radius: 10px;
 }
 .d2c_project_wrapper .d2c_card {
   width: 100%;
@@ -593,6 +598,7 @@ h1 span {
   inset: 0;
   opacity: 0;
   transition: 0.4s all;
+  border-radius: 10px;
 }
 .d2c_project_wrapper .d2c_img_wrapper:hover .d2c_overlay {
   opacity: 0;
