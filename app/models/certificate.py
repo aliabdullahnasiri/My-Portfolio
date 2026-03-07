@@ -1,6 +1,12 @@
+import datetime
+import os
+import pathlib
+import uuid
 from operator import call
 
+from app.const import APP_DIR
 from app.extensions import db
+from app.func import generate_certificate_preview
 
 
 class Certificate(db.Model):
@@ -32,6 +38,8 @@ class Certificate(db.Model):
     is_public = db.Column(db.Boolean, default=True)
     display_order = db.Column(db.Integer, default=0)
 
+    preview_image = db.Column(db.String(255))
+
     def __repr__(self):
         return f"<Certificate {self.title}>"
 
@@ -54,5 +62,38 @@ class Certificate(db.Model):
             "is_public": self.is_public,
             "display_order": self.display_order,
             "file": [self.file.to_dict() if self.file else None],
+            "preview_image_src": self.preview_image_src,
             **call(getattr(super(), "to_dict")),
         }
+
+    @property
+    def preview_image_src(self):
+        if self.preview_image is None and self.file_id:
+            dir = pathlib.Path(
+                os.path.join(
+                    APP_DIR,
+                    "static",
+                    "uploads",
+                    datetime.datetime.now().strftime("%Y-%m-%d"),
+                )
+            )
+
+            if not dir.exists():
+                dir.mkdir()
+
+            output = pathlib.Path(
+                os.path.join(
+                    dir,
+                    f"{uuid.uuid4()}.jpg",
+                )
+            )
+
+            generate_certificate_preview(
+                os.path.join("app", self.file.file_url.strip(chr(47))), output
+            )
+
+            self.preview_image = str(output).strip(APP_DIR)
+
+            db.session.commit()
+
+        return self.preview_image
