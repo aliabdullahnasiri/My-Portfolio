@@ -611,6 +611,7 @@ h1 span {
 .d2c_certificate_wrapper .d2c_card_child_three {
   height: 100%;
   padding: 0px 10px 10px 10px;
+  border-radius: 10px;
 }
 .d2c_content_wrapper {
   position: absolute;
@@ -622,13 +623,13 @@ h1 span {
   font-size: 22px;
   font-weight: 700;
   text-transform: capitalize;
-  margin-bottom: 16px;
+  margin-bottom: 5px;
 }
 .d2c_certificate_wrapper .d2c_card_child_three p {
   color: var(--color_two);
   font-size: 16px;
   font-weight: 400;
-  margin-bottom: 26px;
+  margin-bottom: 10px;
 }
 .d2c_certificate_wrapper h4 {
   color: var(--default_color);
