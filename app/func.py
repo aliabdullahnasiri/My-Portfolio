@@ -1,5 +1,7 @@
 import pathlib
 import re
+from datetime import date
+from operator import call
 from typing import Union
 
 from flask import render_template
@@ -47,6 +49,12 @@ def render_td(col_id: str, obj, max_length: int = 64) -> str:
         return getattr(obj, attr)
 
     val = dct.get(col_id, "N/A")
+
+    if hasattr(obj, col_id) and (attr := getattr(obj, col_id)) and type(attr) is date:
+        val = call(getattr(obj, "display_date"), col_id, 0)
+
+    if not val:
+        val = "N/A"
 
     if type(val) == str and len(val) > max_length:
         return "{}...".format(val[slice(max_length)])
