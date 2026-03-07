@@ -5,6 +5,8 @@ from operator import call
 from typing import Union
 
 from flask import render_template
+from pdf2image import convert_from_path
+from PIL import Image
 
 from app.config import Config
 from app.models.file import File
@@ -72,3 +74,25 @@ def __import_all__(path: str) -> None:
                 f"{path.replace(chr(47), chr(46))}{chr(46)}{module.name}",
             )
         )
+
+
+def generate_certificate_preview(
+    pdf_path, output_path, width: int = 600, height: int = 400
+):
+    TARGET_SIZE = (width, height)
+    pages = convert_from_path(pdf_path, dpi=200)
+    img = pages[0]
+
+    # keep aspect ratio
+    img.thumbnail(TARGET_SIZE)
+
+    # create background canvas
+    background = Image.new("RGB", TARGET_SIZE, (255, 255, 255))
+
+    # center the image
+    x = (TARGET_SIZE[0] - img.width) // 2
+    y = (TARGET_SIZE[1] - img.height) // 2
+
+    background.paste(img, (x, y))
+
+    background.save(output_path, "JPEG", quality=90)
