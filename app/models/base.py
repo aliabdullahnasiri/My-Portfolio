@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any
+from typing import Any, Literal
 
 import humanize
 from flask import request
@@ -57,6 +57,13 @@ class Base(db.Model):
     @property
     def display_natural_updated_at(self) -> str:
         return humanize.naturaltime(self.updated_at)
+
+    def display_date(self, attr, ret_none: Literal[1, 0] = 0):
+        if hasattr(self, attr):
+            if date := getattr(self, attr):
+                return date.strftime("%Y-%m-%d")
+
+        return None if ret_none else "N/A"
 
     def to_dict(self):
         return {
