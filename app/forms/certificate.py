@@ -62,7 +62,7 @@ class AddCertificateForm(FlaskForm):
 class UpdateCertificateForm(AddCertificateForm):
     uid = HiddenField("UID", validators=[DataRequired()])
 
-    is_featured = BooleanField("Featured")
-    is_public = BooleanField("Public")
+    is_featured = BooleanField("Show this item as Featured")
+    is_public = BooleanField("Make this item Publicly Visible")
 
     submit = SubmitField("Update")
