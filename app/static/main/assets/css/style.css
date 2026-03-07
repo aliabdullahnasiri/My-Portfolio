@@ -608,8 +608,8 @@ h1 span {
 }
 .d2c_content_wrapper {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 100%;
+  transform: translateY(-100%);
 }
 .d2c_project_wrapper h3 {
   color: var(--default_color);
@@ -980,4 +980,8 @@ section.d2c_hero_wrapper div.hero-content {
   to {
     transform: scale(1);
   }
+}
+
+.top-85 {
+  top: 85% !important;
 }
