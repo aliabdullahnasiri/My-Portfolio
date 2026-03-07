@@ -15,6 +15,11 @@ from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("uid"), ColumnName("UID")),
+    (ColumnID("temp_profile"), ColumnName("Profile")),
+    (ColumnID("title"), ColumnName("Title")),
+    (ColumnID("issuer"), ColumnName("Issuer")),
+    (ColumnID("issue_date"), ColumnName("Issue Date")),
+    (ColumnID("expiration_date"), ColumnName("Expiration Date")),
 ]
 
 
