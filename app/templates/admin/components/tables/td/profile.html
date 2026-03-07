@@ -1,0 +1,17 @@
+<div class="d-flex px-0 py-1">
+  <div>
+    <img
+      src="{{ profile and profile.avatar_url or avatar }}"
+      class="avatar avatar-sm me-3 border-radius-lg"
+      alt="profile1"
+    />
+  </div>
+  <div class="d-flex flex-column justify-content-center">
+    <h6 class="mb-0 text-sm">
+      {{ profile and profile.user.full_name or full_name }}
+    </h6>
+    <p class="text-xs text-secondary mb-0">
+      {{ profile and profile.user.email or email }}
+    </p>
+  </div>
+</div>
