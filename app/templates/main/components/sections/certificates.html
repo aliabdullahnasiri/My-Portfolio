@@ -8,8 +8,8 @@
         >
           <h2 class="text-center">Certificates</h2>
           <p class="text-center">
-            I'm Working On A Variety Of Technologies Right Now, Including Web
-            3.0, Blockchain Technology, Cybersecurity, And Cryptography.
+            A collection of certifications that showcase my commitment to
+            learning, professional development, and continuous improvement.
           </p>
         </div>
       </div>
@@ -17,9 +17,11 @@
         <div class="row d2c_certificate_slider wow fadeInUp">
           {% for certificate in profile.certificates %}
           <div class="col-md-12 col-lg-4 mb-4 mb-lg-0 wow fadeInLeft">
-            <div class="d2c_img_wrapper d2c_small_img position-relative w-100">
+            <div
+              class="d2c_img_wrapper d2c_small_img position-relative w-100 h-100"
+            >
               <img
-                src="./assets/images/portfolio_one.png"
+                src="{{ certificate.preview_image_src }}"
                 class="w-100 h-100"
                 alt="Project Image"
               />
