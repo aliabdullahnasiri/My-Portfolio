@@ -89,6 +89,15 @@
   </div>
 
   <div class="row">
+    <div class="my-2">
+      <div class="input-group input-group-outline">
+        {{ f.display_order.label(class="form-label") }} {{
+        f.display_order(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-md-12">
       <div class="mx-2">{{ f.file.label(class="form-label") }}</div>
       <div class="card drop-zone position-relative">
