@@ -53,6 +53,6 @@ class Certificate(db.Model):
             "is_featured": self.is_featured,
             "is_public": self.is_public,
             "display_order": self.display_order,
-            "file": self.file.to_dict() if self.file else None,
+            "file": [self.file.to_dict() if self.file else None],
             **call(getattr(super(), "to_dict")),
         }
