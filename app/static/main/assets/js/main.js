@@ -31,8 +31,8 @@ navClone();
 $(".d2c_certificate_slider").slick({
   dots: false,
   arrows: false,
-  infinite: !true,
-  autoplay: !true,
+  infinite: true,
+  autoplay: true,
   speed: 800,
   slidesToShow: 3,
   slidesToScroll: 1,
