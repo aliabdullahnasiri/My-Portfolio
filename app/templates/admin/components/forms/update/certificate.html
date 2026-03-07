@@ -1,0 +1,144 @@
+{% with f = form.u %}
+<form
+  method="POST"
+  action="{{ url_for('api.update_certificate') }}"
+  data-get="{{ url_for('api.fetch_certificate', uid='@') }}"
+  enctype="multipart/form-data"
+>
+  {{ f.hidden_tag() }}
+
+  <div class="row">
+    <div class="my-2">
+      <div class="input-group input-group-outline">
+        {{ f.title.label(class="form-label") }} {{ f.title(class="form-control")
+        }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="my-2">
+      <div class="px-2 py-0 my-0">
+        {{ f.description.label(class="form-label") }}
+      </div>
+      <div class="input-group input-group-outline">
+        {{ f.description(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="my-2">
+      <div class="input-group input-group-outline">
+        {{ f.issuer.label(class="form-label") }} {{
+        f.issuer(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="my-2">
+      <div class="input-group input-group-outline">
+        {{ f.credential_id.label(class="form-label") }} {{
+        f.credential_id(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="my-2">
+      <div class="input-group input-group-outline">
+        {{ f.credential_url.label(class="form-label") }} {{
+        f.credential_url(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="my-2">
+      <div class="input-group input-group-outline">
+        {{ f.verification_code.label(class="form-label") }} {{
+        f.verification_code(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my-2">
+        <div class="px-2 py-0 my-0">
+          {{ f.issue_date.label(class="form-label") }}
+        </div>
+        <div class="input-group input-group-outline">
+          {{ f.issue_date(class="form-control") }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my-2">
+        <div class="px-2 py-0 my-0">
+          {{ f.expiration_date.label(class="form-label") }}
+        </div>
+        <div class="input-group input-group-outline">
+          {{ f.expiration_date(class="form-control") }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="mx-2">{{ f.file.label(class="form-label") }}</div>
+      <div class="card drop-zone position-relative">
+        <div
+          class="d-grid align-item-center align-content-center justify-content-center w-100 h-100 py-5"
+        >
+          <div class="text-center">
+            <i class="material-symbols-rounded opacity-5 fs-1">upload</i>
+          </div>
+          <span
+            ><strong
+              class="open-default-file-input-modal cursor-pointer"
+              data-id="{{ f.file.id }}"
+              >Choose a file</strong
+            >
+            or drag it here</span
+          >
+        </div>
+
+        <div class="list-section pt-0 pb-2 px-2">
+          <hr class="dark horizontal mb-3 mt-0" />
+          <div class="list-title fs-5 m-2">Uploaded Resume</div>
+          <ul class="list-unstyled d-flex flex-wrap mt-4 mx-2"></ul>
+        </div>
+        {{ f.file(class="form-control d-none") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="my-3 mx-3">
+    <div class="form-check form-switch d-flex align-items-center is-filled">
+      {{ f.is_featured(class="form-check-input") }} {{
+      f.is_featured.label(class="form-check-label mb-0 ms-3") }}
+    </div>
+  </div>
+
+  <div class="my-3 mx-3">
+    <div class="form-check form-switch d-flex align-items-center is-filled">
+      {{ f.is_public(class="form-check-input") }} {{
+      f.is_public.label(class="form-check-label mb-0 ms-3") }}
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-md-12">
+      <div class="text-center">
+        {{ f.submit(class="btn bg-gradient-info btn-lg w-100 mt-4 mb-0") }}
+      </div>
+    </div>
+  </div>
+</form>
+{% endwith %}
