@@ -321,7 +321,7 @@ function addTableRow(tableElement, theadElement, tbodyElement, id) {
     .then((response) => response.json())
     .then((data) => {
       let row = [];
-      let is_deletable = data?.is_deletable;
+      let is_deletable = data?.is_deletable || true;
 
       Array.from(
         theadElement.querySelector("tr").querySelectorAll("th"),
