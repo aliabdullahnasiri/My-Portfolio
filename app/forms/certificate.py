@@ -1,4 +1,3 @@
-import json
 import re
 
 from flask_wtf import FlaskForm
