@@ -1,0 +1,49 @@
+<div class="d2c_cta_project_bg pb-5">
+  <!-- Project Section Start -->
+  <section class="d2c_project_wrapper" id="project">
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-md-10 col-lg-8 col-xl-6 offset-md-1 offset-lg-2 offset-xl-3 wow fadeInUp"
+        >
+          <h2 class="text-center">Certificates</h2>
+          <p class="text-center">
+            I'm Working On A Variety Of Technologies Right Now, Including Web
+            3.0, Blockchain Technology, Cybersecurity, And Cryptography.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row d2c_certificate_slider wow fadeInUp">
+          {% for certificate in profile.certificates %}
+          <div class="col-md-12 col-lg-4 mb-4 mb-lg-0 wow fadeInLeft">
+            <div class="d2c_img_wrapper d2c_small_img position-relative w-100">
+              <img
+                src="./assets/images/portfolio_one.png"
+                class="w-100 h-100"
+                alt="Project Image"
+              />
+              <div class="d2c_overlay"></div>
+              <div class="d2c_card">
+                <div class="d2c_card_child h-100">
+                  <div class="d2c_card_child_two h-100">
+                    <div class="d2c_card_child_three position-relative">
+                      <div class="d2c_content_wrapper">
+                        <h3>{{ certificate.title }}</h3>
+                        {% if certificate.description %}
+                        <p>{{ certificate.description }}</p>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Project Section End -->
+</div>
