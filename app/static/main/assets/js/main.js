@@ -25,67 +25,28 @@ function navClone() {
     $(this).toggleClass("active");
   });
 }
+
 navClone();
 
-// Partner Slider
-$(".d2c_partner_slider").slick({
-  centerMode: true,
-  centerPadding: "0px",
+$(".d2c_certificate_slider").slick({
   dots: false,
   arrows: false,
   infinite: true,
   autoplay: true,
-  speed: 2000,
-  slidesToShow: 6,
-  slidesToScroll: 1,
-  responsive: [
-    {
-      breakpoint: 1500,
-      settings: {
-        slidesToShow: 5,
-      },
-    },
-    {
-      breakpoint: 992,
-      settings: {
-        slidesToShow: 3,
-      },
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 2,
-      },
-    },
-  ],
-});
-
-// Testimonial Slider
-$(".d2c_testimonial_slider").slick({
-  centerMode: true,
-  centerPadding: "0px",
-  dots: false,
-  arrows: true,
-  infinite: true,
-  autoplay: true,
-  speed: 2000,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  prevArrow:
-    '<button type="button" class="d2c_carousel_left_btn" aria-label="carousel-control"><i class="fas fa-arrow-left"></i></button>',
-  nextArrow:
-    '<button type="button" class="d2c_carousel_right_btn" aria-label="carousel-control"><i class="fas fa-arrow-right"></i></button>',
+  speed: 1500,
+  slidesToShow: 3,
+  slidesToScroll: 4,
   responsive: [
     {
       breakpoint: 1400,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 2,
       },
     },
     {
       breakpoint: 1200,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 2,
       },
     },
     {
