@@ -992,3 +992,7 @@ section.d2c_hero_wrapper div.hero-content {
 .top-85 {
   top: 85% !important;
 }
+
+.slick-slide:focus-visible {
+  outline: 0 !important;
+}
