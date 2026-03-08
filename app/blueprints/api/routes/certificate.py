@@ -146,7 +146,10 @@ def update_certificate() -> Response:
             certificate.issuer = form.issuer.data
             certificate.issuer_url = form.issuer_url.data
             certificate.credential_id = form.credential_id.data
-            certificate.credential_url = form.credential_url.data
+            if not form.credential_url.data:
+                certificate._credential_url
+            else:
+                certificate.credential_url = form.credential_url.data
             certificate.issue_date = form.issue_date.data
             certificate.verification_code = form.verification_code.data
             certificate.expiration_date = form.expiration_date.data
@@ -162,6 +165,7 @@ def update_certificate() -> Response:
                     if file := files.get("file"):
                         if type(file) is list and len(file) == 1:
                             (file_id,) = file
+                            certificate.preview_image = None
                             certificate.file_id = file_id
 
                 except json.JSONDecodeError as err:
@@ -228,7 +232,10 @@ def add_certificate() -> Response:
         certificate.issuer = form.issuer.data
         certificate.issuer_url = form.issuer_url.data
         certificate.credential_id = form.credential_id.data
-        certificate.credential_url = form.credential_url.data
+        if not form.credential_url.data:
+            certificate._credential_url
+        else:
+            certificate.credential_url = form.credential_url.data
         certificate.verification_code = form.verification_code.data
         certificate.issue_date = form.issue_date.data
         certificate.expiration_date = form.expiration_date.data
@@ -242,6 +249,7 @@ def add_certificate() -> Response:
                     if type(file) is list and len(file) == 1:
                         (file_id,) = file
                         certificate.file_id = file_id
+                        certificate._credential_url
 
             except json.JSONDecodeError as err:
                 print(err)
