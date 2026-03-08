@@ -86,8 +86,10 @@ def generate_certificate_preview(
     # keep aspect ratio
     img.thumbnail(TARGET_SIZE)
 
+    bg_color = img.getpixel((10, 10))
+
     # create background canvas
-    background = Image.new("RGB", TARGET_SIZE, (255, 255, 255))
+    background = Image.new("RGB", TARGET_SIZE, bg_color)
 
     # center the image
     x = (TARGET_SIZE[0] - img.width) // 2
