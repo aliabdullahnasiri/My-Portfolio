@@ -4,7 +4,7 @@ from app.extensions import db
 class SocialLink(db.Model):
     __tablename__ = "social_links"
 
-    profile_uid = db.Column(db.Integer, db.ForeignKey("profiles.uid"), nullable=False)
+    profile_uid = db.Column(db.String(8), db.ForeignKey("profiles.uid"), nullable=False)
 
     platform = db.Column(db.String(50), nullable=False)
 
