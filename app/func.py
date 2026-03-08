@@ -128,10 +128,11 @@ def extract_credential_urls(pdf: pathlib.Path) -> List[str]:
                     if "/A" in obj and "/URI" in obj["/A"]:
                         urls.append(obj["/A"]["/URI"])
 
-        images = convert_from_path(pdf)
-        for image in images:
-            text = pytesseract.image_to_string(image).replace(" ", "")
-            urls.extend(re.findall(r"(https?://\S+|[\w.-]+/\S+)", text))
+        if not urls:
+            images = convert_from_path(pdf)
+            for image in images:
+                text = pytesseract.image_to_string(image).replace(" ", "")
+                urls.extend(re.findall(r"(https?://\S+|[\w.-]+/\S+)", text))
 
         normalized_urls = []
         for url in urls:
