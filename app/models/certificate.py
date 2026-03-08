@@ -73,7 +73,7 @@ class Certificate(db.Model):
             if (
                 (urls := extract_credential_urls(pdf))
                 and (url := urls.pop())
-                and is_url_alive(url)
+                # and is_url_alive(url)
             ):
                 self.credential_url = url
                 db.session.commit()
