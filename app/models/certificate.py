@@ -68,7 +68,7 @@ class Certificate(db.Model):
 
     @property
     def preview_image_src(self):
-        if self.preview_image is None and self.file_id:
+        if self.preview_image is None and self.file_id and self.file.exists:
             dir = pathlib.Path(
                 os.path.join(
                     APP_DIR,
