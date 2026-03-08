@@ -19,5 +19,7 @@ class SocialLink(db.Model):
     # relationship
     profile = db.relationship(
         "Profile",
-        backref=db.backref("social_links", lazy=True, cascade="all, delete-orphan"),
+        backref=db.backref(
+            "social_links", lazy="dynamic", cascade="all, delete-orphan"
+        ),
     )
