@@ -60,26 +60,8 @@
       class="position-relative"
     >
       {% block content %} {% endblock %}
-      <div class="d2c_copy_right_wrapper">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-8 col-lg-6 col-sm-12 mb-3 mb-md-0">
-              <p class="mb-0 text-center text-md-start">
-                ©
-                <script>
-                  document.write(new Date().getFullYear());
-                </script>
-                2025, made with <i class="fa fa-heart red"></i> by <span class="fw-bold">{{ DEVELOPER }}</span> for <span class="fw-bold">{{ PROJECT_TITLE }}</span>.
-              </p>
-            </div>
-            <div
-              class="col-md-6 d-flex justify-content-center justify-content-md-end"
-            >
-            </div>
-          </div>
-        </div>
-      </div>
 
+      {% include "main/components/footer.html" %}
       <!-- Scroll Button Start -->
       <div id="scrollBtn">
         <a href="#">
