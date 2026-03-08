@@ -1,6 +1,8 @@
 import json
 from typing import Dict, List, Tuple, Union
+from urllib.parse import urlparse
 
+import tldextract
 from flask import Response, request
 from flask_login import current_user, login_required
 
@@ -10,6 +12,7 @@ from app.forms.profile import AddProfileForm, UpdateProfileForm
 from app.func import get_file_url, render_td
 from app.models.permission import Permission
 from app.models.profile import Profile
+from app.models.social_link import SocialLink
 from app.models.user import permission_required
 from app.types import ColumnID, ColumnName
 
@@ -139,6 +142,28 @@ def update_profile() -> Response:
             profile.phone = form.phone.data
             profile.years_of_experience = form.years_of_experience.data
             profile.is_active = form.is_active.data
+
+            if data := form.social_links.data:
+                try:
+                    links = json.loads(data)
+
+                    for link in profile.social_links.all():
+                        if link.url not in links:
+                            profile.social_links.remove(link)
+
+                    for link in links:
+                        if not SocialLink.query.filter_by(url=link).count():
+                            link = urlparse(link)
+
+                            l = SocialLink()
+                            l.platform = link.hostname
+                            l.url = link.geturl()
+                            l.icon = tldextract.extract(l.url).domain
+
+                            profile.social_links.add(l)
+
+                except json.JSONDecodeError as err:
+                    print(err)
 
             if files := request.form.get("files"):
                 try:
