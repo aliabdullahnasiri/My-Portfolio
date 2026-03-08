@@ -57,4 +57,6 @@ class AddProfileForm(FlaskForm):
 class UpdateProfileForm(AddProfileForm):
     uid = HiddenField("UID", validators=[DataRequired()])
 
+    social_links = StringField("Social Links", validators=[Optional()])
+
     submit = SubmitField("Update")
