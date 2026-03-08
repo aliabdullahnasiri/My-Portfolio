@@ -1,3 +1,12 @@
+function isValidURL(url) {
+  try {
+    new URL(url);
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+
 //Navbar toggle icon
 function navbar_toggler() {
   $(".navbar-toggler[data-toggle=collapse]").click(function () {
@@ -210,3 +219,15 @@ $(document).ready(function () {
     typewriter(element, deleting_speed, writing_speed, delay);
   });
 }).call(this);
+
+(function () {
+  document.body.addEventListener("click", (event) => {
+    let element = event.target.closest("[data-open-url]");
+
+    let openURL = element.dataset.openUrl;
+
+    if (isValidURL(openURL)) {
+      window.open(openURL, "_blank");
+    }
+  });
+}).call();

@@ -996,3 +996,7 @@ section.d2c_hero_wrapper div.hero-content {
 .slick-slide:focus-visible {
   outline: 0 !important;
 }
+
+*[data-open-url]:not([data-open-url=""]) {
+  cursor: pointer;
+}
