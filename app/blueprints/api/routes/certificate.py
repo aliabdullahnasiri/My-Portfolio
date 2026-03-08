@@ -249,13 +249,14 @@ def add_certificate() -> Response:
                     if type(file) is list and len(file) == 1:
                         (file_id,) = file
                         certificate.file_id = file_id
-                        certificate._credential_url
 
             except json.JSONDecodeError as err:
                 print(err)
 
         db.session.add(certificate)
         db.session.commit()
+
+        certificate._credential_url
 
         response["message"] = "Certificate added successfully"
         response["category"] = "success"

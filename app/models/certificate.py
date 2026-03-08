@@ -70,11 +70,7 @@ class Certificate(db.Model):
     def _credential_url(self):
         if self.credential_url is None and self.file_id and self.file.exists:
             pdf = pathlib.Path(os.path.join(APP_DIR, self.file.file_url.strip(chr(47))))
-            if (
-                (urls := extract_credential_urls(pdf))
-                and (url := urls.pop())
-                # and is_url_alive(url)
-            ):
+            if (urls := extract_credential_urls(pdf)) and (url := urls.pop()):
                 self.credential_url = url
                 db.session.commit()
 
