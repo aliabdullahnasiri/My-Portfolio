@@ -146,10 +146,7 @@ def update_certificate() -> Response:
             certificate.issuer = form.issuer.data
             certificate.issuer_url = form.issuer_url.data
             certificate.credential_id = form.credential_id.data
-            if not form.credential_url.data:
-                certificate._credential_url
-            else:
-                certificate.credential_url = form.credential_url.data
+            certificate.credential_url = form.credential_url.data
             certificate.issue_date = form.issue_date.data
             certificate.verification_code = form.verification_code.data
             certificate.expiration_date = form.expiration_date.data
