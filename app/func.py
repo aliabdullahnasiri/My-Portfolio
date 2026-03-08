@@ -2,11 +2,14 @@ import pathlib
 import re
 from datetime import date
 from operator import call
-from typing import Union
+from typing import List, Union
 
+import pytesseract
+import requests
 from flask import render_template
 from pdf2image import convert_from_path
 from PIL import Image
+from pypdf import PdfReader
 
 from app.config import Config
 from app.models.file import File
@@ -98,3 +101,74 @@ def generate_certificate_preview(
     background.paste(img, (x, y))
 
     background.save(output_path, "JPEG", quality=90)
+
+
+def extract_credential_urls(pdf: pathlib.Path) -> List[str]:
+    """
+    Extracts all URLs from a PDF file, including text URLs and clickable annotation URLs.
+
+    Args:
+        pdf (pathlib.Path): Path to the PDF file.
+
+    Returns:
+        list: A list of URLs found in the PDF.
+    """
+    urls = []
+
+    try:
+        reader = PdfReader(pdf)
+
+        for page in reader.pages:
+            text = page.extract_text() or ""
+            urls.extend(re.findall(r"https?://\S+", text))
+
+            if "/Annots" in page:
+                for annot in page["/Annots"]:
+                    obj = annot.get_object()
+                    if "/A" in obj and "/URI" in obj["/A"]:
+                        urls.append(obj["/A"]["/URI"])
+
+        images = convert_from_path(pdf)
+        for image in images:
+            text = pytesseract.image_to_string(image).replace(" ", "")
+            urls.extend(re.findall(r"(https?://\S+|[\w.-]+/\S+)", text))
+
+        normalized_urls = []
+        for url in urls:
+            url = url.strip().replace(" ", "")
+            if not url.startswith("http://") and not url.startswith("https://"):
+                url = "https://" + url
+
+            normalized_urls.append(url)
+
+        return normalized_urls
+
+    except Exception as e:
+        print(f"Error reading {pdf}: {e}")
+        return []
+
+
+def is_url_alive(url, timeout=5):
+    """
+    Check if a URL returns HTTP status code 200.
+
+    Args:
+        url (str): The URL to check.
+        timeout (int): Maximum seconds to wait for response (default 5s).
+
+    Returns:
+        bool: True if status code is 200, False otherwise.
+    """
+    try:
+        # Make a HEAD request first (faster than GET)
+        response = requests.head(url, allow_redirects=True, timeout=timeout)
+
+        # Some servers may not allow HEAD requests, fallback to GET
+        if response.status_code != 200:
+            response = requests.get(url, allow_redirects=True, timeout=timeout)
+
+        return response.status_code == 200
+
+    except requests.RequestException:
+        # Catch all request-related errors (connection error, timeout, etc.)
+        return False

@@ -87,6 +87,11 @@ class Profile(db.Model):
             "years_of_experience": self.years_of_experience,
             "avatar": self.avatar_url or url_for("static", filename=DEFAULT_AVATAR),
             "is_active": bool(self.is_active),
+            "social_links": (
+                [link.url for link in getattr(self, "social_links").all()]
+                if hasattr(self, "social_links")
+                else []
+            ),
             "resume": [
                 (f := self.user.files.filter_by(file_url=self.resume_url).scalar())
                 and f.to_dict()

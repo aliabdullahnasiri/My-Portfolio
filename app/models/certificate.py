@@ -6,7 +6,7 @@ from operator import call
 
 from app.const import APP_DIR
 from app.extensions import db
-from app.func import generate_certificate_preview
+from app.func import extract_credential_urls, generate_certificate_preview, is_url_alive
 
 
 class Certificate(db.Model):
@@ -65,6 +65,20 @@ class Certificate(db.Model):
             "preview_image_src": self.preview_image_src,
             **call(getattr(super(), "to_dict")),
         }
+
+    @property
+    def _credential_url(self):
+        if self.credential_url is None and self.file_id and self.file.exists:
+            pdf = pathlib.Path(os.path.join(APP_DIR, self.file.file_url.strip(chr(47))))
+            if (
+                (urls := extract_credential_urls(pdf))
+                and (url := urls.pop())
+                and is_url_alive(url)
+            ):
+                self.credential_url = url
+                db.session.commit()
+
+        return self.credential_url
 
     @property
     def preview_image_src(self):
