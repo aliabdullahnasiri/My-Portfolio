@@ -16,5 +16,7 @@ humanize==4.15.0
 numerize==0.12
 gunicorn==25.1.0
 rich==14.3.3
-pdf2image
-pillow
+pdf2image==1.17.0
+pillow==12.1.1
+pypdf==6.7.5
+pytesseract
