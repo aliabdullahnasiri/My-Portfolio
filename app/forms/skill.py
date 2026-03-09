@@ -39,6 +39,9 @@ class AddSkillForm(FlaskForm):
 class UpdateSkillForm(AddSkillForm):
     uid = HiddenField("Skill UID", validators=[DataRequired()])
 
+    display_order = IntegerField("Display Order", validators=[Optional()])
+
     is_featured = BooleanField("Featured Skill")
+    is_visible = BooleanField("Make this item Publicly Visible")
 
     submit = SubmitField("Update")
