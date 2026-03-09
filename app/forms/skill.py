@@ -33,12 +33,12 @@ class AddSkillForm(FlaskForm):
 
     description = TextAreaField("Description", validators=[Optional(), Length(max=500)])
 
-    is_featured = BooleanField("Featured Skill")
-
     submit = SubmitField("Add")
 
 
 class UpdateSkillForm(AddSkillForm):
     uid = HiddenField("Skill UID", validators=[DataRequired()])
+
+    is_featured = BooleanField("Featured Skill")
 
     submit = SubmitField("Update")
