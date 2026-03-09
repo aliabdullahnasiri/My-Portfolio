@@ -1,0 +1,9 @@
+{% with f = form.a %}
+<form
+  method="POST"
+  action="{{ url_for('api.add_skill') }}"
+  enctype="multipart/form-data"
+>
+  {{ f.hidden_tag() }}
+</form>
+{% endwith %}
