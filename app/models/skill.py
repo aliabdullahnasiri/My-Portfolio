@@ -59,7 +59,7 @@ class Skill(db.Model):
 
     icon = db.Column(db.String(100), nullable=True)
 
-    order = db.Column(db.Integer, default=0)
+    display_order = db.Column(db.Integer, default=0)
 
     is_visible = db.Column(db.Boolean, default=True)
 
@@ -76,12 +76,14 @@ class Skill(db.Model):
 
     def to_dict(self, include_category=False):
         data = {
+            "profile_uid": self.profile_uid,
             "name": self.name,
             "description": self.description,
             "level": self.level,
             "icon": self.icon,
-            "order": self.order,
+            "display_order": self.display_order,
             "category_uid": self.category_uid,
+            "category": self.category.name,
             **call(getattr(super(), "to_dict")),
         }
 
