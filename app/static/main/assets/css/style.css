@@ -1036,6 +1036,7 @@ section.d2c_hero_wrapper div.hero-content {
 .slick-dots li.slick-active {
   width: 32px;
   transition: 0.32s;
+  margin: 0px 4px !important;
 }
 
 .slick-dots li button:before,
