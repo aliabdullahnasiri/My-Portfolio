@@ -333,6 +333,11 @@ body .d2c_mobile_view {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.d2c_skills_wrapper {
+  background: url(../images/skills_bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .d2c_counter_choose_bg {
   background: url(../images/counter_choose_bg.jpg);
   background-repeat: no-repeat;
