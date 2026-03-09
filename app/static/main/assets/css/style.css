@@ -328,8 +328,8 @@ body .d2c_mobile_view {
   background-repeat: no-repeat;
   background-size: cover;
 }
-.d2c_services_wrapper {
-  background: url(../images/services_bg.jpg);
+.d2c_certificates_wrapper {
+  background: url(../images/certificates_bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -340,6 +340,11 @@ body .d2c_mobile_view {
 }
 .d2c_cta_project_bg {
   background: url(../images/cta_project_bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.d2c_counter_bg {
+  background: url(../images/counter_choose_bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -411,7 +416,7 @@ h1 span {
 }
 /* About Section End */
 
-/* Service Section Start */
+/* Certificate Section Start */
 .d2c_card {
   padding: 1px 1px 0px 1px;
   background: linear-gradient(
@@ -473,7 +478,7 @@ h1 span {
   );
   margin: 0 auto 30px;
 }
-.d2c_service_icon {
+.d2c_certificate_icon {
   width: 74px;
   height: 74px;
   font-size: 30px;
@@ -491,7 +496,7 @@ h1 span {
 .d2c_card h6 {
   margin-bottom: 10px;
 }
-/* Service Section End */
+/* Certificate Section End */
 
 /* Counter Section Start */
 .d2c_border_bg {
@@ -999,4 +1004,12 @@ section.d2c_hero_wrapper div.hero-content {
 
 *[data-open-url]:not([data-open-url=""]) {
   cursor: pointer;
+}
+
+.d2c_about_wrapper {
+  padding-bottom: 100px !important;
+}
+
+.d2c_certificates_wrapper {
+  padding-bottom: 50px !important;
 }
