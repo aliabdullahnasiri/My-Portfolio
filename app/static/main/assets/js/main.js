@@ -38,7 +38,7 @@ function navClone() {
 navClone();
 
 $(".d2c_certificate_slider").slick({
-  dots: false,
+  dots: true,
   arrows: false,
   infinite: true,
   autoplay: true,

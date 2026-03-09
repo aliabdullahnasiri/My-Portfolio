@@ -1019,3 +1019,51 @@ section.d2c_hero_wrapper div.hero-content {
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+.slick-dots {
+  bottom: -40px;
+}
+
+.slick-dots li {
+  position: relative;
+  display: inline-flex;
+  padding: 0 !important;
+  margin: 0 !important;
+  align-items: center;
+  justify-content: center;
+  transition: 0.32s;
+}
+.slick-dots li.slick-active {
+  width: 32px;
+  transition: 0.32s;
+}
+
+.slick-dots li button:before,
+.slick-dots li button:hover:before,
+.slick-dots li button:focus:before {
+  display: none;
+}
+
+.slick-dots li button:hover {
+  background-color: #5e6ad2;
+  transition: 0.32s;
+  opacity: 1;
+}
+.slick-dots li button {
+  width: 12px;
+  height: 12px;
+  opacity: 0.45;
+  background: #f3f3f3;
+  transition: 0.32s;
+  border-radius: 100%;
+  transition: 0.32s;
+}
+
+.slick-dots li.slick-active button {
+  background-color: #5e6ad2;
+  transition: 0.32s;
+  width: 32px !important;
+  opacity: 1;
+  border-radius: 5px;
+  transition: 0.32s;
+}
