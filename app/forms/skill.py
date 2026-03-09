@@ -11,6 +11,8 @@ from wtforms.validators import DataRequired, Length, NumberRange, Optional
 
 
 class AddSkillForm(FlaskForm):
+    profile_uid = StringField("Profile UID", validators=[DataRequired()])
+
     name = StringField(
         "Skill Name", validators=[DataRequired(), Length(min=2, max=100)]
     )
