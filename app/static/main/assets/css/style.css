@@ -1014,3 +1014,8 @@ section.d2c_hero_wrapper div.hero-content {
 .d2c_certificates_wrapper {
   padding-bottom: 50px !important;
 }
+
+.row {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
