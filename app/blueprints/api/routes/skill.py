@@ -9,7 +9,7 @@ from app.extensions import db
 from app.forms.skill import AddSkillForm, UpdateSkillForm
 from app.func import render_td
 from app.models.permission import Permission
-from app.models.skill import Skill
+from app.models.skill import Skill, SkillCategory
 from app.models.user import permission_required
 from app.types import ColumnID, ColumnName
 
@@ -129,6 +129,15 @@ def update_skill() -> Response:
         skill = Skill.query.filter_by(uid=form.uid.data).first()
 
         if skill:
+            skill.profile_uid = form.profile_uid.data
+            skill.name = form.name.data
+            skill.icon = form.icon.data
+            skill.level = form.level.data
+            skill.description = form.description.data
+            skill.display_order = form.display_order.data
+            skill.is_visible = form.is_visible.data
+            skill.is_featured = form.is_featured.data
+            skill.category.name = form.category.data
 
             db.session.commit()
 
@@ -181,7 +190,20 @@ def add_skill() -> Response:
     response: Dict = {}
 
     if form.validate_on_submit():
+        category = SkillCategory()
+
+        category.name = form.category.data
+
+        db.session.add(category)
+
         skill = Skill()
+
+        skill.profile_uid = form.profile_uid.data
+        skill.name = form.name.data
+        skill.icon = form.icon.data
+        skill.level = form.level.data
+        skill.description = form.description.data
+        setattr(skill, "category", category)
 
         db.session.add(skill)
         db.session.commit()
