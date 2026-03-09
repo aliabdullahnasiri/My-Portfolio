@@ -84,6 +84,8 @@ class Skill(db.Model):
             "display_order": self.display_order,
             "category_uid": self.category_uid,
             "category": self.category.name,
+            "is_featured": self.is_featured,
+            "is_visible": self.is_visible,
             **call(getattr(super(), "to_dict")),
         }
 
