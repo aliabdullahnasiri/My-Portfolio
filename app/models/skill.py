@@ -15,6 +15,7 @@ class SkillCategory(db.Model):
     order = db.Column(db.Integer, default=0)
 
     is_visible = db.Column(db.Boolean, default=True)
+    is_featured = db.Column(db.Boolean, default=False)
 
     def to_dict(self, include_skills=False):
         data = {
@@ -23,6 +24,7 @@ class SkillCategory(db.Model):
             "icon": self.icon,
             "order": self.order,
             "is_visible": self.is_visible,
+            "is_featured": self.is_featured,
             **call(getattr(super(), "to_dict")),
         }
 
@@ -44,13 +46,14 @@ class Skill(db.Model):
     __tablename__ = "skills"
 
     profile_uid = db.Column(db.String(8), db.ForeignKey("profiles.uid"), nullable=False)
+
     category_uid = db.Column(
         db.String(8), db.ForeignKey("skill_categories.uid"), nullable=False
     )
 
     name = db.Column(db.String(100), nullable=False)
 
-    category = db.Column(db.String(100), nullable=True)
+    description = db.Column(db.Text, nullable=True)
 
     level = db.Column(db.Integer, nullable=False, default=0)
 
@@ -59,6 +62,8 @@ class Skill(db.Model):
     order = db.Column(db.Integer, default=0)
 
     is_visible = db.Column(db.Boolean, default=True)
+
+    is_featured = db.Column(db.Boolean, default=False)
 
     profile = db.relationship(
         "Profile",
@@ -72,6 +77,7 @@ class Skill(db.Model):
     def to_dict(self, include_category=False):
         data = {
             "name": self.name,
+            "description": self.description,
             "level": self.level,
             "icon": self.icon,
             "order": self.order,
