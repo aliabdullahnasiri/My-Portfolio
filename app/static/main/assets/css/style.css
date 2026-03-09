@@ -1068,3 +1068,7 @@ section.d2c_hero_wrapper div.hero-content {
   border-radius: 5px;
   transition: 0.32s;
 }
+
+.tooltip {
+  --bs-tooltip-bg: #5e6ad2;
+}

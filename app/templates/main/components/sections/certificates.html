@@ -17,7 +17,16 @@
         {% for certificate in profile.certificates %}
         <div
           class="col-md-12 col-lg-4 mb-4 mb-lg-0 wow fadeInLeft"
-          data-open-url="{{ certificate.credential_url or '' }}"
+          {%
+          if
+          certificate.credential_url
+          %}
+          data-open-url="{{ certificate.credential_url }}"
+          data-bs-toggle="tooltip"
+          title="Click to verify!"
+          {%
+          endif
+          %}
         >
           <div
             class="d2c_img_wrapper d2c_small_img position-relative w-100 h-100"
