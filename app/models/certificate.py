@@ -31,7 +31,12 @@ class Certificate(db.Model):
     )
     file_id = db.Column(db.Integer, db.ForeignKey("files.id"))
 
-    profile = db.relationship("Profile", backref="certificates")
+    profile = db.relationship(
+        "Profile",
+        backref=db.backref(
+            "certificates", lazy="dynamic", cascade="all, delete-orphan"
+        ),
+    )
     file = db.relationship("File")
 
     is_featured = db.Column(db.Boolean, default=False)
