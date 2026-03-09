@@ -483,7 +483,20 @@ h1 span {
   );
   margin: 0 auto 30px;
 }
-.d2c_certificate_icon {
+
+.d2c_icon_wrapper {
+  width: 75px !important;
+  height: 75px !important;
+  padding: 0px 1px 1px 1px;
+  border-radius: 100px !important;
+  background: linear-gradient(
+    180deg,
+    rgba(32, 35, 55, 1) 0%,
+    rgba(57, 59, 96, 1) 100%
+  );
+  margin: 0 auto 30px;
+}
+.d2c_skill_icon {
   width: 74px;
   height: 74px;
   font-size: 30px;
@@ -1039,7 +1052,7 @@ section.d2c_hero_wrapper div.hero-content {
   transition: 0.32s;
 }
 .slick-dots li.slick-active {
-  width: 32px;
+  width: 38px;
   transition: 0.32s;
   margin: 0px 4px !important;
 }
@@ -1068,7 +1081,7 @@ section.d2c_hero_wrapper div.hero-content {
 .slick-dots li.slick-active button {
   background-color: #5e6ad2;
   transition: 0.32s;
-  width: 32px !important;
+  width: 38px !important;
   opacity: 1;
   border-radius: 5px;
   transition: 0.32s;

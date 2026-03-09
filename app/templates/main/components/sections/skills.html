@@ -12,8 +12,32 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="row d2c_skills_slider wow fadeInUp"></div>
+    <div class="row d2c_skills_slider wow fadeInUp py-5">
+      {% for skill in profile.skills.all() %}
+      <div
+        class="col-md-6 col-lg-4 mb-4 wow fadeInDown"
+        data-bs-toggle="tooltip"
+        title="{{ skill.level }}%"
+      >
+        <div class="d2c_card text-center rounded-3">
+          <div class="d2c_card_child rounded-3">
+            <div class="d2c_card_child_two">
+              <div class="d2c_card_child_three rounded-3 d-flex p-2">
+                <div class="d2c_icon_wrapper m-0 me-2">
+                  <div class="d2c_skill_icon">
+                    <i class="{{ skill.icon }} fs-2"></i>
+                  </div>
+                </div>
+                <div class="text-start mx-2">
+                  <h6 class="m-0 p-0 fs-5 mb-1">{{ skill.name }}</h6>
+                  <p class="mb-0 fs-6 lh-sm">{{ skill.description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
