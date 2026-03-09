@@ -1007,7 +1007,8 @@ section.d2c_hero_wrapper div.hero-content {
 }
 
 .d2c_about_wrapper {
-  padding-bottom: 100px !important;
+  padding-top: 150px !important;
+  padding-bottom: 150px !important;
 }
 
 .d2c_certificates_wrapper {
