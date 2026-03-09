@@ -190,11 +190,20 @@ def add_skill() -> Response:
     response: Dict = {}
 
     if form.validate_on_submit():
-        category = SkillCategory()
+        category = (
+            category
+            if (
+                category := SkillCategory.query.filter_by(
+                    name=form.category.data
+                ).scalar()
+            )
+            else SkillCategory()
+        )
 
-        category.name = form.category.data
+        if not SkillCategory.query.filter_by(name=form.category.data).count():
+            category.name = form.category.data
 
-        db.session.add(category)
+            db.session.add(category)
 
         skill = Skill()
 
