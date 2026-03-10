@@ -79,6 +79,16 @@ $(".d2c_certificate_slider").slick({
   ],
 });
 
+$(".d2c_skills_slider").slick({
+  dots: true,
+  arrows: false,
+  infinite: true,
+  autoplay: true,
+  speed: 2500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+});
+
 // Form Validation Js
 (function () {
   "use strict";
