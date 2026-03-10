@@ -99,3 +99,7 @@ class Skill(db.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def display_level(self):
+        return f"{self.level}%" if self.level is not None else "N/A"

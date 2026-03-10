@@ -15,6 +15,9 @@ from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("uid"), ColumnName("UID")),
+    (ColumnID("name"), ColumnName("Name")),
+    (ColumnID("category"), ColumnName("Category")),
+    (ColumnID("level"), ColumnName("Level")),
 ]
 
 
