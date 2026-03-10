@@ -14,7 +14,7 @@
 
     <div class="row">
       <div class="d2c_skills_slider wow fadeInUp py-4">
-        {% for c in category.query.all() %}
+        {% for c, skills in profile.skill_categories.items() %}
         <div class="row">
           <div class="row">
             <div class="col-12 mb-2 text-center wow fadeInDown">
@@ -23,7 +23,7 @@
           </div>
 
           <div class="row d-flex justify-content-center">
-            {% for skill in c.skills.all() %}
+            {% for skill in skills.all() %}
             <div
               class="col-md-6 col-lg-4 mb-4 wow fadeInDown"
               data-bs-toggle="tooltip"
