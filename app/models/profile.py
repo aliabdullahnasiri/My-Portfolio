@@ -1,10 +1,12 @@
 from operator import call
-from typing import Dict, Self
+from os import wait
+from typing import Dict, List, Self, Set
 
 from flask import url_for
 
 from app.const import DEFAULT_AVATAR
 from app.extensions import db
+from app.models.skill import Skill, SkillCategory
 
 
 class Profile(db.Model):
@@ -98,5 +100,23 @@ class Profile(db.Model):
             ],
             **call(getattr(super(), "to_dict")),
         }
+
+        return dct
+
+    @property
+    def skill_categories(self):
+        dct = {}
+
+        for uid in list(
+            item
+            for item, *_ in getattr(self, "skills")
+            .with_entities(Skill.category_uid)
+            .distinct()
+            .all()
+        ):
+            dct.setdefault(
+                SkillCategory.query.filter_by(uid=uid).scalar(),
+                getattr(self, "skills").filter_by(category_uid=uid),
+            )
 
         return dct
