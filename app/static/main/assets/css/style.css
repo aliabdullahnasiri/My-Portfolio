@@ -1105,7 +1105,7 @@ section.d2c_hero_wrapper div.hero-content {
 }
 
 .d2c_skills_slider .slick-dots {
-  bottom: 0;
+  bottom: -10px;
 }
 
 .d2c_about_wrapper {
