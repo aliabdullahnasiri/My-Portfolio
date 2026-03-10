@@ -715,15 +715,17 @@ h1 span {
 }
 .d2c_carousel_left_btn {
   position: absolute;
-  top: 30%;
+  top: 50%;
   transform: translateY(-50%);
   left: -100px;
+  z-index: 10;
 }
 .d2c_carousel_right_btn {
   position: absolute;
-  top: 30%;
+  top: 50%;
   transform: translateY(-50%);
   right: -100px;
+  z-index: 10;
 }
 .slick-arrow {
   width: 56px;
@@ -737,10 +739,19 @@ h1 span {
     rgba(120, 119, 198, 0.35) 0%,
     rgba(13, 17, 26, 0.05) 100%
   );
-  box-shadow: 0px 5px 20px 5px rgba(94, 106, 210, 0.22);
+  /*box-shadow: 0px 5px 20px 5px rgba(94, 106, 210, 0.22);*/
   display: inline-flex !important;
   justify-content: center;
   align-items: center;
+  transition: 0.32s;
+}
+.slick-arrow:hover {
+  transition: 0.32s;
+  background: radial-gradient(
+    100% 100% at 50% 0%,
+    rgba(120, 119, 198, 0.5) 0%,
+    rgba(13, 17, 26, 0.5) 100%
+  );
 }
 /* Testimonial Section End */
 
@@ -1089,4 +1100,19 @@ section.d2c_hero_wrapper div.hero-content {
 
 .tooltip {
   --bs-tooltip-bg: #5e6ad2;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+  .d2c_carousel_right_btn {
+    top: 50% !important;
+    right: 0 !important;
+  }
+  .d2c_carousel_left_btn {
+    top: 50% !important;
+    left: 0 !important;
+  }
+}
+
+.d2c_skills_slider .slick-dots {
+  bottom: 0;
 }
