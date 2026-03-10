@@ -1035,15 +1035,6 @@ section.d2c_hero_wrapper div.hero-content {
   cursor: pointer;
 }
 
-.d2c_about_wrapper {
-  padding-top: 150px !important;
-  padding-bottom: 150px !important;
-}
-
-.d2c_certificates_wrapper {
-  padding-bottom: 50px !important;
-}
-
 .row {
   margin-left: auto !important;
   margin-right: auto !important;
@@ -1115,4 +1106,26 @@ section.d2c_hero_wrapper div.hero-content {
 
 .d2c_skills_slider .slick-dots {
   bottom: 0;
+}
+
+.d2c_about_wrapper {
+  background-image: linear-gradient(
+    180deg,
+    #0e111a 5%,
+    #0d111a00 100%,
+    #0d111a00 100%
+  ) !important;
+}
+.d2c_about_wrapper,
+.d2c_certificates_wrapper,
+.d2c_skills_wrapper {
+  background: none;
+}
+
+body {
+  background: url(../images/bg.jpg);
+}
+
+section {
+  padding-bottom: 32px;
 }
