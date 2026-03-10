@@ -81,12 +81,16 @@ $(".d2c_certificate_slider").slick({
 
 $(".d2c_skills_slider").slick({
   dots: true,
-  arrows: false,
+  arrows: true,
   infinite: true,
   autoplay: true,
   speed: 2500,
   slidesToShow: 1,
   slidesToScroll: 1,
+  prevArrow:
+    '<button type="button" class="d2c_carousel_left_btn" aria-label="carousel-control"><i class="fas fa-arrow-left"></i></button>',
+  nextArrow:
+    '<button type="button" class="d2c_carousel_right_btn" aria-label="carousel-control"><i class="fas fa-arrow-right"></i></button>',
 });
 
 // Form Validation Js
