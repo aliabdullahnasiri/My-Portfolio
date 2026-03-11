@@ -1,4 +1,3 @@
-from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
 from wtforms import (
     BooleanField,
@@ -11,8 +10,10 @@ from wtforms import (
 )
 from wtforms.validators import DataRequired, Email, Length, Optional
 
+from app.forms import Form
 
-class AddProfileForm(FlaskForm):
+
+class AddProfileForm(Form):
 
     headline = StringField(
         "Headline",
