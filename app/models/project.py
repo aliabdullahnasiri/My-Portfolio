@@ -34,9 +34,13 @@ class Project(db.Model):
 
     # Cover Image
     cover_image_id = db.Column(db.Integer, db.ForeignKey("files.id"))
+    profile_uid = db.Column(
+        db.String(8), db.ForeignKey("profiles.uid"), nullable=False, index=True
+    )
 
     # Relationships
     cover_image = db.relationship("File", foreign_keys=[cover_image_id])
+    profile = db.relationship("Profile", foreign_keys=[profile_uid])
     technologies = db.relationship(
         "ProjectTechnology", back_populates="project", cascade="all, delete-orphan"
     )
