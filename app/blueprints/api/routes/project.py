@@ -134,7 +134,6 @@ def update_project() -> Response:
         if project:
             project.profile_uid = form.profile_uid.data
             project.title = form.title.data
-            project.slug = form.slug.data
             project.description = form.description.data
             project.short_description = form.short_description.data
             project.github_url = form.github_url.data
@@ -216,7 +215,6 @@ def add_project() -> Response:
 
         project.profile_uid = form.profile_uid.data
         project.title = form.title.data
-        project.slug = form.slug.data
         project.description = form.description.data
         project.short_description = form.short_description.data
         project.github_url = form.github_url.data
