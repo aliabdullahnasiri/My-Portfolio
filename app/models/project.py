@@ -1,5 +1,7 @@
 from operator import call
 
+from sqlalchemy.orm import backref
+
 from app.extensions import db
 
 
@@ -42,7 +44,10 @@ class Project(db.Model):
     cover_image = db.relationship("File", foreign_keys=[cover_image_id])
     profile = db.relationship("Profile", foreign_keys=[profile_uid])
     technologies = db.relationship(
-        "ProjectTechnology", back_populates="project", cascade="all, delete-orphan"
+        "ProjectTechnology",
+        back_populates="project",
+        cascade="all, delete-orphan",
+        lazy="dynamic",
     )
 
     images = db.relationship(
@@ -114,7 +119,12 @@ class ProjectImage(db.Model):
     display_order = db.Column(db.Integer, default=0)
 
     project = db.relationship("Project", back_populates="images")
-    file = db.relationship("File")
+    file = db.relationship(
+        "File",
+        backref=backref(
+            "project_images", cascade="all, delete-orphan", passive_deletes=True
+        ),
+    )
 
     def __repr__(self):
         return f"<ProjectImage {getattr(self, 'id')}>"
