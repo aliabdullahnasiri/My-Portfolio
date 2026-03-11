@@ -63,13 +63,13 @@ class AddProjectForm(FlaskForm):
     cover = FileField("Cover Image")
     images = MultipleFileField("Images")
 
-    is_featured = BooleanField("Show this item as Featured")
-    is_public = BooleanField("Make this item Publicly Visible")
-
     submit = SubmitField("Add")
 
 
 class UpdateProjectForm(AddProjectForm):
     uid = HiddenField("UID", validators=[DataRequired()])
+
+    is_featured = BooleanField("Show this item as Featured")
+    is_public = BooleanField("Make this item Publicly Visible")
 
     submit = SubmitField("Update")
