@@ -287,6 +287,7 @@ div.multi-value-input div.values {
 .input-group select {
   cursor: pointer;
 }
+
 .input-group:has(select)::after {
   content: "🢓";
   right: 0;
