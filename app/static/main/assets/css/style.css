@@ -1285,6 +1285,6 @@ section {
   height: 280px;
 }
 
-section#projects {
-  padding: 100px 0px;
+section {
+  padding: 60px 0px !important;
 }
