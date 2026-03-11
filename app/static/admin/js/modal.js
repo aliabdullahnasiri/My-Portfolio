@@ -64,6 +64,12 @@ import { createLoader, transformAllMovingTab } from "./script.js";
             }
 
             switch (input.type) {
+              case "select-one":
+                input
+                  ?.querySelector("option[value='%s']".replace("%s", val))
+                  ?.setAttribute("selected", true);
+                break;
+
               case "checkbox":
                 input.checked = val ? true : false;
 
