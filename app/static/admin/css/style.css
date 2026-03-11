@@ -283,3 +283,14 @@ div.multi-value-input div.values {
   padding-top: 0.5rem !important;
   padding-bottom: 0.5rem !important;
 }
+
+.input-group select {
+  cursor: pointer;
+}
+.input-group:has(select)::after {
+  content: "🢓";
+  right: 0;
+  position: absolute;
+  margin: 10px 13px;
+  font-size: 25px;
+}
