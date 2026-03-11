@@ -3,10 +3,10 @@ from typing import Dict, List, Tuple, Union
 
 from flask import Response, request
 from flask_login import login_required
+from sqlalchemy import and_
 
 from app.blueprints.api import bp
 from app.extensions import db
-from app.forms import profile
 from app.forms.project import AddProjectForm, UpdateProjectForm
 from app.func import render_td
 from app.models.permission import Permission
@@ -132,6 +132,53 @@ def update_project() -> Response:
         ).scalar()
 
         if project:
+            project.profile_uid = form.profile_uid.data
+            project.title = form.title.data
+            project.slug = form.slug.data
+            project.description = form.description.data
+            project.short_description = form.short_description.data
+            project.github_url = form.github_url.data
+            project.demo_url = form.demo_url.data
+            project.documentation_url = form.documentation_url.data
+            project.project_type = form.project_type.data
+            project.status = form.status.data
+            project.display_order = form.display_order.data
+            project.status = form.status.data
+            project.start_date = form.start_date.data
+            project.end_date = form.end_date.data
+            project.is_featured = form.is_featured.data
+            project.is_public = form.is_public.data
+
+            if files := request.form.get("files"):
+                try:
+                    files = json.loads(files)
+
+                    for name, ids in files.items():
+                        match name:
+                            case "cover":
+                                project.cover_image_id = ids.pop() if ids else None
+                            case "images":
+                                for img in project.images.all():
+                                    if img.file_id not in ids:
+                                        db.session.delete(img)
+
+                                for id in ids:
+                                    if not project.images.filter(
+                                        and_(
+                                            ProjectImage.project_id
+                                            == getattr(project, "id"),
+                                            ProjectImage.file_id == id,
+                                        )
+                                    ).count():
+                                        pi = ProjectImage()
+                                        pi.file_id = id
+                                        pi.project_id = getattr(project, "id")
+
+                                        db.session.add(pi)
+
+                except json.JSONDecodeError as err:
+                    print(err)
+
             db.session.commit()
 
             response["title"] = "Good job!"
@@ -211,7 +258,7 @@ def add_project() -> Response:
                     match name:
                         case "cover" if ids:
                             project.cover_image_id = ids.pop()
-                        case "images" if ids:
+                        case "images" if (ids := set(ids)):
                             for id in ids:
                                 pi = ProjectImage()
 
