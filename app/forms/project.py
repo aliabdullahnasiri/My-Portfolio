@@ -5,7 +5,6 @@ from wtforms import (
     FileField,
     HiddenField,
     IntegerField,
-    MultipleFileField,
     SelectField,
     StringField,
     SubmitField,
@@ -20,8 +19,6 @@ class AddProjectForm(FlaskForm):
     profile_uid = StringField("Profile UID", validators=[DataRequired()])
 
     title = StringField("Project Title", validators=[DataRequired(), Length(max=150)])
-
-    slug = StringField("Slug", validators=[Optional(), Length(max=180)])
 
     short_description = TextAreaField(
         "Short Description", validators=[Optional(), Length(max=300)]
