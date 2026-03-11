@@ -1,7 +1,5 @@
 from operator import call
 
-from sqlalchemy.orm import backref
-
 from app.extensions import db
 
 
@@ -50,13 +48,6 @@ class Project(db.Model):
         lazy="dynamic",
     )
 
-    images = db.relationship(
-        "ProjectImage",
-        back_populates="project",
-        cascade="all, delete-orphan",
-        lazy="dynamic",
-    )
-
     def __repr__(self):
         return f"<Project {self.title}>"
 
@@ -81,7 +72,6 @@ class Project(db.Model):
             "is_public": self.is_public,
             "display_order": self.display_order,
             "cover": [self.cover_image.to_dict()] if self.cover_image_id else None,
-            "images": [image.file.to_dict() for image in self.images.all()],
             **call(getattr(super(), "to_dict")),
         }
 
@@ -104,37 +94,5 @@ class ProjectTechnology(db.Model):
             "name": self.name,
             "project_id": self.project_id,
             "icon": self.icon,
-            **call(getattr(super(), "to_dict")),
-        }
-
-
-class ProjectImage(db.Model):
-    __tablename__ = "project_images"
-
-    uid = None
-    project_id = db.Column(db.Integer, db.ForeignKey("projects.id"))
-    file_id = db.Column(db.Integer, db.ForeignKey("files.id"))
-
-    caption = db.Column(db.String(200))
-    display_order = db.Column(db.Integer, default=0)
-
-    project = db.relationship("Project", back_populates="images")
-    file = db.relationship(
-        "File",
-        backref=backref(
-            "project_images", cascade="all, delete-orphan", passive_deletes=True
-        ),
-    )
-
-    def __repr__(self):
-        return f"<ProjectImage {getattr(self, 'id')}>"
-
-    def to_dict(self):
-
-        return {
-            "project_id": self.project_id,
-            "file_id": self.file_id,
-            "caption": self.caption,
-            "display_order": self.display_order,
             **call(getattr(super(), "to_dict")),
         }

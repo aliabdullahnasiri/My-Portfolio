@@ -3,14 +3,13 @@ from typing import Dict, List, Tuple, Union
 
 from flask import Response, request
 from flask_login import login_required
-from sqlalchemy import and_
 
 from app.blueprints.api import bp
 from app.extensions import db
 from app.forms.project import AddProjectForm, UpdateProjectForm
 from app.func import render_td
 from app.models.permission import Permission
-from app.models.project import Project, ProjectImage
+from app.models.project import Project
 from app.models.user import permission_required
 from app.types import ColumnID, ColumnName
 
@@ -162,20 +161,6 @@ def update_project() -> Response:
                                     if img.file_id not in ids:
                                         db.session.delete(img)
 
-                                for id in ids:
-                                    if not project.images.filter(
-                                        and_(
-                                            ProjectImage.project_id
-                                            == getattr(project, "id"),
-                                            ProjectImage.file_id == id,
-                                        )
-                                    ).count():
-                                        pi = ProjectImage()
-                                        pi.file_id = id
-                                        pi.project_id = getattr(project, "id")
-
-                                        db.session.add(pi)
-
                 except json.JSONDecodeError as err:
                     print(err)
 
@@ -258,16 +243,6 @@ def add_project() -> Response:
                     match name:
                         case "cover" if ids:
                             project.cover_image_id = ids.pop()
-                        case "images" if (ids := set(ids)):
-                            for id in ids:
-                                pi = ProjectImage()
-
-                                pi.project_id = getattr(project, "id")
-                                pi.file_id = id
-
-                                db.session.add(pi)
-
-                print(files)
 
             except json.JSONDecodeError as err:
                 print(err)

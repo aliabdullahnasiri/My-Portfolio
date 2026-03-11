@@ -61,7 +61,6 @@ class AddProjectForm(FlaskForm):
     display_order = IntegerField("Display Order", validators=[Optional()])
 
     cover = FileField("Cover Image")
-    images = MultipleFileField("Images")
 
     submit = SubmitField("Add")
 
