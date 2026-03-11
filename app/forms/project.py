@@ -2,8 +2,10 @@ from flask_wtf import FlaskForm
 from wtforms import (
     BooleanField,
     DateField,
+    FileField,
     HiddenField,
     IntegerField,
+    MultipleFileField,
     SelectField,
     StringField,
     SubmitField,
@@ -21,7 +23,7 @@ class AddProjectForm(FlaskForm):
 
     slug = StringField("Slug", validators=[Optional(), Length(max=180)])
 
-    short_description = StringField(
+    short_description = TextAreaField(
         "Short Description", validators=[Optional(), Length(max=300)]
     )
 
@@ -56,15 +58,18 @@ class AddProjectForm(FlaskForm):
     start_date = DateField("Start Date", validators=[Optional()])
     end_date = DateField("End Date", validators=[Optional()])
 
-    display_order = IntegerField("Display Order")
+    display_order = IntegerField("Display Order", validators=[Optional()])
+
+    cover = FileField("Cover Image")
+    images = MultipleFileField("Images")
+
+    is_featured = BooleanField("Show this item as Featured")
+    is_public = BooleanField("Make this item Publicly Visible")
 
     submit = SubmitField("Add")
 
 
 class UpdateProjectForm(AddProjectForm):
     uid = HiddenField("UID", validators=[DataRequired()])
-
-    is_featured = BooleanField("Show this item as Featured")
-    is_public = BooleanField("Make this item Publicly Visible")
 
     submit = SubmitField("Update")
