@@ -1,6 +1,3 @@
-import re
-
-from flask_wtf import FlaskForm
 from wtforms import (
     BooleanField,
     DateField,
@@ -10,14 +7,13 @@ from wtforms import (
     StringField,
     SubmitField,
     TextAreaField,
-    ValidationError,
 )
 from wtforms.validators import URL, DataRequired, Length, Optional
 
-from app.models.profile import Profile
+from app.forms import Form
 
 
-class AddCertificateForm(FlaskForm):
+class AddCertificateForm(Form):
 
     profile_uid = StringField("Profile UID", validators=[DataRequired()])
 
@@ -50,13 +46,6 @@ class AddCertificateForm(FlaskForm):
     display_order = IntegerField("Display Order", validators=[Optional()])
 
     submit = SubmitField("Add")
-
-    def validate_profile_uid(self, profile_uid):
-        pattern: re.Pattern = re.compile(r"^P.\d{6}$")
-        if not pattern.search(profile_uid.data):
-            raise ValidationError(f"Not a valid Profile UID.")
-        elif not Profile.query.filter_by(uid=profile_uid.data).first():
-            raise ValidationError("Profile with the given UID was not found :(")
 
 
 class UpdateCertificateForm(AddCertificateForm):
