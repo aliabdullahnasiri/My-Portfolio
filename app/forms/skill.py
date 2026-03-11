@@ -1,4 +1,3 @@
-from flask_wtf import FlaskForm
 from wtforms import (
     BooleanField,
     HiddenField,
@@ -9,8 +8,10 @@ from wtforms import (
 )
 from wtforms.validators import DataRequired, Length, NumberRange, Optional
 
+from app.forms import Form
 
-class AddSkillForm(FlaskForm):
+
+class AddSkillForm(Form):
     profile_uid = StringField("Profile UID", validators=[DataRequired()])
 
     name = StringField(
