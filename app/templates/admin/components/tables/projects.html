@@ -1,0 +1,13 @@
+<table
+  class="table align-items-center mb-0 table-hover"
+  data-type="dynamic"
+  data-get-rows="{{ url_for('api.fetch_projects_rows') }}"
+  data-get-row="{{ url_for('api.fetch_project_row', uid='@')}}"
+  data-update-row="{{ url_for('api.update_project')}}"
+  data-delete-row="{{ url_for('api.delete_project', uid='@')}}"
+  data-add-row-modal-id="#AddProjectModal"
+  data-edit-row-modal-id="#EditProjectModal"
+>
+  <thead></thead>
+  <tbody></tbody>
+</table>
