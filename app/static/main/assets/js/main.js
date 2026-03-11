@@ -265,3 +265,25 @@ $(document).ready(function () {
     return new bootstrap.Tooltip(tooltipTriggerEl);
   });
 }).call();
+
+(function () {
+  const sections = document.querySelectorAll("section");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const title = entry.target.dataset.title;
+          if (title) document.title = title;
+        }
+      });
+    },
+    {
+      threshold: 0.6,
+    },
+  );
+
+  sections.forEach((section) => {
+    observer.observe(section);
+  });
+}).call(this);
