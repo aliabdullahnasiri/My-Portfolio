@@ -1,15 +1,16 @@
 import json
 from typing import Dict, List, Tuple, Union
 
-from flask import Response
+from flask import Response, request
 from flask_login import login_required
 
 from app.blueprints.api import bp
 from app.extensions import db
+from app.forms import profile
 from app.forms.project import AddProjectForm, UpdateProjectForm
 from app.func import render_td
 from app.models.permission import Permission
-from app.models.project import Project
+from app.models.project import Project, ProjectImage
 from app.models.user import permission_required
 from app.types import ColumnID, ColumnName
 
@@ -183,6 +184,48 @@ def add_project() -> Response:
 
     if form.validate_on_submit():
         project = Project()
+
+        project.profile_uid = form.profile_uid.data
+        project.title = form.title.data
+        project.slug = form.slug.data
+        project.description = form.description.data
+        project.short_description = form.short_description.data
+        project.github_url = form.github_url.data
+        project.demo_url = form.demo_url.data
+        project.documentation_url = form.documentation_url.data
+        project.project_type = form.project_type.data
+        project.status = form.status.data
+        project.display_order = form.display_order.data
+        project.status = form.status.data
+        project.start_date = form.start_date.data
+        project.end_date = form.end_date.data
+
+        db.session.add(project)
+        db.session.commit()
+
+        if files := request.form.get("files"):
+            try:
+                files = json.loads(files)
+
+                for name, ids in files.items():
+                    match name:
+                        case "cover" if ids:
+                            project.cover_image_id = ids.pop()
+                        case "images" if ids:
+                            for id in ids:
+                                pi = ProjectImage()
+
+                                pi.project_id = getattr(project, "id")
+                                pi.file_id = id
+
+                                db.session.add(pi)
+
+                print(files)
+
+            except json.JSONDecodeError as err:
+                print(err)
+
+        db.session.commit()
 
         response["message"] = "Project added successfully"
         response["category"] = "success"
