@@ -9,16 +9,16 @@
         class="col-md-10 col-lg-8 col-xl-6 offset-md-1 offset-lg-2 offset-xl-3 wow fadeInUp"
       >
         <h2 class="text-center">projects</h2>
-        <p class="text-center">
+        <p class="text-center mb-5">
           This section highlights some of the projects I have developed during
           my learning journey. Each project reflects my practical experience in
           programming, cybersecurity, and web development.
         </p>
       </div>
     </div>
-    <div class="row">
+    <div class="row d2c_projects_slider wow fadeInUp">
       {% for project in profile.projects.all() %}
-      <div class="col-md-12 col-lg-4 mb-4 mb-lg-0 wow fadeInLeft">
+      <div class="mb-4 mb-lg-0 wow fadeInLeft">
         <div class="d2c_img_wrapper d2c_small_img position-relative w-100">
           <img
             src="{{ project.cover_image.file_url }}"
