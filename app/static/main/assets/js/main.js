@@ -249,10 +249,12 @@ $(document).ready(function () {
   document.body.addEventListener("click", (event) => {
     let element = event.target.closest("[data-open-url]");
 
-    let openURL = element.dataset.openUrl;
+    if (element) {
+      let openURL = element?.dataset?.openUrl;
 
-    if (isValidURL(openURL)) {
-      window.open(openURL, "_blank");
+      if (openURL && isValidURL(openURL)) {
+        window.open(openURL, "_blank");
+      }
     }
   });
 }).call();
