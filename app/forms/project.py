@@ -1,4 +1,3 @@
-from flask_wtf import FlaskForm
 from wtforms import (
     BooleanField,
     DateField,
@@ -13,8 +12,10 @@ from wtforms import (
 )
 from wtforms.validators import URL, DataRequired, Length, Optional
 
+from app.forms import Form
 
-class AddProjectForm(FlaskForm):
+
+class AddProjectForm(Form):
 
     profile_uid = StringField("Profile UID", validators=[DataRequired()])
 
