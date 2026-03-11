@@ -1097,10 +1097,12 @@ section.d2c_hero_wrapper div.hero-content {
   .d2c_carousel_right_btn {
     top: 50% !important;
     right: 0 !important;
+    transform: translateY(-100%);
   }
   .d2c_carousel_left_btn {
     top: 50% !important;
     left: 0 !important;
+    transform: translateY(-100%);
   }
 }
 
@@ -1129,4 +1131,26 @@ body {
 section {
   padding-top: 50px;
   padding-bottom: 50px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .d2c_carousel_right_btn {
+    top: 50% !important;
+    right: -20px !important;
+    transform: translateY(-100%);
+  }
+  .d2c_carousel_left_btn {
+    top: 50% !important;
+    left: -20px !important;
+    transform: translateY(-100%);
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1600px) {
+  .d2c_carousel_right_btn {
+    right: -20px !important;
+  }
+  .d2c_carousel_left_btn {
+    left: -20px !important;
+  }
 }
