@@ -156,10 +156,6 @@ def update_project() -> Response:
                         match name:
                             case "cover":
                                 project.cover_image_id = ids.pop() if ids else None
-                            case "images":
-                                for img in project.images.all():
-                                    if img.file_id not in ids:
-                                        db.session.delete(img)
 
                 except json.JSONDecodeError as err:
                     print(err)
