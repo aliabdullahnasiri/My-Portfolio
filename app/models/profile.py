@@ -68,6 +68,11 @@ class Profile(db.Model):
         back_populates="profiles",
         lazy="joined",
     )
+    projects = db.relationship(
+        "Project",
+        back_populates="profile",
+        lazy="dynamic",
+    )
 
     __table_args__ = (
         db.CheckConstraint(
