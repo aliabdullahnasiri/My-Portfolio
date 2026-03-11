@@ -46,7 +46,10 @@ class Project(db.Model):
     )
 
     images = db.relationship(
-        "ProjectImage", back_populates="project", cascade="all, delete-orphan"
+        "ProjectImage",
+        back_populates="project",
+        cascade="all, delete-orphan",
+        lazy="dynamic",
     )
 
     def __repr__(self):
@@ -57,16 +60,23 @@ class Project(db.Model):
 
     def to_dict(self):
         return {
+            "profile_uid": self.profile_uid,
             "title": self.title,
             "slug": self.slug,
             "short_description": self.short_description,
+            "documentation_url": self.documentation_url,
             "description": self.description,
             "github_url": self.github_url,
             "demo_url": self.demo_url,
+            "project_type": self.project_type,
             "status": self.status,
+            "start_date": call(getattr(self, "display_date"), "start_date", 1),
+            "end_date": call(getattr(self, "display_date"), "end_date", 1),
             "is_featured": self.is_featured,
             "is_public": self.is_public,
             "display_order": self.display_order,
+            "cover": [self.cover_image.to_dict()] if self.cover_image_id else None,
+            "images": [image.file.to_dict() for image in self.images.all()],
             **call(getattr(super(), "to_dict")),
         }
 
