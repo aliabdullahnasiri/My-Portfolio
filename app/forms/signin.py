@@ -1,9 +1,10 @@
-from flask_wtf import FlaskForm
 from wtforms import BooleanField, EmailField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email
 
+from app.forms import Form
 
-class SignInForm(FlaskForm):
+
+class SignInForm(Form):
     email = EmailField(
         "Email",
         validators=[DataRequired(), Email(message="Enter a valid email address")],
