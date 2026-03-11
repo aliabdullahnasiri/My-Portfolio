@@ -1280,3 +1280,11 @@ section {
   justify-content: center;
   align-items: center;
 }
+
+.d2c_projects_slider .d2c_small_img {
+  height: 280px;
+}
+
+section#projects {
+  padding: 100px 0px;
+}
