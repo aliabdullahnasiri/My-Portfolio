@@ -100,7 +100,7 @@ $(".d2c_skills_slider").slick({
 
 $(".d2c_projects_slider").slick({
   dots: true,
-  arrows: false,
+  arrows: !false,
   infinite: true,
   autoplay: true,
   speed: 1500,
