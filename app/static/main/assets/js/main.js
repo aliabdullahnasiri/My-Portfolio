@@ -39,7 +39,7 @@ navClone();
 
 $(".d2c_certificate_slider").slick({
   dots: true,
-  arrows: !false,
+  arrows: false,
   infinite: true,
   autoplay: true,
   speed: 1500,
