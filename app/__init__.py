@@ -11,7 +11,7 @@ from app.blueprints.api import bp as api_bp
 from app.blueprints.auth import bp as auth_bp
 from app.blueprints.main import bp as main_bp
 from app.config import Config
-from app.extensions import bcrypt, console, db, login_manager, migrate
+from app.extensions import bcrypt, db, login_manager, migrate
 
 
 def ctx() -> Dict:
