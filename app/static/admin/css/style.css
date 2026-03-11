@@ -295,3 +295,9 @@ div.multi-value-input div.values {
   margin: 10px 13px;
   font-size: 25px;
 }
+
+body.dark-version select {
+  background: #1d1d1d !important;
+  color: #c9d1d9;
+  border: 1px solid #262626;
+}
