@@ -12,12 +12,62 @@
         <p class="text-center">
           This section highlights some of the projects I have developed during
           my learning journey. Each project reflects my practical experience in
-          programming, cybersecurity, and web development. These works
-          demonstrate my ability to design, build, and solve real-world problems
-          using modern technologies and tools.
+          programming, cybersecurity, and web development.
         </p>
       </div>
     </div>
-    <div class="row"></div>
+    <div class="row">
+      {% for project in profile.projects.all() %}
+      <div class="col-md-12 col-lg-4 mb-4 mb-lg-0 wow fadeInLeft">
+        <div class="d2c_img_wrapper d2c_small_img position-relative w-100">
+          <img
+            src="{{ project.cover_image.file_url }}"
+            class="w-100 h-100"
+            alt="Project Image"
+          />
+          <div class="d2c_overlay"></div>
+          <div class="d2c_card">
+            <div class="d2c_card_child h-100">
+              <div class="d2c_card_child_two h-100">
+                <div
+                  class="align-content-between d-grid d2c_card_child_three position-relative"
+                >
+                  <div class="card-header">
+                    <ul class="my-2 d-flex">
+                      <a href="{{ project.github_url   }}" target="_blank">
+                        <div class="d2c_project_link_wrapper m-0 me-2">
+                          <div class="d2c_project_link_icon">
+                            <i class="fab fa-github"></i>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="{{ project.demo_url }}" target="_blank">
+                        <div class="d2c_project_link_wrapper m-0 me-2">
+                          <div class="d2c_project_link_icon">
+                            <i class="fas fa-globe"></i>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="{{ project.documentation_url }}" target="_blank">
+                        <div class="d2c_project_link_wrapper m-0 me-2">
+                          <div class="d2c_project_link_icon">
+                            <i class="fas fa-file-alt"></i>
+                          </div>
+                        </div>
+                      </a>
+                    </ul>
+                  </div>
+                  <div class="card-footer">
+                    <h3 class="mb-0">{{ project.title }}</h3>
+                    <p class="mb-0">{{ project.short_description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 </section>
