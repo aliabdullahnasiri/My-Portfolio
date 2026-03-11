@@ -6,7 +6,7 @@ from operator import call
 
 from app.const import APP_DIR
 from app.extensions import db
-from app.func import extract_credential_urls, generate_certificate_preview, is_url_alive
+from app.func import extract_credential_urls, generate_certificate_preview
 
 
 class Certificate(db.Model):
