@@ -1,4 +1,5 @@
 from operator import call
+from typing import List
 
 from app.extensions import db
 
@@ -72,8 +73,18 @@ class Project(db.Model):
             "is_public": self.is_public,
             "display_order": self.display_order,
             "cover": [self.cover_image.to_dict()] if self.cover_image_id else None,
+            "technologies": [t.name for t in self.technologies.all()],
             **call(getattr(super(), "to_dict")),
         }
+
+    def update_technologies(self, technologies: List[str]):
+        for technology in self.technologies.all():
+            if technology.name not in technologies:
+                db.session.delete(technology)
+
+        for technology in technologies:
+            if not ProjectTechnology.query.filter_by(name=technology).count():
+                self.technologies.append(ProjectTechnology(**dict(name=technology)))
 
 
 class ProjectTechnology(db.Model):
@@ -81,13 +92,10 @@ class ProjectTechnology(db.Model):
 
     uid = None
     project_id = db.Column(db.Integer, db.ForeignKey("projects.id"))
-    name = db.Column(db.String(100))
+    name = db.Column(db.String(100), nullable=False, unique=True)
     icon = db.Column(db.String(50))
 
     project = db.relationship("Project", back_populates="technologies")
-
-    def __repr__(self):
-        return f"<Tech {self.name}>"
 
     def to_dict(self):
         return {
