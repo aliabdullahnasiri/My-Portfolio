@@ -85,7 +85,7 @@ $(".d2c_certificate_slider").slick({
 });
 
 $(".d2c_skills_slider").slick({
-  dots: false,
+  dots: true,
   arrows: true,
   infinite: true,
   autoplay: true,
