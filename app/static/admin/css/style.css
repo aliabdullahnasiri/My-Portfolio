@@ -301,3 +301,11 @@ body.dark-version select {
   color: #c9d1d9;
   border: 1px solid #262626;
 }
+
+body.dark-version input::-webkit-calendar-picker-indicator {
+  filter: invert(0.5) !important;
+}
+
+body input::-webkit-calendar-picker-indicator {
+  filter: invert(0.35) !important;
+}
