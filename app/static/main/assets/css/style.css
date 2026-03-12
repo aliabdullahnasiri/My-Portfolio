@@ -28,9 +28,11 @@ html {
 body {
   overflow-x: hidden;
   font-family: var(--primary_font-family);
+  background: url(../images/bg.jpg);
 }
 section {
-  padding: 100px 0px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 a {
   text-decoration: none;
@@ -1122,15 +1124,6 @@ section.d2c_hero_wrapper div.hero-content {
 .d2c_certificates_wrapper,
 .d2c_skills_wrapper {
   background: none;
-}
-
-body {
-  background: url(../images/bg.jpg);
-}
-
-section {
-  padding-top: 50px;
-  padding-bottom: 50px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
