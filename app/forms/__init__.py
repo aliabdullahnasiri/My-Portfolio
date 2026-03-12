@@ -4,6 +4,7 @@ import re
 from flask_wtf import FlaskForm
 from wtforms import ValidationError
 
+from app.extensions import db
 from app.models.phone import Phone
 from app.models.profile import Profile
 from app.models.role import Permission, Role
