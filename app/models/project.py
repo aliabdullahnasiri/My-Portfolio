@@ -2,6 +2,7 @@ from operator import call
 from typing import List
 
 from app.extensions import db
+from app.models.technology import Technology
 
 
 class Project(db.Model):
@@ -43,9 +44,9 @@ class Project(db.Model):
     cover_image = db.relationship("File", foreign_keys=[cover_image_id])
     profile = db.relationship("Profile", foreign_keys=[profile_uid])
     technologies = db.relationship(
-        "ProjectTechnology",
-        back_populates="project",
-        cascade="all, delete-orphan",
+        "Technology",
+        secondary="project_technologies",
+        backref=db.backref("projects", lazy="dynamic"),
         lazy="dynamic",
     )
 
@@ -80,11 +81,19 @@ class Project(db.Model):
     def update_technologies(self, technologies: List[str]):
         for technology in self.technologies.all():
             if technology.name not in technologies:
-                db.session.delete(technology)
+                self.technologies.remove(technology)
 
         for technology in technologies:
-            if not ProjectTechnology.query.filter_by(name=technology).count():
-                self.technologies.append(ProjectTechnology(**dict(name=technology)))
+            if not self.technologies.filter_by(name=technology).count():
+                self.technologies.append(
+                    Technology(**dict(name=technology))
+                    if not (
+                        project_technology := Technology.query.filter_by(
+                            name=technology
+                        ).scalar()
+                    )
+                    else project_technology
+                )
 
 
 class ProjectTechnology(db.Model):
@@ -92,15 +101,4 @@ class ProjectTechnology(db.Model):
 
     uid = None
     project_id = db.Column(db.Integer, db.ForeignKey("projects.id"))
-    name = db.Column(db.String(100), nullable=False, unique=True)
-    icon = db.Column(db.String(50))
-
-    project = db.relationship("Project", back_populates="technologies")
-
-    def to_dict(self):
-        return {
-            "name": self.name,
-            "project_id": self.project_id,
-            "icon": self.icon,
-            **call(getattr(super(), "to_dict")),
-        }
+    technology_id = db.Column(db.Integer, db.ForeignKey("technologies.id"))
