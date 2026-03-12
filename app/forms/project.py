@@ -60,6 +60,8 @@ class AddProjectForm(Form):
 
     cover = FileField("Cover Image")
 
+    technologies = StringField("Technologies", validators=[Optional()])
+
     submit = SubmitField("Add")
 
 
