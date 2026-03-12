@@ -148,6 +148,9 @@ def update_project() -> Response:
             project.is_featured = form.is_featured.data
             project.is_public = form.is_public.data
 
+            if form.technologies.data:
+                project.update_technologies(json.loads(form.technologies.data))
+
             if files := request.form.get("files"):
                 try:
                     files = json.loads(files)
@@ -228,6 +231,10 @@ def add_project() -> Response:
         project.end_date = form.end_date.data
 
         db.session.add(project)
+
+        if form.technologies.data:
+            project.update_technologies(json.loads(form.technologies.data))
+
         db.session.commit()
 
         if files := request.form.get("files"):
