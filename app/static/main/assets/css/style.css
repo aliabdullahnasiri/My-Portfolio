@@ -1281,3 +1281,7 @@ section.d2c_hero_wrapper div.hero-content {
 section {
   padding: 60px 0px !important;
 }
+
+section#projects {
+  padding-top: 0px !important;
+}
