@@ -89,7 +89,7 @@ $(".d2c_skills_slider").slick({
   arrows: true,
   infinite: true,
   autoplay: true,
-  speed: 2500,
+  speed: 1500,
   slidesToShow: 1,
   slidesToScroll: 1,
   prevArrow:
