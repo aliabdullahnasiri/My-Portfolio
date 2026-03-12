@@ -16,9 +16,11 @@
         </p>
       </div>
     </div>
-    <div class="row d2c_projects_slider wow fadeInUp">
+    <div
+      class="row d2c_projects_slider wow fadeInUp gap-2 justify-content-center"
+    >
       {% for project in profile.projects.all() %}
-      <div class="mb-4 mb-lg-0 wow fadeInLeft">
+      <div class="wow fadeInLeft">
         <div class="d2c_img_wrapper d2c_small_img position-relative w-100">
           <img
             src="{{ project.cover_image.file_url }}"
