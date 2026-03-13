@@ -12,6 +12,7 @@
           <span class="fw-bold">{{ PROJECT_TITLE }}</span>.
         </p>
       </div>
+      {% if profile.social_links.count() %}
       <div class="col-12 col-md-4 d-flex justify-content-center">
         <ul class="list-group list-group-horizontal">
           {% for link in profile.social_links.all() %}
@@ -23,6 +24,7 @@
           {% endfor %}
         </ul>
       </div>
+      {% endif %}
     </div>
   </div>
 </div>
