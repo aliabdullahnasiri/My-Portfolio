@@ -27,7 +27,7 @@
                 id="typewriter"
                 data-deleting-speed="20"
                 data-writing-speed="40"
-                data-delay="2500"
+                data-delay="2000"
               >
                 {{ c.name }}
               </h2>
@@ -36,7 +36,7 @@
           <div class="row d-flex justify-content-center">
             {% for skill in skills.all() %}
             <div
-              class="col-md-6 col-lg-4 mb-4 wow fadeInDown"
+              class="col-md-6 col-lg-4 mb-4 wow fadeInUp"
               data-bs-toggle="tooltip"
               title="{{ skill.level }}%"
             >
