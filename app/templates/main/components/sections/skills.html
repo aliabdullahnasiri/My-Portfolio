@@ -18,12 +18,13 @@
 
     <div class="row">
       <div class="d2c_skills_slider wow fadeInUp py-4">
-        {% for c, skills in profile.skill_categories.items() %}
+        {% for idx, (c, skills) in enumerate(profile.skill_categories.items(),
+        0) %}
         <div class="row">
           <div class="row">
             <div class="col-12 mb-2 text-center wow fadeInDown">
               <h2
-                class="fs-3 text-end"
+                class="fs-3 text-start {{ 'text-start' if idx % 2 == 0 else 'text-end' }}"
                 id="typewriter"
                 data-deleting-speed="20"
                 data-writing-speed="40"
