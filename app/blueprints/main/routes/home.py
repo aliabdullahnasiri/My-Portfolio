@@ -13,4 +13,5 @@ def home():
         profile=Profile.query.filter_by(is_active=True)
         .order_by(getattr(Profile, "updated_at").desc())
         .first(),
+        enumerate=enumerate,
     )
