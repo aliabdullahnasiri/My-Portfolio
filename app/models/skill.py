@@ -8,21 +8,9 @@ class SkillCategory(db.Model):
 
     name = db.Column(db.String(100), nullable=False, unique=True)
 
-    description = db.Column(db.Text, nullable=True)
-
-    icon = db.Column(db.String(100), nullable=True)
-
-    order = db.Column(db.Integer, default=0)
-
-    is_visible = db.Column(db.Boolean, default=True)
-
     def to_dict(self, include_skills=False):
         data = {
             "name": self.name,
-            "description": self.description,
-            "icon": self.icon,
-            "order": self.order,
-            "is_visible": self.is_visible,
             **call(getattr(super(), "to_dict")),
         }
 
