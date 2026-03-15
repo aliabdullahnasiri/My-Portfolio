@@ -18,7 +18,7 @@
     </div>
     <div class="row">
       <div class="row d2c_certificate_slider wow fadeInUp">
-        {% for certificate in profile.certificates %}
+        {% for certificate in profile.featured_certificates.all() %}
         <div
           class="col-md-12 col-lg-4 mb-4 mb-lg-0 wow fadeInLeft"
           {%
