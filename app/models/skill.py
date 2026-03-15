@@ -15,7 +15,6 @@ class SkillCategory(db.Model):
     order = db.Column(db.Integer, default=0)
 
     is_visible = db.Column(db.Boolean, default=True)
-    is_featured = db.Column(db.Boolean, default=False)
 
     def to_dict(self, include_skills=False):
         data = {
@@ -24,7 +23,6 @@ class SkillCategory(db.Model):
             "icon": self.icon,
             "order": self.order,
             "is_visible": self.is_visible,
-            "is_featured": self.is_featured,
             **call(getattr(super(), "to_dict")),
         }
 
