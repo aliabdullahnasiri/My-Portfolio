@@ -10,8 +10,8 @@ def home():
     return render_template(
         "main/pages/home.html",
         title="Home",
+        enumerate=enumerate,
         profile=Profile.query.filter_by(is_active=True)
         .order_by(getattr(Profile, "updated_at").desc())
         .first(),
-        enumerate=enumerate,
     )
