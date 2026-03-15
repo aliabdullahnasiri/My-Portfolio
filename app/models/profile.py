@@ -123,7 +123,15 @@ class Profile(db.Model):
         ):
             dct.setdefault(
                 SkillCategory.query.filter_by(uid=uid).scalar(),
-                getattr(self, "skills").filter_by(category_uid=uid),
+                getattr(self, "skills")
+                .filter(
+                    and_(
+                        Skill.is_visible == True,
+                        Skill.is_featured == True,
+                        Skill.category_uid == uid,
+                    )
+                )
+                .order_by(Skill.display_order.asc()),
             )
 
         return dct
@@ -143,7 +151,3 @@ class Profile(db.Model):
         return self.projects.filter(
             and_(Project.is_public == True, Project.is_featured == True)
         ).order_by(Project.display_order.asc())
-
-    @property
-    def featured_skills(self: Self):
-        pass
