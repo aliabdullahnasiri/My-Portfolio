@@ -143,3 +143,7 @@ class Profile(db.Model):
         return self.projects.filter(
             and_(Project.is_public == True, Project.is_featured == True)
         ).order_by(Project.display_order.asc())
+
+    @property
+    def featured_skills(self: Self):
+        pass

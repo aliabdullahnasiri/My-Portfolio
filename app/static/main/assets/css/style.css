@@ -1285,3 +1285,7 @@ section {
 section#projects {
   padding-top: 0px !important;
 }
+
+.d2c_projects_wrapper .d2c_small_img {
+  height: 280px !important;
+}
