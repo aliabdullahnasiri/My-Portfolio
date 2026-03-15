@@ -131,19 +131,15 @@ class Profile(db.Model):
     @property
     def featured_certificates(self: Self):
         return (
-            self.projects.filter(
+            getattr(self, "certificates")
+            .filter(
                 and_(Certificate.is_public == True, Certificate.is_featured == True)
             )
             .order_by(Certificate.display_order.asc())
-            .all()
         )
 
     @property
     def featured_projects(self: Self):
-        return (
-            self.projects.filter(
-                and_(Project.is_public == True, Project.is_featured == True)
-            )
-            .order_by(Project.display_order.asc())
-            .all()
-        )
+        return self.projects.filter(
+            and_(Project.is_public == True, Project.is_featured == True)
+        ).order_by(Project.display_order.asc())
