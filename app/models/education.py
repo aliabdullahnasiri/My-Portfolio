@@ -30,6 +30,7 @@ class Education(db.Model):
 
     def to_dict(self):
         return {
+            "profile_uid": self.profile_uid,
             "institution": self.institution,
             "degree": self.degree,
             "field_of_study": self.field_of_study,
