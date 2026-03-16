@@ -104,7 +104,7 @@ $(".d2c_partner_slider").slick({
   arrows: false,
   infinite: true,
   autoplay: true,
-  speed: 2000,
+  speed: 1500,
   slidesToShow: 6,
   slidesToScroll: 1,
   responsive: [
