@@ -476,7 +476,7 @@ export function upload(files, dropZone) {
     if (event.target.tagName == "IMG") {
       if (event.target.classList.contains("output")) {
         let fileOutput = event.target;
-        let dropZone = event.target.closest("div.drop-zone.avatar");
+        let dropZone = event.target.closest("div.drop-zone");
         let fileInput = dropZone.querySelector("input[type=file]");
 
         if (fileInput && fileOutput) fileInput.click();

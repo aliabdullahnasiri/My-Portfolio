@@ -112,7 +112,7 @@ import { createLoader, transformAllMovingTab } from "./script.js";
                       let fileOutput =
                         input.parentElement.querySelector(".output");
 
-                      if (fileOutput) fileOutput.src = val;
+                      if (fileOutput && val) fileOutput.src = val;
                     }
                   }
                 }
