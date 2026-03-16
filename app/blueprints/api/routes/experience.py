@@ -135,6 +135,15 @@ def update_experience() -> Response:
         ).scalar()
 
         if experience:
+            experience.company = form.company.data
+            experience.position = form.position.data
+            experience.employment_type = form.employment_type.data
+            experience.location = form.location.data
+            experience.company_url = form.company_url.data
+            experience.start_date = form.start_date.data
+            experience.end_date = form.end_date.data
+            experience.is_current = form.is_current.data
+            experience.description = form.description.data
             db.session.commit()
 
             response["title"] = "Good job!"
@@ -189,6 +198,16 @@ def add_experience() -> Response:
 
     if form.validate_on_submit():
         experience = Experience()
+
+        experience.company = form.company.data
+        experience.position = form.position.data
+        experience.employment_type = form.employment_type.data
+        experience.location = form.location.data
+        experience.company_url = form.company_url.data
+        experience.start_date = form.start_date.data
+        experience.end_date = form.end_date.data
+        experience.is_current = form.is_current.data
+        experience.description = form.description.data
 
         db.session.add(experience)
         db.session.commit()
