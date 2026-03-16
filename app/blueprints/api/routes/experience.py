@@ -1,7 +1,7 @@
 import json
 from typing import Dict, List, Tuple, Union
 
-from flask import Response, request
+from flask import Response
 from flask_login import login_required
 
 from app.blueprints.api import bp
@@ -15,10 +15,6 @@ from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("uid"), ColumnName("UID")),
-    (ColumnID("title"), ColumnName("Title")),
-    (ColumnID("issuer"), ColumnName("Issuer")),
-    (ColumnID("issue_date"), ColumnName("Issue Date")),
-    (ColumnID("expiration_date"), ColumnName("Expiration Date")),
 ]
 
 
