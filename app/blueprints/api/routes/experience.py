@@ -135,6 +135,7 @@ def update_experience() -> Response:
         ).scalar()
 
         if experience:
+            experience.profile_uid = form.profile_uid.data
             experience.company = form.company.data
             experience.position = form.position.data
             experience.employment_type = form.employment_type.data
@@ -199,6 +200,7 @@ def add_experience() -> Response:
     if form.validate_on_submit():
         experience = Experience()
 
+        experience.profile_uid = form.profile_uid.data
         experience.company = form.company.data
         experience.position = form.position.data
         experience.employment_type = form.employment_type.data
