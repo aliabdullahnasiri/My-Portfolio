@@ -40,6 +40,7 @@ class Experience(db.Model):
             "start_date": call(getattr(self, "display_date"), "start_date", 1),
             "end_date": call(getattr(self, "display_date"), "end_date", 1),
             "is_current": self.is_current,
+            "company_url": self.company_url,
             "description": self.description,
             **call(getattr(super(), "to_dict")),
         }
