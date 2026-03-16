@@ -1,13 +1,13 @@
 import json
 from typing import Dict, List, Tuple, Union
 
-from flask import Response
+from flask import Response, request
 from flask_login import login_required
 
 from app.blueprints.api import bp
 from app.extensions import db
 from app.forms.experience import AddExperienceForm, UpdateExperienceForm
-from app.func import render_td
+from app.func import get_file_url, render_td
 from app.models.experience import Experience
 from app.models.permission import Permission
 from app.models.user import permission_required
@@ -145,6 +145,19 @@ def update_experience() -> Response:
             experience.end_date = form.end_date.data
             experience.is_current = form.is_current.data
             experience.description = form.description.data
+
+            if files := request.form.get("files"):
+                try:
+                    files = json.loads(files)
+
+                    for key, value in files.items():
+                        match key:
+                            case "icon":
+                                experience.icon_file_id = value
+
+                except json.JSONDecodeError as err:
+                    print(err)
+
             db.session.commit()
 
             response["title"] = "Good job!"
@@ -210,6 +223,18 @@ def add_experience() -> Response:
         experience.end_date = form.end_date.data
         experience.is_current = form.is_current.data
         experience.description = form.description.data
+
+        if files := request.form.get("files"):
+            try:
+                files = json.loads(files)
+
+                for key, value in files.items():
+                    match key:
+                        case "icon":
+                            experience.icon_file_id = value
+
+            except json.JSONDecodeError as err:
+                print(err)
 
         db.session.add(experience)
         db.session.commit()
