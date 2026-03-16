@@ -1,0 +1,35 @@
+<section id="experience">
+  <div class="container">
+    <div class="d2c_border_bg rounded-2">
+      <div class="d2c_partner_box rounded-2">
+        <div class="row">
+          <div
+            class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2 text-center wow fadeInDown"
+          >
+            <h2>companies I have work with</h2>
+            <p class="px-0 px-md-5 mb-4 mb-xl-5">
+              I'm An Cyber Security Specialist With Experience In A Variety Of
+              Related Fields, Including Network Security, Vulnerability
+              Management, Intrusion Detection.
+            </p>
+          </div>
+        </div>
+        <div class="row d2c_partner_slider wow fadeInUp justify-content-center">
+          {% for e in profile.experiences.all() %}
+          <div class="col">
+            <div class="d2c_card text-center rounded-2">
+              <div class="d2c_card_child rounded-2">
+                <div class="d2c_card_child_two">
+                  <div class="d2c_card_child_three">
+                    <img src="{{ e.icon.file_url }}" alt="Partner Image" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
