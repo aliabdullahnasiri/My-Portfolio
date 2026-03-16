@@ -97,6 +97,38 @@ $(".d2c_skills_slider").slick({
     '<button type="button" class="d2c_carousel_right_btn" aria-label="carousel-control"><i class="fas fa-arrow-right"></i></button>',
 });
 
+$(".d2c_partner_slider").slick({
+  centerMode: true,
+  centerPadding: "0px",
+  dots: false,
+  arrows: false,
+  infinite: true,
+  autoplay: true,
+  speed: 2000,
+  slidesToShow: 6,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1500,
+      settings: {
+        slidesToShow: 5,
+      },
+    },
+    {
+      breakpoint: 992,
+      settings: {
+        slidesToShow: 3,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+  ],
+});
+
 // Form Validation Js
 (function () {
   "use strict";
