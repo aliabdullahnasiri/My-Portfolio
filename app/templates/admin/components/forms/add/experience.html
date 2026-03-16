@@ -1,0 +1,102 @@
+{% with f = form.a %}
+<form method="POST" action="{{ url_for('api.add_experience') }}">
+  {{ f.hidden_tag() }}
+
+  <div class="row">
+    <div class="my-2">
+      <div class="input-group input-group-outline">
+        {{ f.company.label(class="form-label") }} {{
+        f.company(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="my-2">
+      <div class="input-group input-group-outline">
+        {{ f.position.label(class="form-label") }} {{
+        f.position(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="my-2">
+      <div class="input-group input-group-outline">
+        {{ f.employment_type.label(class="form-label") }} {{
+        f.employment_type(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="my-2">
+      <div class="input-group input-group-outline">
+        {{ f.location.label(class="form-label") }} {{
+        f.location(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="my-2">
+      <div class="input-group input-group-outline">
+        {{ f.company_url.label(class="form-label") }} {{
+        f.company_url(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="my-2">
+        <div class="px-2 py-0 my-0">
+          {{ f.start_date.label(class="form-label") }}
+        </div>
+        <div class="input-group input-group-outline">
+          {{ f.start_date(class="form-control") }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="my-2">
+        <div class="px-2 py-0 my-0">
+          {{ f.end_date.label(class="form-label") }}
+        </div>
+        <div class="input-group input-group-outline">
+          {{ f.end_date(class="form-control") }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="my-2">
+      <div class="form-check">
+        {{ f.is_current(class="form-check-input") }} {{
+        f.is_current.label(class="form-check-label") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="my-2">
+      <div class="px-2 py-0 my-0">
+        {{ f.description.label(class="form-label") }}
+      </div>
+      <div class="input-group input-group-outline">
+        {{ f.description(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-md-12">
+      <div class="text-center">
+        {{ f.submit(class="btn bg-gradient-info btn-lg w-100 mt-4 mb-0") }}
+      </div>
+    </div>
+  </div>
+</form>
+{% endwith %}
