@@ -1,0 +1,13 @@
+<table
+  class="table align-items-center mb-0 table-hover"
+  data-type="dynamic"
+  data-get-rows="{{ url_for('api.fetch_educations_rows') }}"
+  data-get-row="{{ url_for('api.fetch_education_row', uid='@')}}"
+  data-update-row="{{ url_for('api.update_education')}}"
+  data-delete-row="{{ url_for('api.delete_education', uid='@')}}"
+  data-add-row-modal-id="#AddEducationModal"
+  data-edit-row-modal-id="#EditEducationModal"
+>
+  <thead></thead>
+  <tbody></tbody>
+</table>
