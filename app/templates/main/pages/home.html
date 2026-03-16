@@ -25,6 +25,12 @@
       <!-- Project Section End -->
     {% endif %}
 
+    {% if profile.experiences.count() %}
+      <!-- Experience Section Start -->
+      {% include "main/components/sections/experience.html" %}
+      <!-- Experience Section End -->
+    {% endif %}
+
     {% if profile.skills.count() %}
       <!-- Skill Section Start -->
       {% include "main/components/sections/skills.html" %}
