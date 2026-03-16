@@ -1,0 +1,93 @@
+{% with f = form.a %}
+<form method="POST" action="{{ url_for('api.add_education') }}">
+  {{ f.hidden_tag() }}
+
+  <div class="row">
+    <div class="my-2">
+      <div class="input-group input-group-outline">
+        {{ f.institution.label(class="form-label") }} {{
+        f.institution(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="my-2">
+      <div class="input-group input-group-outline">
+        {{ f.degree.label(class="form-label") }} {{
+        f.degree(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="my-2">
+      <div class="input-group input-group-outline">
+        {{ f.field_of_study.label(class="form-label") }} {{
+        f.field_of_study(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="my-2">
+      <div class="input-group input-group-outline">
+        {{ f.location.label(class="form-label") }} {{
+        f.location(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="my-2">
+        <div class="px-2 py-0 my-0">
+          {{ f.start_date.label(class="form-label") }}
+        </div>
+        <div class="input-group input-group-outline">
+          {{ f.start_date(class="form-control") }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="my-2">
+        <div class="px-2 py-0 my-0">
+          {{ f.end_date.label(class="form-label") }}
+        </div>
+        <div class="input-group input-group-outline">
+          {{ f.end_date(class="form-control") }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="my-2">
+      <div class="px-2 py-0 my-0">
+        {{ f.description.label(class="form-label") }}
+      </div>
+      <div class="input-group input-group-outline">
+        {{ f.description(class="form-control") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="my-2">
+      <div class="form-check">
+        {{ f.is_current(class="form-check-input") }} {{
+        f.is_current.label(class="form-check-label") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-md-12">
+      <div class="text-center">
+        {{ f.submit(class="btn bg-gradient-info btn-lg w-100 mt-4 mb-0") }}
+      </div>
+    </div>
+  </div>
+</form>
+{% endwith %}
