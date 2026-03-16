@@ -1,8 +1,8 @@
 {% with f = form.u %}
 <form
   method="POST"
-  action="{{ url_for('api.update_certificate') }}"
-  data-get="{{ url_for('api.fetch_certificate', uid='@') }}"
+  action="{{ url_for('api.update_experience') }}"
+  data-get="{{ url_for('api.fetch_experience', uid='@') }}"
   enctype="multipart/form-data"
 >
   {{ f.hidden_tag() }}
