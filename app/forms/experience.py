@@ -1,6 +1,7 @@
 from wtforms import (
     BooleanField,
     DateField,
+    FileField,
     HiddenField,
     SelectField,
     StringField,
@@ -44,6 +45,8 @@ class AddExperienceForm(Form):
     description = TextAreaField(
         "Responsibilities / Description", validators=[Optional(), Length(max=2000)]
     )
+
+    icon = FileField("Icon")
 
     submit = SubmitField("Add")
 
