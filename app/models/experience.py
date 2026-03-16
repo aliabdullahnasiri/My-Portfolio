@@ -24,11 +24,13 @@ class Experience(db.Model):
     description = db.Column(db.Text)
 
     company_url = db.Column(db.String(255))
+    icon_file_id = db.Column(db.Integer, db.ForeignKey("files.id"))
 
     profile = db.relationship(
         "Profile",
         backref=db.backref("experiences", lazy="dynamic", cascade="all, delete-orphan"),
     )
+    icon = db.relationship("File", foreign_keys=[icon_file_id])
 
     def to_dict(self):
         return {
@@ -42,6 +44,7 @@ class Experience(db.Model):
             "is_current": self.is_current,
             "company_url": self.company_url,
             "description": self.description,
+            "icon": self.icon.to_dict().get("file_url") if self.icon else None,
             **call(getattr(super(), "to_dict")),
         }
 
