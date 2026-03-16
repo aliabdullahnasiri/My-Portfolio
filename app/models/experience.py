@@ -27,7 +27,7 @@ class Experience(db.Model):
 
     profile = db.relationship(
         "Profile",
-        backref=db.backref("educations", lazy="dynamic", cascade="all, delete-orphan"),
+        backref=db.backref("experiences", lazy="dynamic", cascade="all, delete-orphan"),
     )
 
     def to_dict(self):
