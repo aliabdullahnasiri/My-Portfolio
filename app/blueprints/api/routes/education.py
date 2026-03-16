@@ -20,7 +20,7 @@ cols: List[Tuple[ColumnID, ColumnName]] = [
 
 @bp.get("/fetch/educations")
 @login_required
-@permission_required(Permission.get("FETCH_educationS"))
+@permission_required(Permission.get("FETCH_EDUCATIONS"))
 def fetch_educations() -> Response:
     educations: List[Education] = [
         education.to_dict() for education in Education.query.all()
@@ -36,7 +36,7 @@ def fetch_educations() -> Response:
 
 @bp.get("/fetch/rows/educations")
 @login_required
-@permission_required(Permission.get("FETCH_educationS"))
+@permission_required(Permission.get("FETCH_EDUCATIONS"))
 def fetch_educations_rows() -> Response:
     educations: List[Education] = Education.query.all()
 
@@ -62,7 +62,7 @@ def fetch_educations_rows() -> Response:
 
 @bp.get("/fetch/row/education/<string:uid>")
 @login_required
-@permission_required(Permission.get("FETCH_education"))
+@permission_required(Permission.get("FETCH_EDUCATION"))
 def fetch_education_row(uid) -> Response:
     response: Response = Response()
 
@@ -94,7 +94,7 @@ def fetch_education_row(uid) -> Response:
 
 @bp.get("/fetch/education/<string:uid>")
 @login_required
-@permission_required(Permission.get("FETCH_education"))
+@permission_required(Permission.get("FETCH_EDUCATION"))
 def fetch_education(uid) -> Response:
     education = Education.query.filter_by(uid=uid).first()
 
@@ -122,7 +122,7 @@ def fetch_education(uid) -> Response:
 @bp.post("/update/education")
 @login_required
 @permission_required(
-    Permission.get("FETCH_education") | Permission.get("UPDATE_education")
+    Permission.get("FETCH_EDUCATION") | Permission.get("UPDATE_EDUCATION")
 )
 def update_education() -> Response:
     form = UpdateEducationForm()
@@ -135,6 +135,15 @@ def update_education() -> Response:
         ).scalar()
 
         if education:
+            education.profile_uid = form.profile_uid.data
+            education.institution = form.institution.data
+            education.degree = form.degree.data
+            education.field_of_study = form.field_of_study.data
+            education.location = form.location.data
+            education.start_date = form.start_date.data
+            education.end_date = form.end_date.data
+            education.is_current = form.is_current.data
+            education.description = form.description.data
 
             db.session.commit()
 
@@ -153,7 +162,7 @@ def update_education() -> Response:
 @bp.delete("/delete/education/<string:uid>")
 @login_required
 @permission_required(
-    Permission.get("FETCH_education") | Permission.get("DELETE_education")
+    Permission.get("FETCH_EDUCATION") | Permission.get("DELETE_EDUCATION")
 )
 def delete_education(uid):
     response = {}
@@ -182,7 +191,7 @@ def delete_education(uid):
 
 @bp.post("/add/education")
 @login_required
-@permission_required(Permission.get("CREATE_education"))
+@permission_required(Permission.get("CREATE_EDUCATION"))
 def add_education() -> Response:
     form = AddEducationForm()
 
@@ -191,10 +200,18 @@ def add_education() -> Response:
     if form.validate_on_submit():
         education = Education()
 
+        education.profile_uid = form.profile_uid.data
+        education.institution = form.institution.data
+        education.degree = form.degree.data
+        education.field_of_study = form.field_of_study.data
+        education.location = form.location.data
+        education.start_date = form.start_date.data
+        education.end_date = form.end_date.data
+        education.is_current = form.is_current.data
+        education.description = form.description.data
+
         db.session.add(education)
         db.session.commit()
-
-        education._credential_url
 
         response["message"] = "Education added successfully"
         response["category"] = "success"
@@ -203,5 +220,6 @@ def add_education() -> Response:
 
     else:
         response["errors"] = form.errors
+    print(form.errors)
 
     return Response(json.dumps(response))
