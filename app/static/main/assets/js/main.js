@@ -83,6 +83,52 @@ $(".d2c_certificate_slider").slick({
   ],
 });
 
+$(".d2c_education_slider").slick({
+  dots: true,
+  arrows: true,
+  infinite: false,
+  autoplay: true,
+  speed: 1500,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  prevArrow:
+    '<button type="button" class="d2c_carousel_left_btn" aria-label="carousel-control"><i class="fas fa-arrow-left"></i></button>',
+  nextArrow:
+    '<button type="button" class="d2c_carousel_right_btn" aria-label="carousel-control"><i class="fas fa-arrow-right"></i></button>',
+  responsive: [
+    {
+      breakpoint: 1400,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 1200,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 992,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 640,
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+  ],
+});
+
 $(".d2c_skills_slider").slick({
   dots: true,
   arrows: false,
