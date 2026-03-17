@@ -91,11 +91,6 @@ $(".d2c_projects_slider").slick({
   speed: 1500,
   slidesToShow: 3,
   slidesToScroll: 1,
-  prevArrow:
-    '<button type="button" class="d2c_carousel_left_btn" aria-label="carousel-control"><i class="fas fa-arrow-left"></i></button>',
-  nextArrow:
-    '<button type="button" class="d2c_carousel_right_btn" aria-label="carousel-control"><i class="fas fa-arrow-right"></i></button>',
-
   responsive: [
     {
       breakpoint: 1400,
@@ -138,10 +133,6 @@ $(".d2c_education_slider").slick({
   speed: 1500,
   slidesToShow: 3,
   slidesToScroll: 1,
-  prevArrow:
-    '<button type="button" class="d2c_carousel_left_btn" aria-label="carousel-control"><i class="fas fa-arrow-left"></i></button>',
-  nextArrow:
-    '<button type="button" class="d2c_carousel_right_btn" aria-label="carousel-control"><i class="fas fa-arrow-right"></i></button>',
   responsive: [
     {
       breakpoint: 1400,
@@ -184,10 +175,6 @@ $(".d2c_skills_slider").slick({
   speed: 1500,
   slidesToShow: 1,
   slidesToScroll: 1,
-  prevArrow:
-    '<button type="button" class="d2c_carousel_left_btn" aria-label="carousel-control"><i class="fas fa-arrow-left"></i></button>',
-  nextArrow:
-    '<button type="button" class="d2c_carousel_right_btn" aria-label="carousel-control"><i class="fas fa-arrow-right"></i></button>',
 });
 
 $(".d2c_partner_slider").slick({
