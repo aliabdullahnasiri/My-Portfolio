@@ -1,5 +1,5 @@
 <section
-  class="d2c_education_wrapper"
+  class="d2c_wrapper"
   id="education"
   data-title="Education · {{ PROJECT_TITLE }}"
 >
@@ -14,6 +14,86 @@
           the foundation of your knowledge and training.
         </p>
       </div>
+    </div>
+
+    <div class="row">
+      {% for e in profile.featured_educations.all() %}
+      <div class="wow fadeInLeft col-12 col-sm-6 col-lg-4 m-0 p-0">
+        <div class="d2c_img_wrapper d2c_small_img position-relative w-100">
+          <img
+            src="{{ e.img_src }}"
+            class="w-100 h-100"
+            alt="Education Image"
+          />
+          <div class="d2c_overlay"></div>
+          <div class="d2c_card">
+            <div class="d2c_card_child h-100">
+              <div class="d2c_card_child_two h-100">
+                <div
+                  class="align-content-between d-grid d2c_card_child_three position-relative"
+                >
+                  <div class="card-header pt-2">
+                    <ul class="d-flex justify-content-start flex-wrap">
+                      <li class="me-2">
+                        <div class="d4c_wrapper">
+                          <div class="d5c_wrapper m-0 me-2">
+                            <div class="d5c_icon">
+                              <i class="fas fa-calendar-alt"></i>
+                            </div>
+                          </div>
+                          <span class="text">
+                            {{ e.display_date("start_date", format="%Y") }} - {{
+                            e.display_date("end_date", format="%Y") }}
+                          </span>
+                        </div>
+                      </li>
+                      <li class="me-2">
+                        <div class="d4c_wrapper">
+                          <div class="d5c_wrapper m-0 me-2">
+                            <div class="d5c_icon">
+                              <i
+                                class="fas fa-solid {{ e.is_current and 'fa-hourglass-half' or 'fa-check' }}"
+                              ></i>
+                            </div>
+                          </div>
+                          <span class="text">
+                            {{ e.is_current and "Ongoing" or "Completed" }}
+                          </span>
+                        </div>
+                      </li>
+                      <li class="me-2">
+                        <div class="d4c_wrapper">
+                          <div class="d5c_wrapper m-0 me-2">
+                            <div class="d5c_icon">
+                              <i class="fas fa-solid fa-building"></i>
+                            </div>
+                          </div>
+                          <span class="text">{{ e.institution }}</span>
+                        </div>
+                      </li>
+                      <li class="me-2">
+                        <div class="d4c_wrapper">
+                          <div class="d5c_wrapper m-0 me-2">
+                            <div class="d5c_icon">
+                              <i class="fas fa-solid fa-book-open"></i>
+                            </div>
+                          </div>
+                          <span class="text">{{ e.field_of_study }}</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-footer">
+                    <h3 class="mb-0">{{ e.degree }}</h3>
+                    <p class="mb-0">{{ e.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
