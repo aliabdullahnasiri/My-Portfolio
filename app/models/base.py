@@ -58,10 +58,10 @@ class Base(db.Model):
     def display_natural_updated_at(self) -> str:
         return humanize.naturaltime(self.updated_at)
 
-    def display_date(self, attr, ret_none: Literal[1, 0] = 0):
+    def display_date(self, attr, ret_none: Literal[1, 0] = 0, format: str = "%Y-%m-%d"):
         if hasattr(self, attr):
             if date := getattr(self, attr):
-                return date.strftime("%Y-%m-%d")
+                return date.strftime(format)
 
         return None if ret_none else "N/A"
 
