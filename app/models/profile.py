@@ -7,6 +7,7 @@ from sqlalchemy import and_
 from app.const import DEFAULT_AVATAR
 from app.extensions import db
 from app.models.certificate import Certificate
+from app.models.education import Education
 from app.models.project import Project
 from app.models.skill import Skill, SkillCategory
 
@@ -151,3 +152,7 @@ class Profile(db.Model):
         return self.projects.filter(
             and_(Project.is_public == True, Project.is_featured == True)
         ).order_by(Project.display_order.asc())
+
+    @property
+    def featured_educations(self: Self):
+        return getattr(self, "educations")
