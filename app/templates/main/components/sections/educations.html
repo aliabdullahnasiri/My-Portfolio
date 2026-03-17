@@ -16,9 +16,9 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row d2c_education_slider wow fadeInUp">
       {% for e in profile.featured_educations.all() %}
-      <div class="wow fadeInLeft col-12 col-sm-6 col-lg-4 m-0 p-0">
+      <div class="wow fadeInLeft col-12 col-sm-6 col-lg-4">
         <div class="d2c_img_wrapper d2c_small_img position-relative w-100">
           <img
             src="{{ e.img_src }}"
@@ -33,7 +33,9 @@
                   class="align-content-between d-grid d2c_card_child_three position-relative"
                 >
                   <div class="card-header pt-2">
-                    <ul class="d-flex justify-content-start flex-wrap">
+                    <ul
+                      class="justify-content-start flex-wrap d-none d-sm-none d-lg-flex"
+                    >
                       <li class="me-2">
                         <div class="d4c_wrapper">
                           <div class="d5c_wrapper m-0 me-2">
