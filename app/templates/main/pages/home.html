@@ -37,6 +37,10 @@
       <!-- Skill Section End -->
     {% endif %}
 
+    {% if profile.educations.count() %}
+      {% include "main/components/sections/educations.html" %}
+    {% endif %}
+
     {% include "main/components/footer.html" %}
   {% endif %}
 {% endblock %}
