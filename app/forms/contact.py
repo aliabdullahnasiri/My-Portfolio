@@ -20,3 +20,5 @@ class ContactForm(Form):
     message = TextAreaField("Message", validators=[DataRequired(), Length(min=10)])
 
     submit = SubmitField("Send Message")
+
+    def validate_email(self, email): ...
