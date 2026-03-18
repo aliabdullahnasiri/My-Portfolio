@@ -1,63 +1,25 @@
+{% from "main/components/nav_links.html" import nav_links %}
+
 <!-- Footer Section Start -->
 <footer class="d2c_footer_wrapper">
   <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
       <div class="col-md-6 col-lg-4 mb-4 mb-md-0 wow fadeInLeft">
-        <div class="d2c_footer_card">
-          <a href="./index.html"
-            ><img src="./assets/images/logo.svg" alt="Footer Logo"
-          /></a>
-          <p class="mb-0">
-            I began my work as an engineers freelancer before taking the
-            position of head.
-          </p>
+        <div class="d2c_footer_card rounded-2">
+          <h3>About Me</h3>
+
+          <p class="mb-0">{{ profile.short_bio }}</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-4 wow fadeInUp">
-        <div class="d2c_footer_card">
+        <div class="d2c_footer_card rounded-2">
           <h3>Useful links</h3>
           <div class="row">
-            <div class="col-6">
-              <ul class="mb-0">
-                <li class="mb-2 mb-xl-3">
-                  <a href="#about">About Me</a>
-                </li>
-                <li>
-                  <a href="#services">Service</a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-6">
-              <ul class="mb-0">
-                <li class="mb-3">
-                  <a href="#project">Project</a>
-                </li>
-                <li>
-                  <a href="#contact">Contact me</a>
-                </li>
-              </ul>
+            <div class="col-12 px-0 mx-0">
+              {{ nav_links(ul_class="mb-0 d-flex flex-wrap", li_class="me-2",
+              a_class="") }}
             </div>
           </div>
-        </div>
-      </div>
-      <div class="col-md-12 col-lg-4 mt-4 mt-lg-0 wow fadeInRight">
-        <div class="d2c_footer_card">
-          <h3>Get in touch</h3>
-          <form class="needs-validation" novalidate>
-            <div class="input-group">
-              <input
-                type="email"
-                class="form-control"
-                placeholder="Email"
-                aria-describedby="newsletter_btn"
-                autocomplete="on"
-                required
-              />
-              <button class="btn" type="submit" id="newsletter_btn">
-                drive in
-              </button>
-            </div>
-          </form>
         </div>
       </div>
     </div>
