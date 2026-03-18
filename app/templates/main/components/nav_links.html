@@ -1,4 +1,4 @@
-{% macro nav_links(ul_class="navbar-nav", li_class="nav-item",
+{% macro nav_links(profile, ul_class="navbar-nav", li_class="nav-item",
 a_class="nav-link") %}
 <ul class="{{ ul_class }}">
   <li class="{{ li_class }}">
@@ -9,18 +9,23 @@ a_class="nav-link") %}
   <li class="{{ li_class }}">
     <a class="{{ a_class }}" href="#about">About</a>
   </li>
+  {% if profile.certificates.count() %}
   <li class="{{ li_class }}">
     <a class="{{ a_class }}" href="#certifications">Certifications</a>
   </li>
+  {% endif %} {% if profile.projects.count() %}
   <li class="{{ li_class }}">
     <a class="{{ a_class }}" href="#projects">Projects</a>
   </li>
+  {% endif %} {% if profile.skills.count() %}
   <li class="{{ li_class }}">
     <a class="{{ a_class }}" href="#skills">Skills</a>
   </li>
+  {% endif %} {% if profile.educations.count() %}
   <li class="{{ li_class }}">
     <a class="{{ a_class }}" href="#education">Education</a>
   </li>
+  {% endif %}
   <li class="{{ li_class }}">
     <a class="{{ a_class }}" href="#contact">Contact</a>
   </li>
