@@ -4,32 +4,33 @@
   method="post"
   novalidate
 >
-  {{ f.hidden_tag() }}
+  {{ contact_form.hidden_tag() }}
 
   <div class="col-md-6">
     <div class="form-floating">
-      {{ f.first_name(class="form-control", placeholder="") }} {{
-      f.first_name.label() }}
+      {{ contact_form.first_name(class="form-control", placeholder="") }} {{
+      contact_form.first_name.label() }}
     </div>
   </div>
 
   <div class="col-md-6">
     <div class="form-floating">
-      {{ f.last_name(class="form-control", placeholder="") }} {{
-      f.last_name.label() }}
+      {{ contact_form.last_name(class="form-control", placeholder="") }} {{
+      contact_form.last_name.label() }}
     </div>
   </div>
 
   <div class="col-md-12">
     <div class="form-floating">
-      {{ f.email(class="form-control", placeholder="") }} {{ f.email.label() }}
+      {{ contact_form.email(class="form-control", placeholder="") }} {{
+      contact_form.email.label() }}
     </div>
   </div>
 
   <div class="col-md-12">
     <div class="form-floating">
-      {{ f.message (class="form-control", placeholder="", style="height: 150px")
-      }} {{ f.message.label() }}
+      {{ contact_form.message (class="form-control", placeholder="",
+      style="height: 150px") }} {{ contact_form.message.label() }}
     </div>
   </div>
 
