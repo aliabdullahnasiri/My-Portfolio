@@ -805,8 +805,6 @@ textarea {
 
 /* Footer Section Start */
 .d2c_footer_wrapper {
-  background:
-    url(../images/group.png), url(../images/footer_bg.jpg), var(--primary_bg);
   background-repeat: no-repeat;
   background-size: cover;
   padding: 100px 0px;
