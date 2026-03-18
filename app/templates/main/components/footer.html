@@ -33,7 +33,12 @@
       <div class="col-md-12 col-lg-4 mt-4 mt-lg-0 wow fadeInRight">
         <div class="d2c_footer_card rounded-2">
           <h3>Get in touch</h3>
-          <form class="needs-validation" novalidate>
+          <form
+            method="post"
+            action="{{ url_for('api.quick_contact') }}"
+            class="needs-validation"
+            novalidate
+          >
             <div class="input-group">
               <div class="form-floating">
                 {{ quick_contact_form.email(class="form-control",
