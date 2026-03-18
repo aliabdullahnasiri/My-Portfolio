@@ -1454,3 +1454,11 @@ input:-webkit-autofill {
   -webkit-text-fill-color: #fff !important;
   transition: background-color 5000s ease-in-out 0s;
 }
+.swal2-popup {
+  border: 1.5px solid rgba(94, 106, 210, 0.2);
+  background: #131722 !important;
+  box-shadow:
+    0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
