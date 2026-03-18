@@ -1446,3 +1446,8 @@ section#projects {
 textarea {
   resize: none;
 }
+
+li a:hover {
+  color: #c0c6d690 !important;
+  transition: 0.32s;
+}
