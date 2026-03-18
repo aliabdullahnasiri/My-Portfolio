@@ -22,3 +22,9 @@ class ContactForm(Form):
     submit = SubmitField("Send Message")
 
     def validate_email(self, email): ...
+
+
+class QuickContactForm(Form):
+    email = StringField("Email", validators=[DataRequired(), Email()])
+
+    def validate_email(self, email): ...
