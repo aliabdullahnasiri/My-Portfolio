@@ -1,0 +1,62 @@
+<form
+  class="row g-3 needs-validation p-4"
+  action="{{ url_for('api.contact') }}"
+  method="post"
+  novalidate
+>
+  <div class="col-md-6">
+    <div class="form-floating">
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustomFirstName"
+        placeholder="John"
+        required
+      />
+      <label for="validationCustomFirstName">First Name</label>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-floating">
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustomLastName"
+        placeholder="Doe"
+        required
+      />
+      <label for="validationCustomLastName">Last Name</label>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="form-floating">
+      <input
+        type="email"
+        class="form-control"
+        id="validationCustomEmail"
+        placeholder="you@company.com"
+        required
+      />
+      <label for="validationCustomEmail">Email Address</label>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="form-floating">
+      <textarea
+        class="form-control"
+        placeholder="Write a brief message..."
+        id="validationCustomMessage"
+        style="height: 120px"
+        required
+      ></textarea>
+      <label for="validationCustomMessage">Describe your problem</label>
+    </div>
+  </div>
+
+  <div class="col-12 text-center">
+    <button class="btn btn-primary" type="submit">Send Message</button>
+  </div>
+</form>
