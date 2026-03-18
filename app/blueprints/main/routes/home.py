@@ -1,7 +1,7 @@
 from flask import render_template
 
 from app.blueprints.main import bp
-from app.forms.contact import ContactForm
+from app.forms.contact import ContactForm, QuickContactForm
 from app.models.profile import Profile
 
 
@@ -15,5 +15,6 @@ def home():
         profile=Profile.query.filter_by(is_active=True)
         .order_by(getattr(Profile, "updated_at").desc())
         .first(),
-        f=ContactForm(),
+        contact_form=ContactForm(),
+        quick_contact_form=QuickContactForm(),
     )
