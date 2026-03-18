@@ -1,0 +1,19 @@
+<form
+  method="post"
+  action="{{ url_for('api.quick_contact') }}"
+  class="needs-validation"
+  novalidate
+>
+  {{ contact_form.hidden_tag() }}
+
+  <div class="input-group">
+    <div class="form-floating">
+      {{ quick_contact_form.email(class="form-control", placeholder="") }} {{
+      quick_contact_form.email.label() }}
+    </div>
+
+    <button class="btn h-auto" type="submit" id="newsletter_btn">
+      drive in
+    </button>
+  </div>
+</form>
