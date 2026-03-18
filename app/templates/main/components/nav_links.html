@@ -1,0 +1,29 @@
+{% macro nav_links(ul_class="navbar-nav", li_class="nav-item",
+a_class="nav-link") %}
+<ul class="{{ ul_class }}">
+  <li class="{{ li_class }}">
+    <a class="{{ a_class }} active" href="#home"
+      >Home <span class="sr-only">(current)</span></a
+    >
+  </li>
+  <li class="{{ li_class }}">
+    <a class="{{ a_class }}" href="#about">About</a>
+  </li>
+  <li class="{{ li_class }}">
+    <a class="{{ a_class }}" href="#certifications">Certifications</a>
+  </li>
+  <li class="{{ li_class }}">
+    <a class="{{ a_class }}" href="#projects">Projects</a>
+  </li>
+  <li class="{{ li_class }}">
+    <a class="{{ a_class }}" href="#skills">Skills</a>
+  </li>
+  <li class="{{ li_class }}">
+    <a class="{{ a_class }}" href="#education">Education</a>
+  </li>
+  <li class="{{ li_class }}">
+    <a class="{{ a_class }}" href="#contact">Contact</a>
+  </li>
+</ul>
+
+{% endmacro %}
