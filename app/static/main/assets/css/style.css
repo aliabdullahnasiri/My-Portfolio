@@ -1391,11 +1391,15 @@ section#projects {
   height: 280px !important;
 }
 
+.d4c_wrapper:hover .d5c_wrapper {
+  transform: scale(1.128);
+}
 .d4c_wrapper {
   display: flex;
   align-items: center;
   background: #252841;
   border-radius: 100px;
+  transition: 0.32s;
 }
 
 .d5c_wrapper {
@@ -1430,6 +1434,10 @@ section#projects {
 .d4c_wrapper .text {
   padding: 0px 15px 0px 0px;
   font-size: 14px;
+}
+
+.d4c_wrapper:hover .text {
+  transition: 0.32s;
 }
 
 .form-floating label {
