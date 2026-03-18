@@ -4,6 +4,8 @@
   method="post"
   novalidate
 >
+  {{ f.hidden_tag() }}
+
   <div class="col-md-6">
     <div class="form-floating">
       {{ f.first_name(class="form-control", placeholder="") }} {{
