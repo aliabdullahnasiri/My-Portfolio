@@ -1391,9 +1391,6 @@ section#projects {
   height: 280px !important;
 }
 
-.d4c_wrapper:hover .d5c_wrapper {
-  transform: scale(1.128);
-}
 .d4c_wrapper {
   display: flex;
   align-items: center;
