@@ -11,7 +11,15 @@ async function submitForm(form) {
 
     const data = await response.json();
 
-    console.log(data);
+    Swal.fire({
+      title: data.title,
+      text: data.message,
+      icon: data.category,
+    }).then(() => {
+      if (data?.redirect) {
+        window.location.replace(data.redirect);
+      }
+    });
   } catch (err) {
     console.log(err);
   }
