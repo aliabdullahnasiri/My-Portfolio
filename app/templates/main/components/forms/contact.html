@@ -6,53 +6,28 @@
 >
   <div class="col-md-6">
     <div class="form-floating">
-      <input
-        type="text"
-        class="form-control"
-        id="validationCustomFirstName"
-        placeholder="John"
-        required
-      />
-      <label for="validationCustomFirstName">First Name</label>
+      {{ f.first_name(class="form-control", placeholder="") }} {{
+      f.first_name.label() }}
     </div>
   </div>
 
   <div class="col-md-6">
     <div class="form-floating">
-      <input
-        type="text"
-        class="form-control"
-        id="validationCustomLastName"
-        placeholder="Doe"
-        required
-      />
-      <label for="validationCustomLastName">Last Name</label>
+      {{ f.last_name(class="form-control", placeholder="") }} {{
+      f.last_name.label() }}
     </div>
   </div>
 
   <div class="col-md-12">
     <div class="form-floating">
-      <input
-        type="email"
-        class="form-control"
-        id="validationCustomEmail"
-        placeholder="you@company.com"
-        required
-      />
-      <label for="validationCustomEmail">Email Address</label>
+      {{ f.email(class="form-control", placeholder="") }} {{ f.email.label() }}
     </div>
   </div>
 
   <div class="col-md-12">
     <div class="form-floating">
-      <textarea
-        class="form-control"
-        placeholder="Write a brief message..."
-        id="validationCustomMessage"
-        style="height: 120px"
-        required
-      ></textarea>
-      <label for="validationCustomMessage">Describe your problem</label>
+      {{ f.message (class="form-control", placeholder="", style="height: 150px")
+      }} {{ f.message.label() }}
     </div>
   </div>
 
