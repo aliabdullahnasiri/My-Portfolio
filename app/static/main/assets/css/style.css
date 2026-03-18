@@ -1433,3 +1433,12 @@ section#projects {
   padding: 0px 15px 0px 0px;
   font-size: 14px;
 }
+
+.form-floating label {
+  color: var(--text_color) !important;
+}
+
+.form-floating input,
+.form-floating textarea {
+  border-radius: 10px;
+}
