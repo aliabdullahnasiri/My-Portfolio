@@ -27,7 +27,7 @@ def contact():
 
         response.update(
             **{
-                "status": "success",
+                "category": "success",
                 "message": "Message sent successfully",
             }
         )
