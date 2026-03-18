@@ -11,25 +11,7 @@ async function submitForm(form) {
 
     const data = await response.json();
 
-    eventInitDict.detail = data;
-
-    form.querySelectorAll(".errors").forEach((el) => el.remove());
-
-    form
-      .querySelectorAll(".is-invalid")
-      .forEach((el) => el.classList.remove("is-invalid"));
-
-    if (data.errors) {
-      console.log(data.errors);
-    } else {
-      Swal.fire({
-        title: data.title,
-        text: data.message,
-        icon: data.category,
-      }).then(() => {
-        if (data?.redirect) window.location.replace(data.redirect);
-      });
-    }
+    console.log(data);
   } catch (err) {
     console.log(err);
   }
