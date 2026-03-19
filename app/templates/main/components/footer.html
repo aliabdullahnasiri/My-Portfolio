@@ -17,6 +17,15 @@
               {{ profile.user.full_name }}</span
             >
           </h5>
+          <h6
+            class="fs-6"
+            id="typewriter"
+            data-deleting-speed="20"
+            data-writing-speed="40"
+            data-delay="2000"
+          >
+            {{ profile.headline }}
+          </h6>
           <p class="mb-0">{{ profile.short_bio }}</p>
         </div>
       </div>
@@ -40,6 +49,11 @@
         <div class="d2c_footer_card rounded-2">
           <h3>Get in touch</h3>
           {% include "main/components/forms/quick_contact.html" %}
+          <p class="mt-2 pt-2 mb-0 pb-0 mx-2">
+            Want to get in touch? Leave your email and I’ll reach out soon. I’d
+            love to hear from you. I’m always open to new ideas and
+            collaborations.
+          </p>
         </div>
       </div>
     </div>
