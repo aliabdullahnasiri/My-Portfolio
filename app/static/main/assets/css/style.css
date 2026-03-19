@@ -1450,11 +1450,6 @@ textarea {
   resize: none;
 }
 
-li a:hover {
-  color: #c0c6d690 !important;
-  transition: 0.32s;
-}
-
 input:-webkit-autofill {
   -webkit-text-fill-color: #fff !important;
   transition: background-color 5000s ease-in-out 0s;
