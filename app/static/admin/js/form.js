@@ -538,7 +538,7 @@ export function upload(files, dropZone) {
         let spanElement = document.createElement("span");
 
         spanElement.classList.value =
-          "badge badge-sm bg-gradient-secondary mx-2 my-1 cursor-pointer";
+          "badge badge-sm bg-gradient-secondary mx-2 my-1 cursor-pointer tt-none";
         spanElement.innerHTML = event.target.value;
         spanElement.dataset.role = "value";
 
