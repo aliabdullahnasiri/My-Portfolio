@@ -1,10 +1,9 @@
 from typing import Union
 
-from flask import Response, jsonify, render_template, request
+from flask import jsonify, render_template, request
 from sqlalchemy import and_
 
 from app.blueprints.main import bp
-from app.func import generate_pdf
 from app.models.profile import Profile
 
 
@@ -27,10 +26,5 @@ def resume(profile_uid: Union[str, None] = None):
     match request.path:
         case p if p.endswith("/resume"):
             return render_template("main/pages/resume.html")
-        case p if p.endswith("/resume.pdf"):
-            return Response(
-                generate_pdf(render_template("main/resume.tex", profile=profile)),
-                mimetype="application/pdf",
-            )
 
     return jsonify(profile and profile.to_dict() or {})
