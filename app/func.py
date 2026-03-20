@@ -189,7 +189,7 @@ def generate_pdf(latex_content: str) -> bytes:
 
     for _ in range(2):
         subprocess.run(
-            ["xelatex", "-interaction=nonstopmode", "main.tex"],
+            ["pdflatex", "main.tex"],
             cwd=temp_dir,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
