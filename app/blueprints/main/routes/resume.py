@@ -1,12 +1,10 @@
-import uuid
-from operator import call
 from typing import Union
 
 from flask import Response, jsonify, render_template, request
-from pdflatex import PDFLaTeX
 from sqlalchemy import and_
 
 from app.blueprints.main import bp
+from app.func import generate_pdf
 from app.models.profile import Profile
 
 
@@ -30,15 +28,9 @@ def resume(profile_uid: Union[str, None] = None):
         case p if p.endswith("/resume"):
             return render_template("main/pages/resume.html")
         case p if p.endswith("/resume.pdf"):
-            pdf, *_ = PDFLaTeX.from_binarystring(
-                call(
-                    getattr(
-                        render_template("main/resume.tex", profile=profile), "encode"
-                    )
-                ),
-                f"/tmp/{uuid.uuid4()}",
-            ).create_pdf(keep_pdf_file=False, keep_log_file=False)
-
-            return Response(pdf, mimetype="application/pdf")
+            return Response(
+                generate_pdf(render_template("main/resume.tex", profile=profile)),
+                mimetype="application/pdf",
+            )
 
     return jsonify(profile and profile.to_dict() or {})
