@@ -8,10 +8,10 @@ from app.func import generate_pdf
 from app.models.profile import Profile
 
 
-@bp.get("/resume")
-@bp.get("/resume.pdf")
-@bp.get("/<string:profile_uid>/resume")
-@bp.get("/<string:profile_uid>/resume.pdf")
+@bp.get("/resume", endpoint="resume_page")
+@bp.get("/resume.pdf", endpoint="resume_pdf")
+@bp.get("/<string:profile_uid>/resume", endpoint="profile_resume_page")
+@bp.get("/<string:profile_uid>/resume.pdf", endpoint="profile_resume_pdf")
 def resume(profile_uid: Union[str, None] = None):
     args = (Profile.is_active == True,)
 
