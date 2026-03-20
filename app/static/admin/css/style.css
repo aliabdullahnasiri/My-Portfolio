@@ -335,3 +335,7 @@ img:not([src]),
 img[src=""] {
   display: none !important;
 }
+
+.tt-none {
+  text-transform: none !important;
+}
