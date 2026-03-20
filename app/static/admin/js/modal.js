@@ -144,7 +144,7 @@ import { createLoader, transformAllMovingTab } from "./script.js";
                     Array.from(val).forEach((v) => {
                       const spanElement = document.createElement("span");
                       spanElement.classList.value =
-                        "badge badge-sm bg-gradient-secondary mx-2 my-1 cursor-pointer";
+                        "badge badge-sm bg-gradient-secondary mx-2 my-1 cursor-pointer tt-none";
                       spanElement.innerHTML = v;
                       spanElement.dataset.role = "value";
 
