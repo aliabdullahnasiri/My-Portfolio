@@ -1,5 +1,8 @@
+import os
 import pathlib
 import re
+import subprocess
+import uuid
 from datetime import date
 from operator import call
 from typing import List, Union
@@ -173,3 +176,35 @@ def is_url_alive(url, timeout=5):
     except requests.RequestException:
         # Catch all request-related errors (connection error, timeout, etc.)
         return False
+
+
+def generate_pdf(latex_content: str) -> bytes:
+    temp_dir = f"/tmp/{uuid.uuid4()}"
+    os.makedirs(temp_dir, exist_ok=True)
+
+    tex_path = os.path.join(temp_dir, "main.tex")
+
+    with open(tex_path, "w", encoding="utf-8") as f:
+        f.write(latex_content)
+
+    for _ in range(2):
+        subprocess.run(
+            ["xelatex", "-interaction=nonstopmode", "main.tex"],
+            cwd=temp_dir,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+
+    pdf_path = os.path.join(temp_dir, "main.pdf")
+
+    data = b""
+
+    with open(pdf_path, "rb") as f:
+        data = f.read()
+
+    for file in os.listdir(temp_dir):
+        os.remove(os.path.join(temp_dir, file))
+
+    os.rmdir(temp_dir)
+
+    return data
