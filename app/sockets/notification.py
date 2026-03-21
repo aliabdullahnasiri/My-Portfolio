@@ -8,10 +8,4 @@ def handle_connect():
 
 
 def notify_new_message(notification: Notification):
-    socketio.emit(
-        "new_notification",
-        {
-            "message": notification.message,
-            "type": notification.type.value,
-        },
-    )
+    socketio.emit("new_notification", notification.to_dict())
