@@ -26,6 +26,8 @@ def contact():
         db.session.add(m)
         db.session.commit()
 
+        create_notification(f"New message from {m.email}")
+
         response.update(
             **{
                 "category": "success",
