@@ -1,7 +1,4 @@
-from sqlalchemy import event
-
 from app.extensions import db
-from app.services.notification import create_notification
 
 
 class ContactMessage(db.Model):
@@ -17,8 +14,3 @@ class ContactMessage(db.Model):
 
     def __repr__(self):
         return f"<ContactMessage {self.email}>"
-
-
-@event.listens_for(ContactMessage, "after_insert", propagate=True)
-def notify(mapper, connection, target):
-    create_notification(f"New message from {target.email}")
