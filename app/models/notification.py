@@ -31,6 +31,8 @@ class Notification(db.Model):
     def __repr__(self):
         return f"<Notification type={self.type.value!r} read={self.is_read!r}>"
 
-    # 👤 Human readable (for logs / UI debug)
     def __str__(self):
         return f"[{self.type.value.upper()}] {self.message}"
+
+    def mark_as_read(self):
+        self.is_read = True
