@@ -6,9 +6,8 @@ from flask import request
 from numerize import numerize
 from sqlalchemy import Column, Integer, String, event
 from sqlalchemy.ext.declarative import declared_attr
-from sqlalchemy.orm import Session
 
-from app.extensions import console, db, socketio
+from app.extensions import console, db
 
 
 class Base(db.Model):
@@ -26,12 +25,14 @@ class Base(db.Model):
     created_at = db.Column(
         db.DateTime(timezone=True),
         default=lambda: datetime.now(),
+        server_default=db.func.now(),
         nullable=False,
     )
     updated_at = db.Column(
         db.DateTime(timezone=True),
         default=lambda: datetime.now(),
         onupdate=lambda: datetime.now(),
+        server_default=db.func.now(),
         nullable=False,
     )
 
