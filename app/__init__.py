@@ -11,7 +11,7 @@ from app.blueprints.api import bp as api_bp
 from app.blueprints.auth import bp as auth_bp
 from app.blueprints.main import bp as main_bp
 from app.config import Config
-from app.extensions import bcrypt, db, login_manager, migrate
+from app.extensions import bcrypt, db, login_manager, migrate, socketio
 
 
 def ctx() -> Dict:
@@ -38,6 +38,7 @@ def create_app(config_class: type[Config] | None = None) -> Flask:
     migrate.init_app(app, db)
     bcrypt.init_app(app)
     login_manager.init_app(app)
+    socketio.init_app(app)
 
     @app.context_processor
     def _():
