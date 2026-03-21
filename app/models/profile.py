@@ -7,7 +7,6 @@ from sqlalchemy import and_
 from app.const import DEFAULT_AVATAR
 from app.extensions import db
 from app.models.certificate import Certificate
-from app.models.education import Education
 from app.models.project import Project
 from app.models.skill import Skill, SkillCategory
 
