@@ -13,6 +13,7 @@ def create_notification(
     notification.is_read = False
 
     db.session.add(notification)
+    db.session.commit()
 
     notify_new_message(notification)
 
