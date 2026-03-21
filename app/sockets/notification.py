@@ -1,4 +1,5 @@
 from app.extensions import socketio
+from app.models.notification import Notification
 
 
 @socketio.on("connect")
@@ -6,5 +7,11 @@ def handle_connect():
     print("User connected")
 
 
-def notify_new_message(message):
-    socketio.emit("new_notification", {"text": message})
+def notify_new_message(notification: Notification):
+    socketio.emit(
+        "new_notification",
+        {
+            "message": notification.message,
+            "type": notification.type.value,
+        },
+    )
