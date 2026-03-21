@@ -3,8 +3,7 @@ from app.models.notification import Notification
 
 
 @socketio.on("connect")
-def handle_connect():
-    print("User connected")
+def handle_connect(): ...
 
 
 def notify_new_message(notification: Notification):
