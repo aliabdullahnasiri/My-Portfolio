@@ -12,7 +12,9 @@ class NotificationType(enum.Enum):
 
 
 class Notification(db.Model):
+    __tablename__ = "notifications"
 
+    uid = None
     message = db.Column(db.String(255))
     type = db.Column(
         db.Enum(NotificationType), default=NotificationType.INFO, nullable=False
