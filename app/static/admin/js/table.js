@@ -14,15 +14,19 @@ async function fetchTableData(tableElement, page, limit) {
 
   let response = await fetch(url);
 
+  if (response.status == 403) throw Error("403 ERROR");
+
   if (response.ok) {
     let data = await response.json();
 
-    return data;
+    return [data, response.status];
   }
+
+  return [undefined, response.status];
 }
 
 async function initTable(tableElement, theadElement, tbodyElement) {
-  let data = await fetchTableData(tableElement, FIRST_PAGE);
+  let [data] = await fetchTableData(tableElement, FIRST_PAGE);
 
   if (data) {
     let cols = data?.cols;
@@ -62,28 +66,36 @@ async function loadRows() {
     let tbody = table.querySelector("tbody");
     showSkeletonRow(tbody);
 
-    let data = await fetchTableData(
-      table,
-      table.dataset.page,
-      table.dataset.limit,
-    );
+    try {
+      let [data] = await fetchTableData(
+        table,
+        table.dataset.page,
+        table.dataset.limit,
+      );
 
-    removeSkeletonRow(tbody);
+      removeSkeletonRow(tbody);
 
-    let rows = data?.rows;
+      let rows = data?.rows;
 
-    if (rows.length !== 0) {
-      addTableRows(table, tbody, rows, false);
+      if (rows.length !== 0) {
+        addTableRows(table, tbody, rows, false);
 
-      table.dataset.page = 1 + +table.dataset.page;
+        table.dataset.page = 1 + +table.dataset.page;
+      }
+
+      window.tableLoading = false;
+    } catch (error) {
+      table.dataset.completed = "true";
     }
-
-    window.tableLoading = false;
   }
 }
 
 function handleScroll() {
-  if (window.scrollY > document.body.scrollHeight - window.innerHeight)
+  let table = document.querySelector("table[data-type=dynamic]");
+  if (
+    window.scrollY > document.body.scrollHeight - window.innerHeight &&
+    !table.dataset.completed
+  )
     loadRows();
 }
 
