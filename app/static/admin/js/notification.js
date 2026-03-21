@@ -38,7 +38,7 @@
                 </a>
             </li>
         `;
-    listEl.innerHTML += item;
+    listEl.innerHTML = item + listEl.innerHTML;
   }
 
   // Load on page ready
