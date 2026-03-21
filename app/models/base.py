@@ -6,8 +6,9 @@ from flask import request
 from numerize import numerize
 from sqlalchemy import Column, Integer, String, event
 from sqlalchemy.ext.declarative import declared_attr
+from sqlalchemy.orm import Session
 
-from app.extensions import console, db
+from app.extensions import console, db, socketio
 
 
 class Base(db.Model):
@@ -80,6 +81,10 @@ class Base(db.Model):
             value = None
 
         return super().__setattr__(name, value)
+
+
+@event.listens_for(Base, "after_insert", propagate=True)
+def create_notification(mapper, connection, target): ...
 
 
 @event.listens_for(Base, "before_insert", propagate=True)
