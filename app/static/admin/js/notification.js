@@ -10,10 +10,7 @@
 
     listEl.innerHTML = "";
 
-    if (!notifications.length) {
-      listEl.innerHTML = `<li class="text-center text-muted small">No notifications</li>`;
-      return;
-    }
+    if (!notifications.length) return;
 
     notifications.forEach((n) => {
       addNotification(n);
