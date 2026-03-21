@@ -25,14 +25,12 @@ class Base(db.Model):
     created_at = db.Column(
         db.DateTime(timezone=True),
         default=lambda: datetime.now(),
-        server_default=db.func.now(),
         nullable=False,
     )
     updated_at = db.Column(
         db.DateTime(timezone=True),
         default=lambda: datetime.now(),
         onupdate=lambda: datetime.now(),
-        server_default=db.func.now(),
         nullable=False,
     )
 
