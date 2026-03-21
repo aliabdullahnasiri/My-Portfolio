@@ -7,7 +7,7 @@ from flask_login import login_required
 from app.blueprints.api import bp
 from app.extensions import db
 from app.forms.experience import AddExperienceForm, UpdateExperienceForm
-from app.func import get_file_url, render_td
+from app.func import render_td
 from app.models.experience import Experience
 from app.models.permission import Permission
 from app.models.user import permission_required
@@ -15,6 +15,10 @@ from app.types import ColumnID, ColumnName
 
 cols: List[Tuple[ColumnID, ColumnName]] = [
     (ColumnID("uid"), ColumnName("UID")),
+    (ColumnID("company"), ColumnName("Company")),
+    (ColumnID("location"), ColumnName("Location")),
+    (ColumnID("start_date"), ColumnName("Start Date")),
+    (ColumnID("end_date"), ColumnName("End Date")),
 ]
 
 
