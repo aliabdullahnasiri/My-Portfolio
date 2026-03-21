@@ -26,11 +26,11 @@ def fetch_notifications() -> Response:
     return response
 
 
-@bp.get("/fetch/notification/<string:uid>")
+@bp.get("/fetch/notification/<int:id>")
 @login_required
 @permission_required(Permission.get("FETCH_NOTIFICATION"))
-def fetch_notification(uid) -> Response:
-    notification = Notification.query.filter_by(uid=uid).first()
+def fetch_notification(id: int) -> Response:
+    notification = Notification.query.get(id)
 
     if notification:
         response: Response = Response(
