@@ -6,45 +6,25 @@
     <title>{{ title or 'App' }} · {{ PROJECT_TITLE }}</title>
 
     {% block style %}
-    <!-- Animate CSS Link -->
-    <link
-      href="{{ url_for('static', filename='main/plugins/WOW-master/css/libs/animate.css') }}"
-      rel="stylesheet"
-    />
-    <!-- Font CDN Link -->
-    <link
-      href="https://fonts.cdnfonts.com/css/satoshi?styles=135009,135005,135007,135002,135000"
-      rel="stylesheet"
-    />
-    <!-- Font Awesome 5 CDN/ Icon Link -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      rel="stylesheet"
-    />
-    <!-- Slider CSS Link -->
-    <link
-      href="{{ url_for('static', filename='main/plugins/slick-1.8.1/slick/slick.css') }}"
-      rel="stylesheet"
-    />
-    <link
-      href="{{ url_for('static', filename='main/plugins/slick-1.8.1/slick/slick-theme.css') }}"
-      rel="stylesheet"
-    />
-    <!-- Bootstarp CSS -->
-    <link
-      href="{{ url_for('static', filename='main/plugins/bootstrap-5/css/bootstrap.min.css') }}"
-      rel="stylesheet"
-    />
-    <!-- Main CSS -->
-    <link
-      href="{{ url_for('static', filename='main/assets/css/style.css') }}"
-      rel="stylesheet"
-    />
-    <!-- Responsive CSS -->
-    <link
-      href="{{ url_for('static', filename='main/assets/css/responsive.css') }}"
-      rel="stylesheet"
-    />
+    <!-- Animate.css (used with WOW.js) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <!-- Satoshi Font (you already have CDN, keep it) -->
+    <link href="https://fonts.cdnfonts.com/css/satoshi?styles=135009,135005,135007,135002,135000" rel="stylesheet"/>
+
+    <!-- Font Awesome 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+
+    <!-- Slick Slider CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+
+    <!-- Your custom CSS (keep local) -->
+    <link href="{{ url_for('static', filename='main/assets/css/style.css') }}" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='main/assets/css/responsive.css') }}" rel="stylesheet"/>
     {% endblock %}
   </head>
   <body>
@@ -71,31 +51,28 @@
     {% endblock %}
 
     {% block script %}
-    <!-- JS CDN -->
-    <script src="{{ url_for('static', filename='main/plugins/jquery-3.5.1/jquery-3.5.1.min.js') }}"></script>
+    <!-- jQuery 3.5.1 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-    <!-- WOW Animation JS -->
-    <script
-      src="{{ url_for('static', filename='main/plugins/WOW-master/dist/wow.min.js') }}"
-    ></script>
-    <!-- Bootstrap JS -->
-    <script
-      src="{{ url_for('static', filename='main/plugins/bootstrap-5/js/bootstrap.bundle.min.js') }}"
-    ></script>
-    <!-- Slider JS Link -->
-    <script
-      src="{{ url_for('static', filename='main/plugins/slick-1.8.1/slick/slick.min.js') }}"
-    ></script>
+    <!-- WOW.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 
-    <script
-      src="{{ url_for('static', filename='main/plugins/sweetalert/sweetalert.js') }}"
-    ></script>
+    <!-- Bootstrap 5 Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Slick Slider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    <!-- SweetAlert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+    <!-- SocketIO -->
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
 
     <script
       src="{{ url_for('static', filename='main/assets/js/form.js') }}"
     ></script>
 
-    <!-- Main JS Link -->
     <script
       src="{{ url_for('static', filename='main/assets/js/main.js') }}"
     ></script>
