@@ -21,7 +21,6 @@
   }
 
   function addNotification(n) {
-    console.log(n);
     const item = `
             <li class="mb-2" data-role="notification">
                 <a class="dropdown-item border-radius-md" href="#">
