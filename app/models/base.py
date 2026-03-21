@@ -69,6 +69,8 @@ class Base(db.Model):
         return {
             "id": self.id,
             "uid": getattr(self, "uid") if hasattr(self, "uid") else None,
+            "natural_created_at": self.display_natural_created_at,
+            "natural_updated_at": self.display_natural_updated_at,
             "created_at": self.display_created_at,
             "updated_at": self.display_updated_at,
         }
