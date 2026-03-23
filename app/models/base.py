@@ -82,10 +82,6 @@ class Base(db.Model):
         return super().__setattr__(name, value)
 
 
-@event.listens_for(Base, "after_insert", propagate=True)
-def create_notification(mapper, connection, target): ...
-
-
 @event.listens_for(Base, "before_insert", propagate=True)
 def generate_uid(mapper, connection, target):
     cls = target.__class__
