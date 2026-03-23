@@ -6,7 +6,6 @@ from app.blueprints.api import bp
 from app.extensions import db
 from app.forms.contact import ContactForm, QuickContactForm
 from app.models.contact import ContactMessage
-from app.services.notification import create_notification
 
 
 @bp.post("/contact")
@@ -25,8 +24,6 @@ def contact():
 
         db.session.add(m)
         db.session.commit()
-
-        create_notification(f"New message from {m.email}")
 
         response.update(
             **{
@@ -54,8 +51,6 @@ def quick_contact():
 
         db.session.add(m)
         db.session.commit()
-
-        create_notification(f"New message from {m.email}")
 
         response.update(
             **{
