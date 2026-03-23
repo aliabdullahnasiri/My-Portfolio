@@ -13,3 +13,5 @@ class SignInForm(Form):
     remember_me = BooleanField("Remember Me")
 
     submit = SubmitField("Sign In")
+
+    def validate_email(self, email): ...
